@@ -1,0 +1,15 @@
+package edu.kh.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoProject1Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoProject1Application.class, args);
+//		 ㄴ> 자동 실행
+		
+	}
+
+}

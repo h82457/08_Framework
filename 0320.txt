@@ -1,0 +1,39 @@
+class : 객체를 만들기 위한 설계도 (객체: 속성 + 기능)
+
+new <~ 이용해서 class를 사용시마다 객체 생성
+   ㄴ> 비효율.
+
+Servlet : Java에서 요청 응답을 가능하게 하는 클래스 -> @webServlet("/main") <- "/main"이라는 요청이 올떄 응답
+
+ @webServlet("*")
+      요청 발송〉
+Dispatcher Servlet : 중간에서 방향 제어 - 모든 요청을 받아서 어떤 요청을 필요한 컨트롤러로 발송(안내소 역할)
+
+--
+
+*집에 가서 할것
+- 스프링 설치 (https://spring.io/tools)
+- 스프링 개발 환경 설정 (4번 pdf 내용) 
+- 마켓플레이스 - xml 이클립스 (8번 pdf 내용)
+
+- lombok 설치 (4번 pdf 내용)
+C:\tools\08_Framework> 경로에서 cmd 열기
+java --version (설치 확인) ->  java -jar lombok.jar 입력시 설치 프로그램 실행,
+     lombok.jar 파일 경로에서 회색 아이콘(두번째) 선택 실행
+--
+프로젝트 생성시 선택
+
+Spring Boot DevTools
+Lombok (https://devmg.tistory.com/135)
+Spring Configuration Processor 
+Template Engines - Thymeleaf
+Web-Spring web <- 모델뷰 컨트롤러 제공
+--
+
+webapp 대신 src/main/resources 폴더 사용, templates <-html 파일 배치, static<-java,js,css
+src/main/resourcesapp/templates application~ properties 파일 properties 들어가서 utf-8로 변경
+
+스프링 클래스 이름 변경: 선택- f2
+
+연결 확인시 검사-소스 / 네트워크에서 확인
+
