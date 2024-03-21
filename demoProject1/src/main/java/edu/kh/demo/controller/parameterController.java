@@ -6,40 +6,39 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.kh.demo.model.dto.MemberDTO;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 
 // Bean : 스프링이 만들고 관리하는 객체
 
-@Controller // 요청/응답 제어 역할 명시 + Bean 등록
-
-@RequestMapping("param") // /parma 으로 시작하는 요청을 현재 컨트롤러로 매핑
-
-@Slf4j // log를 이용한 메시지 출력시 사용(Lombok 제공)
+@Controller 					// 요청/응답 제어 역할 명시 + Bean 등록
+@RequestMapping("param") 		// /param 으로 시작하는 요청을 현재 컨트롤러로 매핑
+@Slf4j 							// log를 이용한 메시지 출력시 사용(Lombok 제공)
 public class parameterController {
 	
-	@GetMapping("main") // /param/main GET 방식으로 요청 매핑
+	@GetMapping("main") 		// /param/main GET 방식으로 요청 매핑
 	public String paramMain() {
 		
-		
-//		classpath:\resources\templates\param\param-main.html
-		return "param/param-main";
+		return "param/param-main"; // classpath:\resources\templates\param\param-main.html
 	}
 	
 	
-	/* 1. HttpServletRequest.getParameter("Key") 이용 */
-//			ㄴ> HttpServletRequest : 요청 클라이언트 정보, 제출된 파라미터등을 저장한 객체, 클라이언트 요청시 생성
 	
-//		Spring의 Controller 메서드 작성시 매개변수에 원하는 객체를 작성 -> 존재하는 객체를 바인딩 / 없으면 생성해서 바인딩
-//			--> ArgumentResolver(전달인자 해결사)
+	
+	
+	/* 1. HttpServletRequest.getParameter("Key") 이용 */
+	
+/*			ㄴ> HttpServletRequest : 요청 클라이언트 정보, 제출된 파라미터등을 저장한 객체, 클라이언트 요청시 생성
+	
+		Spring의 Controller 메서드 작성시 매개변수에 원하는 객체를 작성 -> 존재하는 객체를 바인딩 / 없으면 생성해서 바인딩
+			--> ArgumentResolver(전달인자 해결사)
+ */
+	
 	@PostMapping("test1") // /param/test1	POST 방식 요청 매핑
 	public String paramTest1(HttpServletRequest req) {
 		
@@ -55,7 +54,9 @@ public class parameterController {
 		return "redirect:/param/main";
 	}
 	
-
+ 
+	
+	
 	/* 2. @RequestParam 어노테이션 - 낱개(한 개, 단 수)개 파라미터 얻어오기
 	 * 
 	 * - request객체를 이용한 파라미터 전달 어노테이션 
