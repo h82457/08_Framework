@@ -66,14 +66,56 @@ public class TodoServiceImpl implements TodoService{
 		
 		// My batis에서 SQL에 전달할 수 있는 파라미터의 개수는 오직 1개!
 //			ㄴ> TodoTitle, todoContent를 Todo DTO로 묶어서 전달
+		
 		Todo todo = new Todo();
 		todo.setTodoTitle(todoTitle);
 		todo.setTodoContent(todoContent);
 
-		
 		return mapper.addTodo(todo);
 	}
+
+	// 할 일 상세 조회
+	@Override
+	public Todo todoDetail(int todoNo) {
+		
+		return mapper.todoDetail(todoNo);
+	}
+
+	// 할 일 삭제
+	@Override
+	public int todoDelete(int todoNo) {
+		
+		return mapper.todoDelete(todoNo);
+	}
+
+	// 할 일 수정
+	@Override
+	public int todoUpdate(Todo todo) {
+		// MyBatis 객체를 이용시 SQL에 전달할 수 있는 파라미터는 오직 1개!
+//			ㄴ> Map, List, DTO로 묶어서 전달 
+		
+		return mapper.todoUpdate(todo);
+	}
  
-	
+	// 할 일 완료 수정
+	@Override
+	public int changeComplete(Todo todo) {
+		
+		return mapper.changeComplete(todo);
+	}
+
+	// 전체 Todo 개수 조회
+	@Override
+	public int getTotalCount() {
+
+		return mapper.getTotalCount();
+	}
+
+	// 완료된 Todo 개수 조회 
+	@Override
+	public int completeCount() {
+		
+		return mapper.getCompleteCount();
+	}	
 	
 }
