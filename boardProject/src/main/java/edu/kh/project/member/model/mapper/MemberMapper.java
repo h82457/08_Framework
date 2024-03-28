@@ -8,4 +8,7 @@ import edu.kh.project.member.model.dto.Member;
 public interface MemberMapper {
 
 	public Member login(String memberEmail);
+
+	// 회원가입
+	public int signup(Member inputMember);
 }

@@ -2,7 +2,8 @@
 
     <!-- 클릭시 메인 페이지로 이동하는 로고<i class="fa-solid fa-circle-h" style="color: #ecd346;"></i> -->
     <section> 
-        <a href="/"><img src="/images/logo.jpg" alt="메인 로고" id="homeLogo"></a>
+        <!-- <a href="/"><img src="/images/logo.jpg" alt="메인 로고" id="homeLogo"></a> -->
+        <a href="/"><i class="fa-solid fa-ghost"alt="메인 로고" id="homeLogo"></i></a>
     </section>
 
     <!-- 검색어 입력할 수 있는 요소 배치 영역 -->
@@ -28,6 +29,32 @@
     <!-- 안쓰는 섹션 -->
     <section></section>
 
+    <!-- 우측 상단 드롭다운 메뉴 -->
+    <div class="header-top-menu">
+
+        <!-- 로그아웃시 보여지는 메뉴 -->
+        <th:block th:if="${session.loginMember == null}">
+            <a href="/">메인 페이지</a>
+            |
+            <a href="/member/login">로그인</a>
+        </th:block>
+
+        <!-- 로그인시 보여지는 메뉴  -->
+        <th:block th:unless="${session.loginMember == null}">
+            <label for="headerMenuToggle">
+                [[${session.loginMember.memberNickname}]]
+                <i class="fa-solid fa-caret-down"></i>
+            </label>
+
+            <input type="checkbox" id="headerMenuToggle">
+
+            <div class="header-menu">
+                <a href="#">내정보</a>
+                <a href="/member/logout">로그아웃</a>
+            </div>
+        </th:block>
+
+    </div>
 </header>
 
 <!-- navigator -->

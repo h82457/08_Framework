@@ -7,4 +7,12 @@ public interface MemberService {
 	// 로그인 서비스
 	Member login(Member inputMember);
 
+	
+	/** 회원가입 서비스
+	 * @param inputMember
+	 * @param memberAddress
+	 * @return result
+	 */
+	int signup(Member inputMember, String[] memberAddress);
+
 }

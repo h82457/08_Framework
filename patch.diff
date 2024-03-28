@@ -1,0 +1,28 @@
+diff --git a/boardProject/src/main/java/edu/kh/project/member/model/service/MemberServiceImpl.java b/boardProject/src/main/java/edu/kh/project/member/model/service/MemberServiceImpl.java
+index a7a7ad4..7f51bda 100644
+--- a/boardProject/src/main/java/edu/kh/project/member/model/service/MemberServiceImpl.java
++++ b/boardProject/src/main/java/edu/kh/project/member/model/service/MemberServiceImpl.java
+@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
+ import edu.kh.project.member.model.dto.Member;
+ import edu.kh.project.member.model.mapper.MemberMapper;
+ 
++<<<<<<< HEAD
+ @Service // 비즈니스 로직 처리 역할 + 빈 등록
++=======
++@Service // 비즈니스 로직 처리 역할 + 빈 등ㅇ록
++>>>>>>> 9bc82577e4090ded2d3ae4c47e20a32a3007dc61
+ public class MemberServiceImpl implements MemberService{
+ 
+ 	@Autowired // 등록된 bean 중에서 같은 타입 또는 상속관계인 빈을 자동으로 의존성 주입
+@@ -22,7 +26,11 @@ public class MemberServiceImpl implements MemberService{
+ 	public Member login(Member inputMember) {
+ 		
+ 		// 테스트 (디버그 모드)
++<<<<<<< HEAD
+ //		String bcryptPassword = bcrypt.encode(inputMember.getMemberPw());
++=======
++		String bcryptPassword = bcrypt.encode(inputMember.getMemberPw());
++>>>>>>> 9bc82577e4090ded2d3ae4c47e20a32a3007dc61
+ //			ㄴ bcrypt.encode(문자열) : 문자열을 암호화하여 반환 
+ 		
+ 		
