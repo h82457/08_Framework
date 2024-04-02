@@ -22,6 +22,11 @@ main{
     min-height: 500px;
 }
 
+/* 화면 너비가 1140px이 되기 전에 적용할 css == 1140이하일때 적용 */
+@media (max-width: 1140px){
+    main{width: 100vw;}
+
+}
 /* a태그 스타일 지정 */
 a{
     text-decoration: none;

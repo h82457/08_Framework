@@ -74,3 +74,66 @@ if(loginForm != null){
     });
 }
 
+/* 빠른 로그인 */
+const quickLoginBtns = document.querySelectorAll(".quick-login");
+
+quickLoginBtns.forEach( (item, index) => {
+
+    //item, : 현재 반복시 꺼내온 객체, index : 현재 반복중인 인덱스
+
+    // quickLoginBtns 요소를 하나씩 깨너새 이벤트 리스너 추가
+    item.addEventListener("click", e => {
+
+        const email = item.innerText; // 버튼에 작성된 이메일 얻어오기
+        
+        location.href = "/member/quickLogin?memberEmail=" + email; 
+    });
+})
+
+// ---------------------
+
+/* 회원 목록 조회 (비동기) */
+const selectMemberList = document.querySelector("#selectMemberList");
+const memberList = document.querySelector("#memberList");
+
+// 조회 버튼 클릭시
+selectMemberList.addEventListener("click", () => {
+
+    // 1) 비동기로 회원 목록 조회 (포함될 회원 정보 : 회원 번호, 이메일, 닉네임, 탈퇴 여부)
+    fetch("/member/selectMemberList")
+
+    // 첫번째 then(resp => resp.json()}) -> [{}, {}, {}],<- JSON Array, JS 객채 배열로 변환 필요
+    .then(resp => resp.text())
+
+    // 2) 두번쨰 then : tbody에 이미 작성된 내용 삭제
+    // 3) 두번쨰 then : 조회된 JS 객체 배열을 이용, tbody에 들어갈 요소를 만들고 값 세팅+추가
+    .then( result => {
+
+        // console.log(result);
+
+        const members = JSON.parse(result);
+
+        console.log(members);
+
+        memberList.innerHTML = "";
+
+        for(let member of members){
+
+            const tr = document.createElement("tr");
+            const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl'];
+
+            for(let key of arr){
+                const td = document.createElement("td");
+
+                td.innerText = member[key];
+                tr.append(td);
+            }
+            memberList.append(tr);
+
+        }
+
+    })
+    
+
+
+});

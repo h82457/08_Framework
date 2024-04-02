@@ -1,5 +1,8 @@
 package edu.kh.project.email.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
+import edu.kh.project.email.model.mapper.EmailMapper;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +24,7 @@ public class EmailServiceImpl implements EmailService{
 	// 타임리프(템플릿 엔진)을 이용해서 html 코드 -> java로 변환
 	private final SpringTemplateEngine templateEngine;
 	
-	
+	private final EmailMapper mapper;
 	
 	// 이메일 보내기
 	@Override
@@ -65,13 +69,25 @@ public class EmailServiceImpl implements EmailService{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			
-			
 		}
 		
+	
+		/* 이메일 + 인증번호를 "TB_AUTH_KEY" 테이블 저장 */
+		Map<String, String> map = new HashMap<>();
+		map.put("authKey", authKey);
+		map.put("email", email);
 		
-		return authKey; // 오류 없이 전송시 authKey
+		// 1) 해당 이메일이 DB에 존재하는 경우 -> 수정을 먼저 진행.
+//				ㄴ 각 반환값이 1 :업데이트 성성(이미 존재, 변경) / 0 : 업데이트 실패 (이메일 존재X)=> insert 시도
+		int result = mapper.updateAuthKey(map);
+		
+		// 2) 1번 업데이트 실패시 insert 시도
+		if(result == 0) result = mapper.insertAuthKey(map);
+		
+		// 3) 수정, 삭제 후에도 result가 0 == 실패
+		if(result == 0) return null;
+		
+		return authKey;
 	}
 	
 	// HTML 파일을 읽어와 String으로 변환 (타임리프 적용<- import)
@@ -120,6 +136,10 @@ public class EmailServiceImpl implements EmailService{
         }
         return key;
     }
+
+    // 이메일, 인증번호 확인
+	@Override
+	public int checkAuthKey(Map<String, Object> map) { return mapper.checkAuthKey(map); }
 	
 	
 	

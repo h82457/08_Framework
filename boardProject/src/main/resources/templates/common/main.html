@@ -20,6 +20,30 @@
             <!-- 확인, 보충 등 필요시 사용 -->
             <section class="content-1">
 
+                <h3>빠른 로그인</h3>
+                <button class="quick-login">member01@kh.or.kr</button>
+                <button class="quick-login">member02@kh.or.kr</button>
+
+                <hr>
+
+                <h3>
+                    회원 목록 조회(비동기)
+                    <button id="selectMemberList">조회</button>
+
+                    <table border="1" style="border-collapse: collapse;">
+                    
+                        <thead>
+                            <th>회원번호</th>
+                            <th>이메일</th>
+                            <th>닉네임</th>
+                            <th>탈퇴여부</th>
+                        </thead>
+                        
+                        <tbody id="memberList"></tbody>
+                    
+                    </table>
+                </h3>
+
                 <!-- session에 loginMember 있으면 출력 -->
                 <th:block th:text="${session.loginMember}"></th:block>
 

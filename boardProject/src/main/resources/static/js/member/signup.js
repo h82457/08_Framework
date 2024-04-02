@@ -290,7 +290,7 @@ memberTel.addEventListener("input", e => {
 
 /* 이메일 인증 */
 const sendAuthKeyBtn = document.querySelector("#sendAuthKeyBtn"); // 인증번호 받기 버튼
-const authKey = document.querySelector("#sendAuthKeyBtn"); // 인증번호 입력 input
+const authKey = document.querySelector("#authKey"); // 인증번호 입력 input
 const authKeyMessage = document.querySelector("#authKeyMessage"); // 인증번호 관련 출력 span
 
 let authTimer; //타이머 역할을 핳ㄹ을 할 setIntevel변수
@@ -329,8 +329,14 @@ sendAuthKeyBtn.addEventListener("click", () => {
         headers : {"Content-Type" : "application/json"},
         body : memberEmail.value
     })
+    .then(resp => resp.text())
 
-
+    .then(result => {
+        if(result == 1){
+            console.log("인증번호 발송 성공");
+        }
+        console.log("인증번호 발송 실패");
+    })
     // ------------------------------
 
     // 메일은 비동기로 서버에서 발송 요청 / 화면에서는 타이머 시작
@@ -393,11 +399,11 @@ signUpForm.addEventListener("submit", e => {
 
             switch(key){
                 case "memberEmail": str = "이메일이 유효하지 않습니다."; break;
+                case "authKey" : str = "이메일이 인증되지 않았습니다."; break;
                 case "memberPw": str = "비밀번호가 유효하지 않습니다."; break;
                 case "memberPwConfirm": str = "비밀번호가 일치하지 않습니다."; break;
                 case "memberNickname": str = "닉넨임이 유효하지 않습니다."; break;
                 case "memberTel": str = "전화번호가 유효하지 않습니다."; break;
-
             }
 
             alert(str); // 경고창 출력
@@ -408,3 +414,58 @@ signUpForm.addEventListener("submit", e => {
     }
 });
 
+
+// --------------------------------------------------------
+
+// 인증하기 버튼 클릭 시
+// 입력된 인증번호를 비동기로 서버에 전달
+// -> 입력된 인증번호와 발급된 인증번호가 같은지 비교
+//    같은면 1, 아니면 0 반환
+// 단, 타이머가 00:00초가 아닐 경우에만 수행
+checkAuthKeyBtn.addEventListener("click", () => {
+
+    if( min === 0 && sec === 0){ // 타이머가 00:00 인 경우
+      alert("인증번호 입력 제한시간을 초과하였습니다.");
+      return;
+    }
+  
+    if(authKey.value.length < 6){ // 인증번호가 제대로 입력 안된 경우
+      alert("인증번호를 정확히 입력해 주세요");
+      return;
+    }
+  
+    // 입력 받은 이메일, 인증번호로 객체 생성
+    const obj = {
+      "email"   : memberEmail.value,
+      "authKey" : authKey.value
+    };
+  
+    fetch("/email/checkAuthKey", {
+      method : "POST",
+      headers : {"Content-Type" : "application/json"},
+      body : JSON.stringify(obj) // obj를 JSON 변경
+    })
+    .then(resp => resp.text())
+    .then(result => {
+  
+      // ==   : 값만 비교
+      // ===  : 값 + 타입 비교
+  
+      if(result == 0){
+        alert("인증번호가 일치하지 않습니다");
+        checkObj.authKey = false;
+        return;
+      }
+  
+      clearInterval(authTimer); // 타이머 멈춤
+  
+      authKeyMessage.innerText = "인증 되었습니다";
+      authKeyMessage.classList.remove("error");
+      authKeyMessage.classList.add("confirm");
+  
+      checkObj.authKey = true; // 인증번호 검사여부 true
+  
+    })
+  
+  
+  });
