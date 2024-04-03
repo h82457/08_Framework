@@ -96,6 +96,17 @@ quickLoginBtns.forEach( (item, index) => {
 const selectMemberList = document.querySelector("#selectMemberList");
 const memberList = document.querySelector("#memberList");
 
+// td 요소를 만들고 text 추가후 반환
+const createTd = (text) => {
+    const td = document.createElement("td");
+    td.innerText = text;
+    return td;
+}
+
+
+
+
+
 // 조회 버튼 클릭시
 selectMemberList.addEventListener("click", () => {
 
@@ -103,35 +114,32 @@ selectMemberList.addEventListener("click", () => {
     fetch("/member/selectMemberList")
 
     // 첫번째 then(resp => resp.json()}) -> [{}, {}, {}],<- JSON Array, JS 객채 배열로 변환 필요
-    .then(resp => resp.text())
+    .then(resp => resp.json())
 
     // 2) 두번쨰 then : tbody에 이미 작성된 내용 삭제
     // 3) 두번쨰 then : 조회된 JS 객체 배열을 이용, tbody에 들어갈 요소를 만들고 값 세팅+추가
-    .then( result => {
-
-        // console.log(result);
-
-        const members = JSON.parse(result);
-
-        console.log(members);
+    .then( list => {
+        console.log(list);
 
         memberList.innerHTML = "";
 
-        for(let member of members){
+        list.forEach( (member, index) => {
 
+            // index : 현재 접근 중인 index
+
+            // tr 만들어서 그 안에 td 만들어서 append 후
+            // tr을 tbody에 append
+
+            const keyList = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl'];
             const tr = document.createElement("tr");
-            const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl'];
+            
+            // KeyList에서 key를 하나씩 얻어온 후
+            // 해당 key에 맞는 member 객체 값을 얻어와 생성되는 td요소로 innerText 추가후 tr 요소의 자식으로 추가
+            keyList.forEach( key =>  tr.append( createTd(member[key])) );
 
-            for(let key of arr){
-                const td = document.createElement("td");
-
-                td.innerText = member[key];
-                tr.append(td);
-            }
+            // memberList(body) 자식으로 tr 추가
             memberList.append(tr);
-
-        }
-
+        })
     })
     
 

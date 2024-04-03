@@ -191,38 +191,38 @@ const selectTodoList = () => { // <- 변수에 함수를 선언하는 형식 (�
         // #tbody에 tr/td 요소 생성해서 내용 추가
         for(let todo of todoList){ // 향상된 for문
 
-      // tr태그 생성
-      const tr = document.createElement("tr");
+            // tr태그 생성
+            const tr = document.createElement("tr");
 
-      const arr = ['todoNo', 'todoTitle', 'complete', 'regDate'];
-      
-      for(let key of arr){
-        const td = document.createElement("td");
-
-        // 제목인 경우
-        if(key === 'todoTitle'){
-            const a = document.createElement("a"); // a태그 생성
-            a.innerText = todo[key]; // 제목을 a태그 내용으로 대입
-            a.href = "/ajax/detail?todoNo=" + todo.todoNo;
-            td.append(a);
-            tr.append(td);
-
-        // a태그 클릭시 기본 이벤트(페이지 이동) 막기
-        a.addEventListener("click", e => { 
+            const arr = ['todoNo', 'todoTitle', 'complete', 'regDate'];
             
-            e.preventDefault();
-        
-            // 할 일 상세 조회 비동기 요청
-            selectTodo(e.target.href);
-            // ㄴ e.tartet.href : 클릭된 a태그의 href 속성 값
-        });
-        continue;
-        }
-        td.innerText = todo[key];
-        tr.append(td);
-      }
-      // tbody의 자식으로 tr (한 줄) 추가
-      tbody.append(tr);
+            for(let key of arr){
+                const td = document.createElement("td");
+
+                // 제목인 경우
+                if(key === 'todoTitle'){
+                    const a = document.createElement("a"); // a태그 생성
+                    a.innerText = todo[key]; // 제목을 a태그 내용으로 대입
+                    a.href = "/ajax/detail?todoNo=" + todo.todoNo;
+                    td.append(a);
+                    tr.append(td);
+
+                // a태그 클릭시 기본 이벤트(페이지 이동) 막기
+                a.addEventListener("click", e => { 
+                    
+                    e.preventDefault();
+                
+                    // 할 일 상세 조회 비동기 요청
+                    selectTodo(e.target.href);
+                    // ㄴ e.tartet.href : 클릭된 a태그의 href 속성 값
+                });
+                continue;
+                }
+                td.innerText = todo[key];
+                tr.append(td);
+            }
+            // tbody의 자식으로 tr (한 줄) 추가
+            tbody.append(tr);
     }
     })
   };

@@ -1,14 +1,11 @@
 package edu.kh.project.member.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +19,6 @@ import edu.kh.project.member.model.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -220,10 +216,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@GetMapping("selectMemberList")
-	public List<Member> selectMemberList() {
-		
-		return service.selectMemberList();
-	}
+	public List<Member> selectMemberList() { return service.selectMemberList();	}
 	
 	
 	

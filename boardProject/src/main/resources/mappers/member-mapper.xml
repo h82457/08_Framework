@@ -42,13 +42,11 @@
 		WHERE MEMBER_DEL_FL = 'N' AND MEMBER_NICKNAME = #{memberNickname}	
  	</select>
  	
- 	<!-- 회원 목록 조회 -->
+ 	<!-- 회원 목록 조회 -->		<!-- resultType 작성시 한 행의 결과를 저장할 자료형(int double...), Map, DTO를 작성 -->
 	 <select id="selectMemberList" resultType="Member"> <!-- SELECT에서 resultType은 필수! -->
- 		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
-			MEMBER_TEL, MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY, MEMBER_DEL_FL,
-			TO_CHAR(ENROLL_DATE, 
-				'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+ 		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_DEL_FL
 		FROM "MEMBER"
+		ORDER BY MEMBER_NO
  	</select> 	
  	
 </mapper>
