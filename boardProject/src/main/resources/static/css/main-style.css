@@ -416,3 +416,11 @@ label[for="headerMenuToggle"]:hover{
 .fa-caret-down{
     color: var(--main-color);
 }
+
+.content-1 hr{
+    padding: 10px 0;
+  }
+  
+  .content-1 hr{
+    margin: 20px 0;
+  }
