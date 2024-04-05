@@ -107,9 +107,9 @@
                 <th:block th:if="${session.loginMember != null}">
                     <article class="login-area">
 
-                        <a href="#"> 
+                        <a href="/myPage/profile"> 
                             <!-- 프로필 이미지 -->    <!-- messages.properties에 작성된 기본 사용자 이미지 -->
-                            <img th:src="#{user.default.image}" id="memberProfile" alt="프로필 이미지 없음"> 
+                            <img  th:with="user=#{user.default.image}" th:src="${session.loginMember.profileImg ?: user }" id="memberProfile" alt="프로필 이미지"> 
                         </a>
 
                         <!-- 닉네임, 이메일, 로그아웃버튼 출력 영역 -->
