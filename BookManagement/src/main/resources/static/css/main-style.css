@@ -1,0 +1,99 @@
+*{
+    /* border: 1px solid grey; */
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column; /* 중심축 방향 세로 */
+    align-items: center;    /* 교차축 방향 가운데 정렬 */
+    min-height: 100vh;      /* 최소 높이를 화면 비율 100% */
+}
+
+main{
+    width: 1140px;
+    flex-grow: 1;           /* 중심축 방향으로 팽창 */
+    min-height: 500px;
+    padding: 50px;
+}
+
+
+/* 화면 너비가 1140px이 되기 전에 적용할 css == 1140이하일때 적용 */
+@media (max-width: 1140px){
+    main{width: 100vw;}
+
+}
+/* a태그 스타일 지정 */
+a{
+    text-decoration: none;
+    color : black;
+    padding: 5px;
+}
+
+/* title-1 */
+.title-1{
+    font-size: 36px;
+    font-style: bold;
+    padding: 10px;
+}
+
+.page-btn{
+    display: flex;
+    flex-direction: column;
+
+    border-bottom: 1px solid gray;
+    
+    padding: 10px;
+}
+
+.content{
+    padding: 30px 10px;
+}
+
+.title-2{
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+/* #selectBtn{
+    size: 22px;
+} */
+table {
+    width: 600px;
+    border: 1px soid grey;
+    border-collapse: collapse;
+}
+table th, td{
+    border: 1px solid grey;
+    padding: 5px;
+    text-align: center;
+}
+
+thead{
+    background-color: #fdf0d7;
+}
+
+.td-index{
+    background-color: #fdfbf5;
+}
+/* 책 등록 */
+.title-only{
+    padding-bottom: 50px;
+    border-bottom: 1px solid grey;
+}
+.input-area{
+    padding: 10px 5px;
+    font-size: 20px;
+}
+.input-area > input{
+    margin-left: 10px;
+    height: 22px;
+}
+
+#insertBtn{
+    width: 80px;
+    height: 26px;
+    margin: 0 auto;
+}
+
