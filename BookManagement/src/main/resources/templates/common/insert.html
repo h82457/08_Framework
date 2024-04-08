@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 관리 프로그램</title>
+    <link rel="stylesheet" href="/css/main-style.css">
+</head>
+<body>
+    <main>
+        <section class="container">
+
+            <!-- 타이틀 -->
+            <div class="title-1">
+                <label>책 등록</label>
+            </div>
+   
+
+            <!-- 책 등록 -->
+            <section class="content">
+                <form action="insertBook" method="GET">
+
+                    <div class="input-area">
+                        <label for="bookTitle"><span>제목 : </span></label>
+                        <input type="text" name="bookTitle" id="bookTitle">
+                    </div>
+
+                    <div class="input-area">
+                        <label for="bookWriter"><span>저자 : </span></label>
+                        <input type="text" name="bookWriter" id="bookWriter">
+                    </div>
+                    
+                    <div class="input-area">
+                        <label for="bookPrice"><span>가격 : </span></label>
+                        <input type="number" name="bookPrice" id="bookPrice">
+                    </div>
+
+                    <button>등록하기</button>
+                </form>
+
+
+            </section>
+    </section>
+    </main>
+    <script src="/js/main.js"></script>
+</body>
+</html>

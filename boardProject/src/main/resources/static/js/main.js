@@ -104,9 +104,6 @@ const createTd = (text) => {
 }
 
 
-
-
-
 // 조회 버튼 클릭시
 selectMemberList.addEventListener("click", () => {
 
