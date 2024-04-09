@@ -2,10 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sm.book.main.model.mapper.MainMapper">
 	
+	<!-- 전체 도서 조회 -->
 	<select id="selectBookList" resultType="Book">
 		SELECT BOOK_NO, BOOK_TITLE, BOOK_WRITER, BOOK_PRICE, TO_CHAR(REG_DATE, 'YYYY-MM-DD') REG_DATE
 		FROM "BOOK"
+		ORDER BY BOOK_NO
 	</select>
 
+	<!-- 도서 등록 -->
+	<insert id="insertBook">
+		INSERT INTO "BOOK" VALUES(SEQ_BOOK_NO.NEXTVAL, #{bookTitle}, #{bookWriter}, #{bookPrice}, DEFAULT)	
+	</insert>
 
+	<!-- 도서 검색 -->
+	<select id="searchBook" resultType="Book">
+		SELECT BOOK_NO, BOOK_TITLE, BOOK_WRITER, BOOK_PRICE, TO_CHAR(REG_DATE, 'YYYY-MM-DD') REG_DATE 
+		FROM "BOOK"
+		WHERE BOOK_TITLE = #{keyword}
+	</select>
 </mapper>

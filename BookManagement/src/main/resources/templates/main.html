@@ -17,8 +17,8 @@
             
             <!-- 페이지 이동 메뉴 -->
             <div class="page-btn">
-                <a href="insert">책 등록</a>
-                <a href="#">책 검색, 수정, 삭제</a>
+                <a href="regist">책 등록</a>
+                <a href="manage">책 검색, 수정, 삭제</a>
             </div>
 
 
@@ -45,10 +45,14 @@
                     </tbody>
                 </table>
 
-
             </div>
     </section>
     </main>
+    <script th:inline="javascript">
+        const message =  /*[[${message}]]*/ "전달 받은 message";
+      
+        if(message != null) alert(message);
+    </script>
     <script src="/js/main.js"></script>
 </body>
 </html>

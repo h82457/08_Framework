@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h3>고객 추가</h3>
+
+        <!-- 고객 추가 폼 -->
+        <form action="addCustomer" method="POST">
+            <div>
+                <label for="customerName"><span>이름 : </span></label>
+                <input type="text" name="customerName" id="customerName">
+            </div>
+            <div>
+                <label for="customerTel"><span>전화번호 : </span></label>
+                <input type="text" name="customerTel" id="customerTel">
+            </div>
+            <div>
+                <label for="customerAddress"><span>주소 : </span></label>
+                <input type="text" name="customerAddress" id="customerAddress">
+            </div>
+            <button>추가</button>
+        </form>
+    </main>
+</body>
+</html>

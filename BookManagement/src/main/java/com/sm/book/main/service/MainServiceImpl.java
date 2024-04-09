@@ -21,5 +21,15 @@ public class MainServiceImpl implements MainService{
 		
 		return mapper.selectBookList();
 	}
+
+	// 도서 등록
+	@Override
+	public int insertBook(Book inputBook) {	return mapper.insertBook(inputBook);}
+
+	// 도서 검색
+	@Override
+	public List<Book> searchBook(String keyword) { return mapper.searchBook(keyword); }
+	
+
 	
 }
