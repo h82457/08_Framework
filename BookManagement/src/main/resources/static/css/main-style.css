@@ -32,8 +32,14 @@ a{
     padding: 5px;
 }
 
+<<<<<<< HEAD
+/* title-1 */
+.title-1{
+    font-size: 36px;
+=======
 .title-1{
     font-size: 30px;
+>>>>>>> ff68228094a2b7fe47f73709dd3ea318403ef469
     font-style: bold;
     padding: 10px;
 }
@@ -48,7 +54,11 @@ a{
 }
 
 .content{
+<<<<<<< HEAD
+    padding: 30px 10px;
+=======
     padding: 10px;
+>>>>>>> ff68228094a2b7fe47f73709dd3ea318403ef469
 }
 
 .title-2{
@@ -67,6 +77,37 @@ table th, td{
     border: 1px solid grey;
     padding: 5px;
     text-align: center;
+<<<<<<< HEAD
+}
+
+thead{
+    background-color: #fdf0d7;
+}
+
+.td-index{
+    background-color: #fdfbf5;
+}
+/* 책 등록 */
+.title-only{
+    padding-bottom: 50px;
+    border-bottom: 1px solid grey;
+}
+.input-area{
+    padding: 10px 5px;
+    font-size: 20px;
+}
+.input-area > input{
+    margin-left: 10px;
+    height: 22px;
+}
+
+#insertBtn{
+    width: 80px;
+    height: 26px;
+    margin: 0 auto;
+}
+
+=======
   }
   thead{
     background-color: #fdf0d7;
@@ -74,3 +115,4 @@ table th, td{
   .td-index{
     background-color: #fdfbf5;
   }
+>>>>>>> ff68228094a2b7fe47f73709dd3ea318403ef469
