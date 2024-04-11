@@ -214,6 +214,9 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	/** 회원 목록 조회(비동기)
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("selectMemberList")
 	public List<Member> selectMemberList() { return service.selectMemberList();	}

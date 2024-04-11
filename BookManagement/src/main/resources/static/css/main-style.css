@@ -32,9 +32,8 @@ a{
     padding: 5px;
 }
 
-/* title-1 */
 .title-1{
-    font-size: 36px;
+    font-size: 30px;
     font-style: bold;
     padding: 10px;
 }
@@ -49,7 +48,7 @@ a{
 }
 
 .content{
-    padding: 30px 10px;
+    padding: 10px;
 }
 
 .title-2{
@@ -68,32 +67,10 @@ table th, td{
     border: 1px solid grey;
     padding: 5px;
     text-align: center;
-}
-
-thead{
+  }
+  thead{
     background-color: #fdf0d7;
-}
-
-.td-index{
+  }
+  .td-index{
     background-color: #fdfbf5;
-}
-/* 책 등록 */
-.title-only{
-    padding-bottom: 50px;
-    border-bottom: 1px solid grey;
-}
-.input-area{
-    padding: 10px 5px;
-    font-size: 20px;
-}
-.input-area > input{
-    margin-left: 10px;
-    height: 22px;
-}
-
-#insertBtn{
-    width: 80px;
-    height: 26px;
-    margin: 0 auto;
-}
-
+  }

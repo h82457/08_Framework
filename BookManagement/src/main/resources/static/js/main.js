@@ -13,14 +13,14 @@ const createTd = (text) => {
 // 조회 버튼 클릭시
 selectBtn.addEventListener("click", () => {
 
+    bookList.innerHTML = "";
+
     fetch("selectBookList")
 
     .then(resp => resp.json() )
 
     .then( list => {
         console.log(list);
-
-        bookList.innerHTML = "";
 
         list.forEach( (book, index) => {
 
@@ -31,6 +31,24 @@ selectBtn.addEventListener("click", () => {
 
             bookList.append(tr);
         });
+
+    })
+});
+
+
+/* 검색버튼 클릭시 비동기로 해당하는 도서 조회 */
+const searchBtn = document.querySelector("#searchBtn");
+const searchList = document.querySelector("#searchList");
+
+/* 검색 버튼 클릭시 */
+searchBtn.addEventListener("click", () => {
+
+    fetch("searchBookList")
+
+    .then(resp => resp.json() )
+
+    .then( list => {
+        console.log(list);
 
     })
 });

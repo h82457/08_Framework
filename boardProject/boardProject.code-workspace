@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "boardProject",
+			"path": "."
+		},
+		{
+			"name": "todoList-boot",
+			"path": "../todoList-boot"
+		}
+	],
+	"settings": {}
+}

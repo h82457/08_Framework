@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+
 public class MainController {
 
 	private final MainService service;
@@ -29,24 +30,20 @@ public class MainController {
 	@RequestMapping("/")
 	public String mainPage() { return "main"; }
 	
+	
 
 	/**	도서 전체 조회
-	 * @return
+	 * @return list
 	 */
 	@ResponseBody
 	@GetMapping("selectBookList")
-		public List<Book> selectBookList() {	return service.selectBookList();	}
-	
+	public List<Book> selectBookList() { return service.selectBookList(); }
 	
 	// 책등록 페이지로 이동
 	@GetMapping("regist")
-	public String regist() {
-		
-		return "regist";
-	}
+	public String regist() { return "regist"; }
 	
-	
-	/** 도서 등록, update
+	/** 도서 등록
 	 * @param bookTitle
 	 * @param bookWriter
 	 * @param bookPrice
@@ -54,7 +51,7 @@ public class MainController {
 	 * @return 
 	 */
 	@GetMapping("insertBook")
-	public String insertBook(@ModelAttribute Book inputBook, RedirectAttributes ra) {
+	public String insertBook(Book inputBook, RedirectAttributes ra) {
 		
 		int result = service.insertBook(inputBook);
 		
@@ -62,10 +59,11 @@ public class MainController {
 		String path = "";
 		
 		if(result > 0) {
+			
 			message = "등록 성공!!!";
 			path = "/";
-		}
-		else {
+			
+		} else {
 			message = "등록 실패...";
 			path = "regist";
 		}
@@ -75,9 +73,17 @@ public class MainController {
 		return "redirect:" + path;
 	}
 	
-	// 책관리 페이지로 이동
+	// 책 검색, 수정, 삭제 페이지로 이동
 	@GetMapping("manage")
-	public String manage() {	return "manage";	}
+	public String manage() { return "manage"; }
+	
+	/** 도서 검색
+	 * @param bookTitle
+	 * @return list
+	 */
+	@ResponseBody
+	@GetMapping("searchBook")
+	public List<Book> searchBook(@RequestParam("keyword") String keyword) { return service.searchBook(keyword); }
 	
 	
 }

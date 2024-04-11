@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.StreamReadConstraints.Builder;
 import com.sm.book.main.model.mapper.MainMapper;
 import com.sm.book.model.dto.Book;
 
@@ -23,8 +22,14 @@ public class MainServiceImpl implements MainService{
 		return mapper.selectBookList();
 	}
 
-	// 도서 등록 
+	// 도서 등록
 	@Override
-	public int insertBook(Book inputBook) {	return mapper.insertBook(inputBook);	}
+	public int insertBook(Book inputBook) {	return mapper.insertBook(inputBook);}
+
+	// 도서 검색
+	@Override
+	public List<Book> searchBook(String keyword) { return mapper.searchBook(keyword); }
+	
+
 	
 }

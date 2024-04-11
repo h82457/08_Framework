@@ -11,13 +11,16 @@ public interface MainService {
 	 */
 	List<Book> selectBookList();
 
-	
 	/** 도서 등록
-	 * @param bookTitle
-	 * @param bookWriter
-	 * @param bookPrice
+	 * @param inputBook
 	 * @return result
 	 */
 	int insertBook(Book inputBook);
+
+	/** 도서 검색
+	 * @param bookTitle
+	 * @return list
+	 */
+	List<Book> searchBook(String keyword);
 
 }
