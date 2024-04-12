@@ -62,4 +62,22 @@ public class BoardServiceImpl implements BoardService{
 		
 		return map;
 	}
+
+
+	// 게시글 상세 조회
+	@Override
+	public Board selectOne(Map<String, Integer> map) {
+		
+		// [ 여러 SQL을 실행하는 방법 ]
+		// 1. 하나의 Service 메서드에서 여러 Mapper 메서드를 호출하는 방법
+		// 2. 수행하려는 SQL이 >모두 SELECT< 이면서 
+//				>먼저 조회된 결과중 일부를 이용해 나중에 수행되는 SQL의 조건<으로 삼을 때
+//				=> MyBatis의 <resultMap>, <collection> 태그를 이용해 Mapper 메서드 1회 호출로 여러 SELECT 한번에 수행 가능
+//					연계해서 계속 호출?
+		
+		
+		
+		
+		return mapper.selectOne(map);
+	}
 }

@@ -1,0 +1,71 @@
+diff a/BookManagement/src/main/resources/templates/manage.html b/BookManagement/src/main/resources/templates/manage.html	(rejected hunks)
+@@ -1,47 +1,53 @@
+ <!DOCTYPE html>
+ <html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>책 관리 프로그램</title>
+     <link rel="stylesheet" href="/css/main-style.css">
+ </head>
+ <body>
+     <main>
+         <section class="container">
+-
+-            <!-- 타이틀 -->
+-            <div class="title-1">
+-                <label>도서 검색, 수정, 삭제</label>
+-            </div>
++            <!-- 헤더 -->
++            <section class="header">
++                <!-- 타이틀 -->
++                <div class="title-1">
++                    <label>책 검색, 수정, 삭제</label>
++                </div>
++
++                <!-- 검색 -->
++                <form action="searchBook" method="GET" class="input-area">
++                    <label for="keyword"><span>제목 : </span></label>
++                    <input type="text" name="keyword" id="keyword">
++                    <button id="searchBtn">검색</button>
++                </form>
++            </section>
+             
+-
+-
+-            <!-- 모든 책 조회 -->
+-            <div class="content">
+-
+-
++            <!-- 책 조회 -->
++            <section class="content">
+                 <table>
+                     <thead>
+                         <td>책 번호</td>
+                         <td>제목</td>
+                         <td>글쓴이</td>
+                         <td>가격</td>
+                         <td>등록일</td>
+                         <td>수정버튼</td>
+                         <td>삭제버튼</td>
+                     </thead>
+ 
+                     <!-- tbody -->
+-                    <tbody id="bookList">
+-                        
++                    <tbody id="searchList">
++
+                     </tbody>
+                 </table>
++            </section>
+ 
+ 
+-            </div>
+-    </section>
++        </section>
+     </main>
++
+     <script src="/js/main.js"></script>
+ </body>
+ </html>
+\ No newline at end of file

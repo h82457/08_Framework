@@ -3,6 +3,8 @@ package edu.kh.project.board.model.service;
 import java.util.List;
 import java.util.Map;
 
+import edu.kh.project.board.model.dto.Board;
+
 public interface BoardService {
 
 	// 게시글 타입 테이블은 컬럼이 2개, int나 String 으로 읽어오기가 불가능+DTO도 미존재 => 맵으로 묶어서 읽어옴
@@ -21,4 +23,10 @@ public interface BoardService {
 	 * @return map 
 	 */
 	Map<String, Object> selectBoardList(int boardCode, int cp);
+
+	/** 게시글 상세 조회
+	 * @param map
+	 * @return board
+	 */
+	Board selectOne(Map<String, Integer> map);
 }

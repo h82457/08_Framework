@@ -38,7 +38,7 @@ a:hover {
     border-collapse: collapse;
 }
 
-.list-table > thead{ background-color: #455ba8; color: white;}
+.list-table > thead{ background-color: #ecd346; color: white;}
 
 
 .list-table tr{
@@ -83,8 +83,8 @@ a:hover {
     background-color: white;
 
     font-weight: bold;
-    color: #455ba8;
-    border: 2px solid #455ba8;
+    color: #ecd346;
+    border: 2px solid #ecd346;
     border-radius: 5px;
 
     cursor: pointer;
@@ -113,7 +113,7 @@ a:hover {
 
 .current{
     font-weight: bold;
-    background-color: #455ba8;
+    background-color: #ecd346;
     border-radius: 50%;
     color: white !important;
     letter-spacing: 0 !important;
@@ -151,7 +151,7 @@ a:hover {
     width: 100px;
 
     font-weight: bold;
-    background-color: #455ba8;
+    background-color: #ecd346;
     border: none;
     color: white;
 

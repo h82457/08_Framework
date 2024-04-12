@@ -46,10 +46,12 @@ public class BoardTypeInterceptor implements HandlerInterceptor{ // defult는 �
 //			ㄴ> 서버 종료시까지 유지되는 Servlet 내장 객체, 서버 내 딱 한개 존재 - 모든 클라이언트가 공용으로 사용
 		
 		 ServletContext application = request.getServletContext();
-		 log.info("BoardTypeInterceptor - postHandle(전처리) 동작 실행");
 		 
-		 // application scope 범위에 "boardTypeList"가 없을 경우
+		 
+		 // application scope 범위에 "boardTypeList"가 없을 경우, 최초 접속시
 		 if(application.getAttribute("boardTypeList") == null) {
+			 
+			 log.info("BoardTypeInterceptor - postHandle(전처리) 동작 실행");
 			 
 			 // boardTypeList 조회 서비스 호출
 			 List<Map<String, Object>> boardTypeLit = service.selectBoardTypeList();

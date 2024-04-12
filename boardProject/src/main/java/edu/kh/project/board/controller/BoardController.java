@@ -1,11 +1,14 @@
 package edu.kh.project.board.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import edu.kh.project.board.model.dto.Board;
+import edu.kh.project.board.model.dto.BoardImg;
 import edu.kh.project.board.model.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
@@ -44,5 +48,62 @@ public class BoardController {
 		
 		return "board/boardList"; // boardList.html로 forward
 	}
-	 
+	
+	
+	/** 게시글 상세 조회
+	 * @param boardCode
+	 * @param boardNo
+	 * @param model
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}") // 상세 조회 요청 주소 예시 /board/2/1998?cp=3
+	public String boardDetail(	// ㄴ 주소에 숫자만 입력 -> board/insert/~ 같은 주소를 막기 위함
+			@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo,
+			Model model, RedirectAttributes ra) {
+		
+		// 게시글 상세 조회 서비스 호출
+		
+		// 1) Map으로 전달할 파라미터 묶기
+		Map<String, Integer> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		
+		// 2) 서비스 호출 <- 1행만 조회, 리스트로 묶어서 바딪 않아도 됨
+		Board board = service.selectOne(map);
+		
+		
+		// 조회 결과가 없는 경우 (<-삭제한 게시글을 주소로 조회한 경우)
+		String path = null;
+		
+		if(board == null) {
+			path = "redirect:/board/" + boardCode; // 목록페이지 재요청
+			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다.");
+		}
+		// 조회 결과가 있을 경우
+		else {
+			path = "board/boardDetail";
+			
+			// board - 게시글 상세조회 + imageList + commentList
+			model.addAttribute("board", board);
+			
+			// 조회된 이미지 목록(imageList)가 있을 경우
+			if( !board.getImageList().isEmpty()) {
+				
+				BoardImg thumbnail = null;
+				
+				// imageList의 0번 인덱스 == 가장 빠른 순서 <~ORDER BY IMG_ORDER로 조회
+				// 이미지 목록의 첫번째 행이 순서 0 == 썸네일인 경우
+				if(board.getImageList().get(0).getImgOrder() == 0) {
+					
+					thumbnail = board.getImageList().get(0);
+				}
+				// 썸네일이 있을때/없을때 출력되는 이미지 시작 인덱스 지정 (썸네일 제외하고 인덱스 계산)
+				model.addAttribute("thumbnail", thumbnail);
+				model.addAttribute("start", thumbnail != null ? 1 : 0); // <- 썸네일이 있을경우 start에 0, 없을경우 1이 들어감
+			}
+		}
+		
+		return path;
+	}
 }
