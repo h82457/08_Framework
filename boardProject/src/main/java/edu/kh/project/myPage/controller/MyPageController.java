@@ -21,15 +21,13 @@ import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.myPage.model.dto.UploadFile;
 import edu.kh.project.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-
-@SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("myPage")
 @RequiredArgsConstructor
+@SessionAttributes({"loginMember"})
 public class MyPageController {
 
 	private final MyPageService service;
@@ -200,6 +198,7 @@ public class MyPageController {
 	
 	/* 파일 업로드 테스트 1*/
 	
+	// 파일 테스트 화면 이동
 	@GetMapping("fileTest")
 	public String fileTest() { return "myPage/myPage-fileTest"; }
 	
@@ -219,8 +218,7 @@ public class MyPageController {
 	 * @throws IllegalStateException 
 	 */
 	@PostMapping("file/test1")
-	public String fileUpload1(
-			@RequestParam("uploadFile") MultipartFile uploadFile,
+	public String fileUpload1(@RequestParam("uploadFile") MultipartFile uploadFile,
 			RedirectAttributes ra)  throws IllegalStateException, IOException {
 
 		String path = service.fileUpload1(uploadFile);

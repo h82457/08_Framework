@@ -591,6 +591,10 @@ SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_CODE, READ_COUNT,
 	 WHERE BOARD_NO = 1998
 	 AND   IMG_ORDER = 0) THUMBNAIL
 
+	 (SELECT COUNT(*) FROM "BOARD_LIKE"
+		WHERE MEMBER_NO = NULL -- NULL : 미로그인시 전달되는 MEMBER_NO 값이 없어 NULL
+		AND BOARD_NO = 1999
+	 ) LIKE_CHECK
 FROM "BOARD"
 JOIN "MEMBER" USING(MEMBER_NO)
 WHERE BOARD_DEL_FL = 'N'
@@ -626,18 +630,34 @@ SELECT LEVEL, C.* FROM
  * 
  * */
 
+--------------------------------------
+
+/* 좋아요 테이블(BOARD_LIKE) 샘플 데이터 추가 */
+INSERT INTO "BOARD_LIKE"
+VALUES(1, 1999); -- 1번 회원이 1999번 글에 좋아요 클릭
 
 
+-- 좋아요 여부 확인 ( 1: O / 2: X)
+SELECT COUNT(*) FROM "BOARD_LIKE"
+WHERE MEMBER_NO = 1
+AND BOARD_NO = 1999;
+
+/* 게시글 좋아요 체크/해제 */
+-- 좋아요 해제
+DELETE FROM "BOARD_LIKE" 
+WHERE MEMBER_NO = 1
+AND BOARD_NO = 1999;
+
+-- 좋아요 체크
+INSERT INTO "BOARD_LIKE"
+VALUES(1 , 1999);
+
+-- 게시글 좋아요 개수 조회
+SELECT COUNT(*) FROM "BOARD_LIKE"
+WHERE BOARD_NO = 1999;
 
 
-
-
-
-
-
-
-
-
+ROLLBACK;
 
 
 

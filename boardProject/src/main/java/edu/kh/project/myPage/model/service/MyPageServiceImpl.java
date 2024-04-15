@@ -100,6 +100,7 @@ public class MyPageServiceImpl implements MyPageService{
 	// 파일 업로드 테스트1
 	@Override
 	public String fileUpload1(MultipartFile uploadFile) throws IllegalStateException, IOException {
+
 		
 		// MultipartFile이 제공하는 메서드
 //			ㄴ getSize() : 파일 크기
