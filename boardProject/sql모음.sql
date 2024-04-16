@@ -659,7 +659,81 @@ WHERE BOARD_NO = 1999;
 
 ROLLBACK;
 
+---------------------------------------------------------
+/* 여러 행을 한번에 삽입하는 방법! */
+			-- INSERT + SUBQUERY (UNION : 합집합)
 
 
+SELECT * FROM BOARD_IMG;
 
+
+--  ORA-02287: 시퀀스 번호는 이 위치에 사용할 수 없습니다
+INSERT INTO "BOARD_IMG"
+(	SELECT SEQ_IMG_NO.NEXTVAL, '경로1', '원본1', '변경1', 1, 1998 FROM DUAL
+	UNION
+	SELECT SEQ_IMG_NO.NEXTVAL, '경로2', '원본2', '변경2', 2, 1998 FROM DUAL
+		UNION
+	SELECT SEQ_IMG_NO.NEXTVAL, '경로3', '원본3', '변경3', 3, 1998 FROM DUAL
+);
+
+---> 시퀀스로 번호 생성하는 부분을 별도 함수로 분리 후 호출해서 해결
+
+-- SEQ_IMG_NO 시퀀스의 다음값을 반환하는 함수 생성
+CREATE OR REPLACE FUNCTION NEXT_IMG_NO 
+-- 반환형
+RETURN NUMBER 
+-- 사용할 변수
+IS IMG_NO NUMBER;
+
+BEGIN
+	SELECT SEQ_IMG_NO.NEXTVAL
+	INTO IMG_NO
+	FROM DUAL;
+
+	RETURN IMG_NO;
+END; -- 시퀀스로 생성된 번호를 IMG_NO에 대입
+
+;
+	
+SELECT NEXT_IMG_NO() FROM DUAL;
+	
+-- 함수 적용된 이미지 적용 쿼리
+INSERT INTO "BOARD_IMG"
+(	SELECT NEXT_IMG_NO(), '경로1', '원본1', '변경1', 1, 1998 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로2', '원본2', '변경2', 2, 1998 FROM DUAL
+		UNION
+	SELECT NEXT_IMG_NO(), '경로3', '원본3', '변경3', 3, 1998 FROM DUAL
+);
+	
+SELECT * FROM BOARD_IMG;
+	
+--------------------------------
+
+-- 게시글 삭제
+UPDATE "BOARD"
+SET BOARD_DEL_FL = 'Y'
+WHERE BOARD_NO = 1999;
+
+SELECT * FROM BOARD;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END
 

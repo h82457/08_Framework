@@ -139,10 +139,15 @@
         /* 현재 게시글번호 전역변수로 저장 */ // Model에 담아 보낸 보드 객체에서 boardNo만 꺼내서 전역변수로 저장
         const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
 
+        /* 현재 게시글코드 전역변수로 저장 */
+        const boardCode = /*[[${board.boardCode}]]*/ "게시판 코드";
+
         /* 현재 게시글 좋아요 여부(boardLike)를 전역 변수로 저장 */
         let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부"; // 주석과 th 사이에 공백 있으면 오류, 클릭될떄마다 값이 바뀌기떄문ㄴ
     </script>
     
+    
+
     <script src="/js/board/boardDetail.js"></script>
     <script src="/js/board/comment.js"></script>
     
