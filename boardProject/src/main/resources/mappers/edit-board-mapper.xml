@@ -32,6 +32,8 @@
 		UPDATE "BOARD"
 		SET BOARD_DEL_FL = 'Y'
 		WHERE BOARD_NO = ${boardNo}
+		and BOARD_CODE = ${boardCode}
+		AND MEMBER_NO = ${memberNo}
 	</update>
 
 </mapper>

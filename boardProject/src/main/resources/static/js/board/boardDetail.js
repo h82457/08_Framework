@@ -50,18 +50,14 @@ boardLike.addEventListener("click", e => {
     });
 });
 
-/* 조회수 */
-
 
 /* 게시글 삭제 */
 const deleteBtn = document.querySelector("#deleteBtn");
 
 deleteBtn.addEventListener("click", () => {
 
-  if (window.confirm("삭제 하시겠습니까?")) {
-    
-    location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
-
-
+  if ( !window.confirm("삭제 하시겠습니까?")) {
+    return;
   }
+      location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
 });

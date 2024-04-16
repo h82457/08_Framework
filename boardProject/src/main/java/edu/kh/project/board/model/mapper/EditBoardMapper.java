@@ -1,6 +1,7 @@
 package edu.kh.project.board.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,9 +24,9 @@ public interface EditBoardMapper {
 	int insertUploadList(List<BoardImg> uploadList);
 
 	/** 게시글 삭제
-	 * @param boardNo
+	 * @param map
 	 * @return result
 	 */
-	int boardDelete(int boardNo);
+	int boardDelete(Map<String, Object> map);
 
 }

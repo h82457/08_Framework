@@ -1,7 +1,9 @@
 package edu.kh.project.board.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,9 +97,16 @@ public class EditBoardController {
 	
 	
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
-	public String boardDelete(@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo) {
+	public String boardDelete(@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo , 
+			@SessionAttribute("loginMember") Member loginMember) {
 		
-		int result = service.boardDelete(boardNo);
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		map.put("memberNo", loginMember.getMemberNo());
+		
+		int result = service.boardDelete(map);
 		
 		String path = "";
 		

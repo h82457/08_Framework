@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -106,8 +107,5 @@ public class EditBoardServiceImpl implements EditBoardService{
 
 	// 게시글 삭제
 	@Override
-	public int boardDelete(int boardNo) {
-		
-		return mapper.boardDelete(boardNo);
-	}
+	public int boardDelete(Map<String, Object> map) { return mapper.boardDelete(map); }
 }
