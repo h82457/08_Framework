@@ -22,7 +22,7 @@ public class FilterConfig {
 		
 		// 사용할 필터 객체 추가, 마이페이지로 시작하는 모든 요청시 필터 실행
 		filter.setFilter(new LoginFilter());
-		String[] filteringURL = {"/myPage/*"}; // /myPage/* : myPage로 시작하는 모든 요청 
+		String[] filteringURL = {"/myPage/*", "/editBoard/*"}; // /myPage/* : myPage로 시작하는 모든 요청 
 		
 		// 필터가 동작할 URL을 세팅,Arrays.asList(filteringURL)-> filteringURL 배열을 List로 변환
 		

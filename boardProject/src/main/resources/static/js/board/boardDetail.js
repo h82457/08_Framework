@@ -60,4 +60,21 @@ deleteBtn.addEventListener("click", () => {
     return;
   }
       location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
+
+
 });
+
+/* -------------------------------------------------------- */
+/* 게시글 수정 버튼 */
+const updateBtn = document.querySelector("#updateBtn");
+
+if(updateBtn != null){ // 수정버튼 존재시
+
+  updateBtn.addEventListener("click", e => {
+
+    // 현재 주소 : /board/1/2005?cp=1
+    // 목표 주소 : /editBoard/1/2005/update?cp=1 (GET 방식)
+    location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
+  });
+
+}
