@@ -78,3 +78,16 @@ if(updateBtn != null){ // 수정버튼 존재시
   });
 
 }
+
+/* -------------------------------------------------------- */
+/* 목록으로 버튼 */
+const goToListBtn = document.querySelector("#goToListBtn");
+
+goToListBtn.addEventListener("click", () => {
+
+  // 상세조회 : /board/1/2011?cp=1
+  // 목록     : /board/1?cp=1
+  let url = location.pathname;
+  url = url.substring(0, url.lastIndexOf("/"));
+  location.href = url + location.search;
+})

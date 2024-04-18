@@ -93,7 +93,7 @@ public class BoardController {
 		if(loginMember != null) map.put("memberNo", loginMember.getMemberNo());
 		
 		
-		// 2) 서비스 호출 <- 1행만 조회, 리스트로 묶어서 바딪 않아도 됨
+		// 2) 서비스 호출 <- 1행만 조회, 리스트로 묶어서 보내지 않아도 됨
 		Board board = service.selectOne(map);
 		
 		// 조회 결과가 없는 경우 (<-삭제한 게시글을 주소로 조회한 경우)

@@ -132,7 +132,7 @@
 
     <script th:inline="javascript">
 
-       /* 로그인 상태인 경우 로그인한 회원 번호를 전역변수에 저장 */
+       // 로그인 상태인 경우 세션에서 로그인한 회원 번호를 얻어와 전역변수에 저장
         const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호"; 
 //          ㄴ session에서 loginMember를 얻어왔을떄 null이 아닌 경우(?) 회원번호(memberNo) 얻어오기 (loginMember가 null인 경우 [null] 반환)
 
@@ -144,7 +144,11 @@
 
         /* 현재 게시글 좋아요 여부(boardLike)를 전역 변수로 저장 */
         let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부"; // 주석과 th 사이에 공백 있으면 오류, 클릭될떄마다 값이 바뀌기떄문ㄴ
-    </script>
+   
+        // 프로필 기본 이미지 전역변수로 저장
+        const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
+   
+   </script>
     
     
 
