@@ -35,13 +35,9 @@ public class CommentController {
 	 * @return commentList
 	 */
 	@GetMapping(value="", produces = "application/json")  // <- 형태로 작성할 경우 안전, value 속성 : 매핑할 주소, produces 속성 : 응답할 데이터의 형식을 지정
-	public List<Comment> select(@RequestParam("boardNo") int boardNo) {
+	public List<Comment> select(@RequestParam("boardNo") int boardNo) { return service.select(boardNo); }// ㄴHttpMessageConverter가 List -> JSON (문자열)로 변환해서 응답
 		
-		// HttpMessageConverter가 List -> JSON (문자열)로 변환해서 응답
-		
-		return service.select(boardNo);
 
-	}
 	
 	/** 댓글 등록
 	 * @param comment
@@ -50,7 +46,7 @@ public class CommentController {
 	@PostMapping("")
 	public int insert(@RequestBody Comment comment) { return service.insert(comment); }
 //						ㄴ> 요청 데이터가 패치의 헤더에서 JSON으로 명시되어 전달됨
-//							~> Arguments Resolver가 JSON을 DTO(Comment)로 자동 변경 (JACKSON 라이브러리 기능)
+//							~> ArgumentsResolver가 JSON을 DTO(Comment)로 자동 변경 (JACKSON 라이브러리 기능)
 		
 	
 	
