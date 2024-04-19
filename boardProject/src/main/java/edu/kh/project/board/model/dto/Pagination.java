@@ -90,26 +90,27 @@ public class Pagination {
 		return nextPage;
 	}
 
-
-	public void setCurrentPage(int currentPage) {
+    // 계산후 세팅에 필요한 값
+	
+	public void setCurrentPage(int currentPage) {// 현재 페이지 번호
 		this.currentPage = currentPage;
 		calculate(); // 필드 계산 메서드 호출
 	}
 
-
-	public void setListCount(int listCount) {
+	
+	public void setListCount(int listCount) {// 전체 게시글 수
 		this.listCount = listCount;
 		calculate(); // 필드 계산 메서드 호출
 	}
 
-
-	public void setLimit(int limit) {
+	
+	public void setLimit(int limit) {// 한 페이지 목록에 보여지는 게시글 수
 		this.limit = limit;
 		calculate(); // 필드 계산 메서드 호출
 	}
 
-
-	public void setPageSize(int pageSize) {
+	
+	public void setPageSize(int pageSize) {// 보여질 페이지 번호 개수
 		this.pageSize = pageSize;
 		calculate(); // 필드 계산 메서드 호출
 	}
@@ -133,22 +134,17 @@ public class Pagination {
 	private void calculate() {
 		
 		
-		// maxPage : 최대 페이지 == 마지막 페이지 == 총 페이지 수
+		// > maxPage : 최대 페이지 == 마지막 페이지 == 총 페이지 수
+//		 한 페이지에 게시글이 10개씩 보여질 경우
+//		 게시글 수 :  95개 -> 10 page / 100개 -> 10 page / 101개 -> 11 page
 		
-		// 한 페이지에 게시글이 10개씩 보여질 경우
-		//  게시글 수 :  95개 -> 10 page 
-		//  게시글 수 : 100개 -> 10 page
-		//  게시글 수 : 101개 -> 11 page
-		
-		maxPage = (int)Math.ceil( (double)listCount / limit );
+		maxPage = (int)Math.ceil( (double)listCount / limit ); // Math.ceil : 올림
 		
 		
-		// startPage : 페이지 번호 목록의 시작 번호
+		// > startPage : 페이지 번호 목록의 시작 번호
+//		 페이지 번호 목록이 10개(pageSize) 씩 보여질 경우
+//		 현재 페이지가  1 ~ 10 :   1 page / 11 ~ 20 :  11 page
 		
-		// 페이지 번호 목록이 10개(pageSize) 씩 보여질 경우
-		
-		// 현재 페이지가  1 ~ 10 :   1 page
-		// 현재 페이지가 11 ~ 20 :  11 page
 		startPage = (currentPage - 1) / pageSize * pageSize + 1;
 		
 		

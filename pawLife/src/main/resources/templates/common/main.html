@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>메인</title>
+
+   <!-- templetes/common/common.html  조각 추가 -->
+   <th:block th:replace="~{common/common}"></th:block>
+</head>
+<body>
+   <main>
+      <!-- templetes/common/header.html  조각 추가 -->
+      <th:block th:replace="~{common/header}"></th:block>
+      
+      <div class="cc">
+
+      </div>
+   </main>
+   <!-- templetes/common/footer.html  조각 추가 -->
+   <th:block th:replace="~{common/footer}"></th:block>   
+</body>
+</html>

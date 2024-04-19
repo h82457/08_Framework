@@ -1,0 +1,102 @@
+:root{
+   --main-color : rgb(204, 204, 204);
+   /* --hover-color : #e9ae2f; */
+}
+
+*{
+   /* border: 1px solid grey; */
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+
+body{
+   display: flex;
+   flex-direction: column; 
+   align-items: center;  
+   min-height: 100vh;     
+}
+
+main{
+   width: 1140px;
+   flex-grow: 1;         
+   min-height: 500px;
+}
+
+/* 화면 너비가 1140px이 되기 전에 적용할 css == 1140이하일때 적용 */
+@media (max-width: 1140px){
+   main{width: 100vw;}
+
+}
+
+/* a태그 스타일 지정 */
+a{
+   text-decoration: none;
+   color : black;
+ }
+/* ***** header ***** */
+
+/* 로그인, 회원가입 */
+header{
+   margin: 10px;
+   height: 160px;
+   display: flex;
+   flex-direction: column;  
+}
+.header-top-menu{
+   display: flex;
+   align-items: flex-end;
+   flex-direction: column;
+}
+
+/* 로고(사진, 글) */
+.home-logo-area{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.home-logo-area > a{
+   margin: 10px;
+}
+#homeLogoImage{
+   width: 60px;
+}
+#homeLogoTitle{
+   font-size: 46px;
+   font-weight: bold;
+}
+/* 네비게이션 바 */
+nav{
+   border-top: 1px solid var(--main-color);
+   height: 50px;
+   position: sticky;   /* 화면 밖으로 벗어났을때 지정된 위치에 부착 */
+   z-index: 1000;
+}
+
+nav > ul{
+   display: flex;
+   list-style: none;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+
+}
+
+nav li{
+   flex: 0 1 280px;    /* 각 순서대로 grow shrink basis */
+   text-align: center;
+   font-weight: bold;
+}
+nav a{
+   font-weight: bold;
+   padding: 11px 0;  
+   display: block;
+   text-align: center;
+   height: 100%;
+}
+
+/*  */
+.cc{
+   height: 300px;
+   background-color: var(--main-color);
+}

@@ -27,9 +27,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("board")
@@ -37,9 +35,10 @@ public class BoardController {
 
 	private final BoardService service;
 	
-	/** 게시글 목록 조회
+	/** 게시글 목록 조회 + 검색
 	 * @param boardCode : 게시판 종류
 	 * @param cp : 현재 조회 요청한 페이지 (없으면 1, 있으면 cp=2 cp=3...)
+	 * @param map : 제출된 파라미터가 모두 저장된 Map (검색시 key, query 담겨 있음)
 	 * @return
 	 * 
 	 * - /board/000, /board 이하 1레벨 자리에 숫자로된 요청 주소가 작성되어있을떄만 동작 -> 정규표현식 이용
@@ -48,10 +47,25 @@ public class BoardController {
 	@GetMapping("{boardCode:[0-9]+}") 
 	public String selectBoardList(@PathVariable("boardCode") int boardCode,
 //									ㄴ>경로에 있는 주소를 얻어와서 변수에 저장
-			@RequestParam(value="cp", required = false, defaultValue = "1") int cp, Model model) {
-	
+			@RequestParam(value="cp", required = false, defaultValue = "1") int cp, Model model,
+//											ㄴ> cp값은 필수X, 값이 없을시 기본값은 1
+			@RequestParam Map<String, Object> paramMap
+			) {
+		
 		// 조회 서비스 호출후 결과 반환
-		Map<String, Object> map = service.selectBoardList(boardCode, cp);
+		Map<String, Object> map = null;
+		
+		// 검색이 아닌 경우 (게시글 목록 조회)
+		if(paramMap.get("key") == null) map = service.selectBoardList(boardCode, cp);
+		
+		else { // 검색인 경우
+			// 검색어가 담긴 map에 추가로 boardCode 담기
+			paramMap.put("boardCode", boardCode);
+			
+			// 검색 서비스 호출
+			map = service.searchList(paramMap, cp);
+		}
+		
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList" , map.get("boardList"));

@@ -19,19 +19,17 @@ public class BoardNameInterceptor implements HandlerInterceptor{ // <- HandlerIn
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-		// application scope 에서 boardTypeList 얻어오기
+		// application scope 에서 boardTypeList 얻어오기 
 		ServletContext application = request.getServletContext();
 		
-		List<Map<String, Object>> boardTypeList = (List<Map<String, Object>>)application.getAttribute("boardTypeList");
+		// BoardTypeInterceptor클래스에서 application scope에 추가한 boardTypeList 속성값 얻어오기
+		List<Map<String, Object>> boardTypeList = (List<Map<String, Object>>) application.getAttribute("boardTypeList");
 		
-		
-		log.debug(boardTypeList.toString());
+//		log.debug(boardTypeList.toString());
 		
 		String uri = request.getRequestURI(); // Uniform Resource Identifier : 통합 자원 식별자 (자원 이름,주소만 봐도 무엇인지 구별할수 있는 문자열)
 //												 		ㄴ uri : /board/1    /      url : localhost/board/1
-		
-		log.debug("uri : " + uri);
-		
+//		log.debug("uri : " + uri);
 		
 		try { // /board 로 시작되는 요청 주소시 오류가 나면 ...
 			int boardCode = Integer.parseInt( uri.split("/")[2] );
@@ -49,7 +47,6 @@ public class BoardNameInterceptor implements HandlerInterceptor{ // <- HandlerIn
 					request.setAttribute("boardName", boardType.get("boardName"));
 					break;
 				}
-				
 			}
 		} catch (Exception e) {
 					// 오류시 무시하고 그냥 실행
