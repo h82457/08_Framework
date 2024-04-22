@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 화면</title>
+
+    <link rel="stylesheet" href="/css/member/login.css">
+
+</head>
+<body>
+
+    <main>
+        
+        <!-- 로고 / 클릭하면 메인으로 -->
+        <section class="logo-area">  
+            <div>
+                <a href="/"> <img src="/images/logo.png" id="logoImage"> </a>  
+            </div>
+           <div>
+            <a href="/" id="logoTitle">PAWLIFE</a>
+           </div>
+            
+        </section>
+        
+      
+
+        <form action="/member/login" method="post" id="loginForm">
+            <section class="input-box">
+                <input type="text" name="memberEmail" placeholder="Email" value="" required />
+            </section>
+
+            <section class="input-box">
+                <input type="password" name="memberPw" placeholder="Password" required />
+            </section>
+
+            <div class="saveId-area">
+                <input type="checkbox" name="saveId" id="saveId">
+                <label for="saveId"><i class="fas fa-check"></i>아이디 저장</label>
+            </div>
+
+          
+            <div>
+                <button class="login-btn">Login</button>
+            </div>
+                
+
+          
+           
+            <p class="text-area">
+                <a href="/member/signup">회원가입</a>
+                |
+                <a href="#">ID/PW찾기</a>
+            </p>
+        </form>
+    </main>
+    
+</body>
+</html>

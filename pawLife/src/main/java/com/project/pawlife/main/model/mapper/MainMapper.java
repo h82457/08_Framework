@@ -1,4 +1,4 @@
-package com.project.pawlife.model.mapper;
+package com.project.pawlife.main.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,61 +1,60 @@
 :root{
-   --main-color : rgb(204, 204, 204);
+   --main-color : #cccccc;
    /* --hover-color : #e9ae2f; */
 }
-
 *{
-   /* border: 1px solid grey; */
+   /* border: 1px solid var(--main-color); */
    box-sizing: border-box;
    padding: 0;
    margin: 0;
 }
-
 body{
    display: flex;
-   flex-direction: column; 
-   align-items: center;  
-   min-height: 100vh;     
+   flex-direction: column; /* 중심축 방향 세로 */
+   align-items: center;    /* 교차축 방향 가운데 정렬 */
+   min-height: 100vh;      /* 최소 높이를 화면 비율 100% */
 }
-
 main{
    width: 1140px;
-   flex-grow: 1;         
+   flex-grow: 1;           /* 중심축 방향으로 팽창 */
    min-height: 500px;
 }
-
 /* 화면 너비가 1140px이 되기 전에 적용할 css == 1140이하일때 적용 */
 @media (max-width: 1140px){
    main{width: 100vw;}
-
 }
-
 /* a태그 스타일 지정 */
 a{
    text-decoration: none;
    color : black;
- }
+}
+/* ------------------ */
 /* ***** header ***** */
-
-/* 로그인, 회원가입 */
+/* ------------------ */
 header{
    margin: 10px;
-   height: 160px;
+   height: 125px;
    display: flex;
    flex-direction: column;  
 }
+/* 로그인, 회원가입 */
 .header-top-menu{
    display: flex;
    align-items: flex-end;
    flex-direction: column;
 }
-
+.header-top-menu a{
+   padding: 0 10px;
+}
 /* 로고(사진, 글) */
 .home-logo-area{
+   width: 100%;
+   height: 80px;
    display: flex;
    align-items: center;
    justify-content: center;
 }
-.home-logo-area > a{
+.home-logo-area>div>a{
    margin: 10px;
 }
 #homeLogoImage{
@@ -69,11 +68,10 @@ header{
 nav{
    border-top: 1px solid var(--main-color);
    height: 50px;
-   position: sticky;   /* 화면 밖으로 벗어났을때 지정된 위치에 부착 */
+   position: sticky;
    z-index: 1000;
 }
-
-nav > ul{
+nav>ul{
    display: flex;
    list-style: none;
    height: 100%;
@@ -81,9 +79,8 @@ nav > ul{
    justify-content: center;
 
 }
-
 nav li{
-   flex: 0 1 280px;    /* 각 순서대로 grow shrink basis */
+   flex: 0 1 280px;
    text-align: center;
    font-weight: bold;
 }
@@ -94,9 +91,81 @@ nav a{
    text-align: center;
    height: 100%;
 }
-
-/*  */
-.cc{
+/* ------------------ */
+/* ***** footer ***** */
+/* ------------------ */
+footer{
+   width: 100vw;
+   height: 200px;
+   background-color: #a3add342;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+footer>p {
+   font-weight: bold;
+   margin: 16px 0;
+}
+footer>article>* {
+   font-size: 14px;
+}
+footer span {
+   padding: 0 10px;
+}
+/* carousel */
+.carousel{
    height: 300px;
    background-color: var(--main-color);
 }
+/* ------------------ */
+/* *****  main  ***** */
+/* ------------------ */
+
+/* 레이아웃용 빈공간 */
+.content1{
+   width: 100%;
+   height: 100px;
+}
+/* 게시판 영역 */
+.content2{
+   display: flex;
+   flex-direction: column;
+
+}
+/* 게시판 미리보기 */
+.card-container{
+   width: 100%;
+   border: 1px solid var(--main-color);
+   border-radius: 10px;
+   margin: 30px auto;
+   padding: 16px;
+}
+.card-container>a{
+   font-weight: bold;
+}
+.card-container i{
+   margin-left: 5px;
+}
+.card-row{
+   display: flex;
+   justify-content: space-around;
+   margin: 10px;
+}
+.card{
+   width: 100%;
+   height: 240px;
+   /* margin: 10px 16px; */
+   flex: 1 1 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.card img{
+   width: 70%;
+   height: 100%;
+   object-fit: cover;
+   margin: 20px 30px;
+   border-radius: 10px;
+}
+
