@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:replace="~{common/common}"></th:block>
+    <title>입양 문의</title>
+    <link rel="stylesheet" href="/css/adoption/adoption-detail.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+
+        
+        <label for="adoptTitle"><span class="required">입양 공고 제목</span></label>
+        <input type="text" name="adoptTitle" placeholder="신청인 성명">
+
+        <label for="adoptName"><span class="required">입양 공고 제목</span></label>
+        <input type="text" name="adoptName" placeholder="신청인 성명">
+
+    </main>
+    <th:block th:replace="~{common/footer}"></th:block> 
+
+    
+</body>
+</html>

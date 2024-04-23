@@ -9,6 +9,8 @@ import com.project.pawlife.adoption.model.service.AdoptionService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -42,6 +44,12 @@ public class AdoptionController {
 	public String adoptionWrite() {
 		return "adoption/adoptionWrite";
 	}
+	
+	/** 입양문의
+	 * @return
+	 */
+	@GetMapping("adoptionContact")
+	public String contact() { return "adoption/adoptionContact"; }
 	
 
 }
