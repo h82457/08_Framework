@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입양 게시판 글쓰기</title>
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/adoption/adoption-write.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+       
+       
+        <from action="/adoptionWrite">
+            <section class="board">
+    
+    
+                <h1><input type="text" placeholder="제목" id="inputTitle"></h1>
+    
+    
+                <hr>
+    
+    
+                <section class="board-box">
+                    <div class="info-box">
+                        
+                        <input type="file" class="adoption-img">
+                        <div class="infomation">
+                        이름 : <input type="text"><br>
+                        나이 : <input type="text"><br>
+                        종 : <input type="text"><br>
+                        발견장소 : <input type="text"><br>
+                        </div>
+
+    
+                    </div>
+                    <textarea name="" id="" cols="120" rows="10" placeholder="내용 입력"></textarea>
+        
+                    <button id="writeBtn">글쓰기</button>
+    
+                </section>
+            </section>
+        </from>
+
+
+
+
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block> 
+</body>
+</html>

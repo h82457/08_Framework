@@ -16,11 +16,6 @@ public class MainController {
 
 	
 
-  @RequestMapping("/") public String mainPage() {
- 
- 
-     return "common/main"; 
- 
-  }
+  @RequestMapping("/") public String mainPage() { return "common/main"; }
 	 
 }

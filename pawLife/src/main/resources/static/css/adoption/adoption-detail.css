@@ -1,0 +1,131 @@
+:root{
+    --main-color : #cccccc;
+    /* --hover-color : #e9ae2f; */
+ }
+
+a{
+    text-decoration: none;
+    color : black;
+}
+
+h1{
+    margin: 50px 0 10px 0;
+    min-width: 150px;
+}
+
+main{
+    flex-grow: 1;
+}
+
+body{
+    display: flex;
+    flex-direction: column; /* 중심축 방향 세로 */
+    align-items: center;    /* 교차축 방향 가운데 정렬 */
+    min-height: 100vh;      /* 최소 높이를 화면 비율 100% */
+ }
+
+/* ********************************************************************* */
+
+/* 인포바(프로필, 닉네임 북마크바) */
+.info-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+/* 프로필 이미지 */
+#profile{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-right: 5px;
+}
+.bookmark{
+    display: flex;
+    justify-content: end;
+    
+    cursor: pointer;
+}
+
+.view-count{
+    margin-bottom: 5px;
+}
+
+.right-bar{
+    justify-content: end;
+    flex-direction: row;
+}
+
+
+/* ***************************************************************** */
+.board{
+    max-width: 800px;
+    margin: auto;
+}
+
+.board-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* 동물 정보 박스 */
+.info-box{
+    display: flex;
+    flex-direction: row;
+    margin: 50px 0;
+}
+table{
+    margin-left: 20px;
+}
+th{
+    padding: 0 10px;
+}
+td{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* 이미지 */
+.adoption-img{
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+}
+
+/* 문의하기 버튼 */
+#contactBtn{
+    width: 300px;
+    height: 40px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    cursor: pointer;
+}
+
+/* 목록으로 버튼 */
+#listBtn{
+    border: 1px solid gray;
+    background-color: #fff;
+    width: 100px;
+    height: 40px;
+    color: gray;
+    margin-bottom: 100px;
+    cursor: pointer;
+}
+
+#listBtn:hover{
+    background-color: #ddd;
+}
