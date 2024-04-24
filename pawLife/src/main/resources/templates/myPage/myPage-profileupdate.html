@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인 정보 수정</title>
+
+
+    <!-- 공용 css/ js 추가 -->
+    <th:block th:replace="~{common/common}"></th:block>
+    <!-- myPage 전용  CSS -->
+    <link rel="stylesheet" href="/css/myPage/myPage.css">
+</head>
+<body>
+
+    <main>
+    <!-- 헤더 추가 -->
+    <th:block th:replace="~{common/header}"></th:block>
+
+ <section class="update-area">
+
+  <form action="/myPage/profileUpdate" method="POST" name="profileUpdateForm" id="profileUpdateForm">
+    
+     <!-- 마이페이지 수정-->
+  <section class="myPage-update">
+
+    <!-- 프로필 부분  -->
+
+    <div class="profile-updatecontainer">
+
+      <div class="boardTitle-area">
+              
+        <h2 class="board-name">개인정보 수정</h2> 
+
+      </div>
+      
+
+      <div class="profileImg-area">
+      
+        <img src="/images/cat1.jpg" id="memberProfileImg" alt="프로필 이미지">
+
+      </div>
+      
+      <div class="profileNickNamebox">
+
+        <input type="text" id="profileNickName" placeholder="닉네임">
+
+        <span class="signUp-message" id="nickMessage">한글,영어,숫자로만 2~10글자</span>
+
+      </div>
+      
+
+      <div class="profileIntroduce-area">
+
+      
+        <input type="text" name="profileIntroduceText" id="profileIntroduceText"
+        placeholder="자기소개 한마디">
+
+      
+      </div>
+
+    </div>
+    </section>
+
+
+    <section class="signup-updatecontent">
+      
+      <!-- 비밀 번호, 닉네임, 전화번호 부분-->
+
+      <section class="signup-updatebox">
+
+        <label for="memberPw">
+          <span class="required">*</span> 
+          <span class="required">비밀번호</span>
+        </label>
+  
+        <div class="signUp-input-area">
+          <input type="password" name="memberPw" id="memberPw" 
+          placeholder="비밀번호" maxlength="20" >
+        </div>
+        <div class="signUp-input-area">
+          <input type="password" name="memberPwConfirm" id="memberPwConfirm" 
+          placeholder="비밀번호 확인" maxlength="20" >
+        </div>
+  
+        <!-- 정규 표현식 -->
+        <span class="signUp-message" id="pwMessage">영어,숫자,특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
+  
+       
+  
+        
+  
+  
+        <!-- 전화번호 입력 -->
+        <label for="memberTel">
+          <span class="required">*</span> 
+          <span class="required"> 전화번호</span> 
+        </label>
+  
+        <div class="signUp-input-area">
+          <input type="text" name="memberTel" id="memberTel" placeholder="(- 없이 숫자만 입력)" maxlength="11">
+        </div>
+  
+        <span class="signUp-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
+  
+
+      </section>
+      
+
+
+    </section>
+      
+        <div class="profileUpdateBtn-area">
+          <button id="profileCompeleteBtn">개인정보 수정 완료</button>
+        </div>
+
+
+  </form>
+
+ 
+
+   
+  </section>
+  </main>
+
+     <!-- 푸터 추가 -->
+     <th:block th:replace="~{common/footer}"></th:block>
+
+    <script src="/js/myPage/myPage.js"></script>
+
+</body>
+</html>
