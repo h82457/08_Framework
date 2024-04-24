@@ -25,6 +25,23 @@ body{
  }
 
 /* ********************************************************************* */
+.title-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.btn-area>button{
+    width: 60px;
+    height: 30px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/* ********************************************************************* */
 
 /* 인포바(프로필, 닉네임 북마크바) */
 .info-bar{

@@ -19,24 +19,34 @@
                 <h1><input type="text" placeholder="제목" id="inputTitle"></h1>
     
     
-                <hr>
     
     
                 <section class="board-box">
+
                     <div class="info-box">
-                        
-                        <input type="file" class="adoption-img">
+
+                        <!-- 이미지 칸 -->
+                        <div class="info-img">
+                            <label for="thumnail">
+                                <img class="preview" src="">
+                            </label>
+                            <input type="file" class="adoption-img" id="thumnail" accept="image/*">
+                            <span class="delete-image">&times;</span>
+                        </div>
+
+                        <!-- 양식 -->
                         <div class="infomation">
-                        이름 : <input type="text"><br>
-                        나이 : <input type="text"><br>
-                        종 : <input type="text"><br>
-                        발견장소 : <input type="text"><br>
+                            <input type="text" placeholder="이름"><br>
+                            <input type="text" placeholder="나이"><br>
+                            <input type="text" placeholder="종"><br>
+                            <input type="text" placeholder="발견장소"><br>
                         </div>
 
     
                     </div>
-                    <textarea name="" id="" cols="120" rows="10" placeholder="내용 입력"></textarea>
-        
+
+                        <textarea name="adoptionContent" id="adoptionContent" cols="100" rows="10" placeholder="내용 입력"></textarea>
+                    
                     <button id="writeBtn">글쓰기</button>
     
                 </section>
@@ -49,5 +59,17 @@
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block> 
+
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var oEditors = [];
+        nhn.husky.EZCreator.createInIFrame({
+         oAppRef: oEditors,
+         elPlaceHolder: "adoptionContent",
+         sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+         fCreator: "createSEditor2"
+        });
+        </script>
+
 </body>
 </html>

@@ -33,9 +33,9 @@ a {
 /* ------------------ */
 header {
    margin: 10px;
-   height: 200px;
+   height: 125px;
    display: flex;
-   flex-direction: column;  
+   flex-direction: column; 
 }
 /* 로그인, 회원가입 */
 .header-top-menu {
@@ -70,11 +70,12 @@ nav {
    height: 50px;
    position: sticky;
    z-index: 1000;
+   border-bottom: 1px solid var(--main-color); 
 }
 nav>ul {
    display: flex;
    list-style: none;
-   height: 100%;
+   /* height: 100%; */
    align-items: center;
    justify-content: center;
 
@@ -118,7 +119,6 @@ footer span {
 /* ***  carousel  *** */
 /* ------------------ */
 .slideshow-container {
-   max-width: 1000px;
    height: 300px;
    position: relative;
    margin: auto;
@@ -128,6 +128,7 @@ footer span {
  }
 .mySlides>img {
    vertical-align: middle;
+   object-fit: cover;
    width: 100%;
    height: 300px;
 }
@@ -209,5 +210,9 @@ footer span {
    object-fit: cover;
    margin: 20px 30px;
    border-radius: 10px;
+}
+.card > img:hover{
+   transform: scale(1.02);
+   transition: 0.3s;
 }
 

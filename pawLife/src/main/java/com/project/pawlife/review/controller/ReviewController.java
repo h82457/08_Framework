@@ -26,6 +26,30 @@ public class ReviewController {
 	public String reviewPage() {
 		return "review/reviewList";
 	}
+	
+	/** 후기 글쓰기
+	 * @return
+	 */
+	@GetMapping("reviewWrite")
+	public String reviewWrite() {
+		return "review/reviewWrite";
+	}
+	
+	/** 후기 상세 페이지
+	 * @return
+	 */
+	@GetMapping("reviewDetail")
+	public String reviewDetail() {
+		return "review/reviewDetail";
+	}
+	
+	/** 후기 수정 페이지
+	 * @return
+	 */
+	@GetMapping("reviewUpdate")
+	public String reviewUpdate() {
+		return "review/reviewUpdate";
+	}
 
 	
 }

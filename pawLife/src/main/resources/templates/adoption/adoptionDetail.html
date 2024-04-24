@@ -15,7 +15,13 @@
         <section class="board">
 
 
-            <h1>제목</h1>
+            <div class="title-area">
+                <h1>제목</h1>
+                <div class="btn-area">
+                    <button class="update-btn">수정</button>
+                    <button class="delete-btn">삭제</button>
+                </div>
+            </div>
 
 
             <div class="info-bar">
@@ -81,7 +87,7 @@
                 </div>
                 <th:block>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리 나라만세</th:block>
     
-                <button id="contactBtn">문의하기</button>
+                <button id="contactBtn" onclick="location.href='/adoption/adoptionContact'">문의하기</button>
 
                 <button id="listBtn" onclick="location.href='/adoption/adoptionList'">목록으로</button>
             </section>
@@ -89,7 +95,7 @@
 
     </main>
     <th:block th:replace="~{common/footer}"></th:block> 
-
+    <script src="/js/adoption/adoptionDetail.js"></script>
     
 </body>
 </html>
