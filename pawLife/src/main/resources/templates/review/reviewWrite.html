@@ -11,24 +11,34 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
         
-        <section class="board">
-            <from action="/adoptionWrite" method="POST">
-                <h1><input type="text" placeholder="제목" id="inputTitle"></h1>
+        <from action="review/reviewWrite" method="POST">
+            <section class="board">
+                <h1><input type="text" placeholder="제목" id="reviewTitle"></h1>
+                <section class="board-box">
 
-                <textarea name="text" id="editor" ></textarea>
+                    <textarea name="reviewContent" id="reviewContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
+                    <button onclick="submitPost()">글작성</button>
 
-                <button id="writeBtn">글쓰기</button>
-            
-            </from>    
-        </section>
+                </section>
+            </section>
+        </from>
     </main>
 
-<th:block th:replace="~{common/footer}"></th:block> 
-<!-- ckeditor -->
-<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+    <th:block th:replace="~{common/footer}"></th:block> 
+    <!-- editor -->
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
-<script src="/js/review/review-write.js"></script>
+    <script type="text/javascript">
+        var oEditors = [];
 
-</body>
-</html>
+        nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "reviewContent", // textarea id값
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html", // SmartEditor2Skin.html 경로
+        fCreator: "createSEditor2"
+        });
+    </script>
+
+    <script src="/js/review/reviewWrite.js"></script>
+
+  </script>

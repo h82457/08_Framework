@@ -1,8 +1,12 @@
 package com.project.pawlife.adoption.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.pawlife.adoption.model.service.AdoptionService;
@@ -35,13 +39,31 @@ public class AdoptionController {
 		return "adoption/adoptionDetail";
 	}
 	
-	/** 입양 글쓰기
+	/** 입양 글쓰기 화면 이동
 	 * @return
 	 */
 	@GetMapping("adoptionWrite")
 	public String adoptionWrite() {
 		return "adoption/adoptionWrite";
 	}
+	
+	
+	/** 입양 글 작성
+	 * @param map
+	 * @return
+	 */
+	@PostMapping("adoptionWrite")
+	public String adoptionWrite(@RequestBody Map<String, Object> map) {
+
+		int result = service.adoptionWrite(map);
+		
+		return "redirect:/";
+	}
+	
+	
+	
+	
+	
 	
 	/** 입양문의
 	 * @return

@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN " "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.project.pawlife.adoption.model.mapper.AdoptionMapper">
 
+	<insert id="adoptionWrite"><!-- 2,1 나중에 memberNo, boardCode로 바꾸기 -->
+		INSERT INTO "ADOPT"
+		VALUES(SEQ_ADOPT_NO.NEXTVAL, #{adoptTitle}, #{adoptContent}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 
+		'썸네일 주소', '동물이름', 12, '동물종', 2, 1, DEFAULT, '발견장ㅇ소')
+
+	</insert>
 </mapper>

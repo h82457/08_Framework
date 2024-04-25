@@ -1,5 +1,7 @@
 package com.project.pawlife.review.model.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +15,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class ReviewServiceImpl implements ReviewService{
 
-	@Autowired
 	private final ReviewMapper mapper;
+
+	@Override
+	public int reviewWrite(Map<String, Object> map) { return mapper.reviewWrite(map) ; }
 	
 }

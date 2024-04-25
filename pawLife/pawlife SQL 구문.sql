@@ -239,3 +239,112 @@ ALTER TABLE "COMMENT" ADD
 CONSTRAINT "COMMENT_DEL_FL"
 CHECK("COMMENT_DEL_FL" IN ('Y', 'N'));
 
+----------------------------------------------------------------------------------------------------------------
+
+/* 샘플 데이터 삽입 */
+
+-- 회원 번호 시퀀스 만들기 
+CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
+-------------------------------------------------------------------------------
+-- 샘플 회원 데이터 삽입
+INSERT INTO "MEMBER" VALUES(SEQ_MEMBER_NO.NEXTVAL, 
+                'member01@kh.or.kr', 
+                'pass1234!',
+	              '샘플회원', 
+	              '01012341234',
+	               NULL, DEFAULT, DEFAULT, DEFAULT);
+	              
+INSERT INTO "MEMBER" VALUES(SEQ_MEMBER_NO.NEXTVAL, 
+                'member02@kh.or.kr', 
+                '$2a$10$ISM4.feknchN.mS1qnxtYeB68Hv8/zIQNfTsXFc6Kw..OIolj8vX6',
+	              '샘플회원2', 
+	              '01036901234',
+	               NULL, DEFAULT, DEFAULT, DEFAULT);
+	              
+-- 샘플 회원 데이터 업데이트
+-- 비밀번호 암호화된 걸로 바꿈!	                
+UPDATE "MEMBER" SET MEMBER_PW ='$2a$10$pe0hHmf2e2nzZjn90dOAQ.ovfwp9FhonLmS9CWtBtuV.yDMBf.3u6'
+WHERE MEMBER_NO  = 1; --1행 수정됨
+
+SELECT * FROM "MEMBER";         
+-----------------------------------------------------------------------
+
+/* 게시판 종류(BOARD_TYPE) 테이블 추가 */ 
+
+CREATE SEQUENCE SEQ_BOARD_CODE NOCACHE;
+
+INSERT INTO "BOARD_TYPE" VALUES(SEQ_BOARD_CODE.NEXTVAL, '입양 게시판');
+INSERT INTO "BOARD_TYPE" VALUES(SEQ_BOARD_CODE.NEXTVAL, '후기 게시판');
+
+-------------------------------------------------------------------
+
+-- 후기 게시글 번호 시퀀스 생성
+CREATE SEQUENCE SEQ_REVIEW_NO NOCACHE;
+
+
+/* 게시판 (BOARD) 테이블 샘플 데이터 삽입(PL/SQL) */ 
+
+		-- DBMS_RANDOM.VALUE(0,3): 0.0 이상, 3.0 미만의 난수 /  CEIL(): 올림처리
+
+SELECT * FROM MEMBER;  -- 조회해서 정상 로그인, 탈퇴안된 회원 번호를 아래에 작성회원 컬럼값으로 넣고 실행.
+
+-- ALT + X 로 실행
+BEGIN
+	FOR I IN 1..10 LOOP
+		
+		INSERT INTO "REVIEW"
+		VALUES(SEQ_REVIEW_NO.NEXTVAL,
+					 SEQ_REVIEW_NO.CURRVAL || '번째 게시글',
+					 SEQ_REVIEW_NO.CURRVAL || '번째 게시글 내용 입니다',
+					 DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+					 1,
+					 2
+		);
+		
+	END LOOP;
+END;
+
+SELECT * FROM REVIEW;
+
+------------------------------------------------------------
+
+-- 입양 게시글 번호 시퀀스 생성
+CREATE SEQUENCE SEQ_ADOPT_NO NOCACHE;
+
+
+/* 게시판 (BOARD) 테이블 샘플 데이터 삽입(PL/SQL) */ 
+
+		-- DBMS_RANDOM.VALUE(0,3): 0.0 이상, 3.0 미만의 난수 /  CEIL(): 올림처리
+
+SELECT * FROM MEMBER;  -- 조회해서 정상 로그인, 탈퇴안된 회원 번호를 아래에 작성회원 컬럼값으로 넣고 실행.
+
+-- ALT + X 로 실행
+BEGIN
+	FOR I IN 1..10 LOOP
+		
+		INSERT INTO "ADOPT"
+		VALUES(SEQ_ADOPT_NO.NEXTVAL,
+					 SEQ_ADOPT_NO.CURRVAL || '번째 게시글',
+					 SEQ_ADOPT_NO.CURRVAL || '번째 게시글 내용 입니다',
+					 DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, '입양 동물 이름', 5, '입양 동물 종',
+					 1,
+					 1,
+					 DEFAULT
+		);
+		
+	END LOOP;
+END;
+
+SELECT * FROM REVIEW;
+
+
+
+------------------------------
+-- 후기게시판 게시글 작성
+
+INSERT INTO "REVIEW"
+VALUES(SEQ_REVIEW_NO.NEXTVAL, '게시글 테스트', '게시글 내용',
+			 DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 2);
+
+
+

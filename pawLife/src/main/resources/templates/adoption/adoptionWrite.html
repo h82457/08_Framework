@@ -12,19 +12,11 @@
         <th:block th:replace="~{common/header}"></th:block>
        
        
-        <from action="/adoptionWrite">
+        <from action="adoption/adoptionWrite">
             <section class="board">
-    
-    
-                <h1><input type="text" placeholder="제목" id="inputTitle"></h1>
-    
-    
-    
-    
+                <h1><input type="text" placeholder="제목" id="adoptTitle"></h1>
                 <section class="board-box">
-
                     <div class="info-box">
-
                         <!-- 이미지 칸 -->
                         <div class="info-img">
                             <label for="thumnail">
@@ -45,9 +37,8 @@
     
                     </div>
 
-                        <textarea name="adoptionContent" id="adoptionContent" cols="100" rows="10" placeholder="내용 입력"></textarea>
-                    
-                    <button id="writeBtn">글쓰기</button>
+                    <textarea name="adoptContent" id="adoptContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
+                    <button onclick="submitPost()">글작성</button>
     
                 </section>
             </section>
@@ -59,17 +50,20 @@
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block> 
-
+    <!-- editor -->
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+
     <script type="text/javascript">
         var oEditors = [];
-        nhn.husky.EZCreator.createInIFrame({
-         oAppRef: oEditors,
-         elPlaceHolder: "adoptionContent",
-         sSkinURI: "/smarteditor/SmartEditor2Skin.html",
-         fCreator: "createSEditor2"
-        });
-        </script>
 
+        nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "adoptContent", // textarea id값
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html", // SmartEditor2Skin.html 경로
+        fCreator: "createSEditor2"
+        });
+    </script>
+
+    <script src="/js/adoption/adoptionWrite.js"></script>
 </body>
 </html>

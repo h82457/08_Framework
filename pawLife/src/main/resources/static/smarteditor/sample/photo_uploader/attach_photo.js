@@ -334,7 +334,7 @@
     	var tempFile,
     		sUploadURL;
     	
-    	sUploadURL= 'file_uploader_html5.php'; 	//upload URL
+    	sUploadURL= 'file_uploader_html5.php'; 	//upload URL (컨트롤러에서 처리할수 있는 경로 <- 검색용!!!)
     	
     	//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
@@ -473,13 +473,18 @@
     	 }
      }
      
- 	/**
+ 	/** 검색용!!!
  	 * jindo에 파일 업로드 사용.(iframe에 Form을 Submit하여 리프레시없이 파일을 업로드하는 컴포넌트)
  	 */
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다.
- 	        sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+ 			//sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다. (수정전) <- 사진을 업로드할 서버의 경로
+ 			// ^^^ 컨트롤러에의 메소드로 보낼 요청 주소 입력
+ 			
+ 	        //sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+ 	        
+ 	      
+ 	        
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
  	    	bAutoUpload : false,									 	//파일이 선택됨과 동시에 자동으로 업로드를 수행할지 여부 (upload 메소드 수행)
@@ -541,21 +546,26 @@
     }
     
 	window.onload = function(){
-  		checkDragAndDropAPI();
+//  		checkDragAndDropAPI();
   		
-  		if(bSupportDragAndDropAPI){
-  			$Element("pop_container2").hide();
-  			$Element("pop_container").show();
-  			
-  			welTextGuide.removeClass("nobg");
-  			welTextGuide.className("bg");
-  			
-  			addEvent();
-  		} else {
-  			$Element("pop_container").hide();
-  			$Element("pop_container2").show();
-  			callFileUploader();
-  		}
+//  		if(bSupportDragAndDropAPI){
+//  			$Element("pop_container2").hide();
+//  			$Element("pop_container").show();
+//  			
+//  			welTextGuide.removeClass("nobg");
+//  			welTextGuide.className("bg");
+//  			
+//  			addEvent();
+//  		} else {
+//  			$Element("pop_container").hide();
+//  			$Element("pop_container2").show();
+//  			callFileUploader();
+//  		}
+  		
+  		$Element("pop_container").hide();
+  		$Element("pop_container2").show();
+  		callFileUploader();
+  		
   		fnUploadImage = $Fn(uploadImage,this);
   		$Fn(closeWindow,this).attach(welBtnCancel.$value(), "click");
 	};
