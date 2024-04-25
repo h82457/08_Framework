@@ -1,0 +1,3508 @@
+From 08ddebfb2bd6328853fb8914f00159642767601c Mon Sep 17 00:00:00 2001
+From: user1 <cicadax31@gmail.com>
+Date: Fri, 19 Apr 2024 17:47:55 +0900
+Subject: [PATCH] 240419
+
+---
+ .../.gitignore                                |   0
+ .../build.gradle                              |   0
+ .../gradle/wrapper/gradle-wrapper.jar         | Bin
+ .../gradle/wrapper/gradle-wrapper.properties  |   0
+ .../gradlew                                   |   0
+ .../gradlew.bat                               |   0
+ .../settings.gradle                           |   0
+ .../com/kh/test/TestProjectApplication.java   |   0
+ .../com/kh/test/common/config/DBConfig.java   |   0
+ .../test/user/controller/UserController.java  |   0
+ .../java/com/kh/test/user/model/dto/User.java |   0
+ .../kh/test/user/model/mapper/UserMapper.java |   0
+ .../test/user/model/service/UserService.java  |   0
+ .../user/model/service/UserServiceImpl.java   |   0
+ .../src/main/resources/application.properties |   0
+ .../main/resources/mappers/user-mapper.xml    |   0
+ .../src/main/resources/mybatis-config.xml     |   0
+ .../src/main/resources/static/index.html      |   0
+ .../main/resources/templates/searchFail.html  |   0
+ .../resources/templates/searchSuccess.html    |   0
+ .../kh/test/TestProjectApplicationTests.java  |   0
+ .../test sql 모음.sql                         |   0
+ .../.gitignore                                |   0
+ .../build.gradle                              |   0
+ .../gradle/wrapper/gradle-wrapper.jar         | Bin
+ .../gradle/wrapper/gradle-wrapper.properties  |   0
+ {TestProject-1 => TestProject2_0409}/gradlew  |   0
+ .../gradlew.bat                               |   0
+ .../settings.gradle                           |   0
+ .../com/kh/test/TestProject1Application.java  |   0
+ .../com/kh/test/common/config/DBConfig.java   |   0
+ .../controller/CustomerController.java        |   0
+ .../kh/test/customer/model/dto/Customer.java  |   0
+ .../customer/model/mapper/CustomerMapper.java |   0
+ .../model/service/CustomeServiceImpl.java     |   0
+ .../model/service/CustomerService.java        |   0
+ .../src/main/resources/application.properties |   0
+ .../resources/mappers/customer-mapper.xml     |   0
+ .../src/main/resources/mybatis-config.xml     |   0
+ .../src/main/resources/static/index.html      |   0
+ .../src/main/resources/templates/result.html  |   0
+ .../kh/test/TestProject1ApplicationTests.java |   0
+ {TestProject => TestProject3_0415}/.gitignore |   0
+ .../build.gradle                              |   0
+ .../gradle/wrapper/gradle-wrapper.jar         | Bin
+ .../gradle/wrapper/gradle-wrapper.properties  |   0
+ {TestProject => TestProject3_0415}/gradlew    |   0
+ .../gradlew.bat                               |   0
+ .../settings.gradle                           |   0
+ .../kh/test/ServerTest20415Application.java   |   0
+ .../com/kh/test/common/config/DBConfig.java   |   0
+ .../kh/test/controller/UserController.java    |   0
+ .../main/java/com/kh/test/model/dto/User.java |   0
+ .../com/kh/test/model/mapper/UserMapper.java  |   0
+ .../kh/test/model/service/UserService.java    |   0
+ .../test/model/service/UserServiceImpl.java   |   0
+ .../src/main/resources/application.properties |   0
+ .../main/resources/mappers/user-mapper.xml    |   0
+ .../src/main/resources/mybatis-config.xml     |   0
+ .../src/main/resources/static/index.html      |   0
+ .../main/resources/templates/searchFail.html  |   0
+ .../resources/templates/searchSuccess.html    |   0
+ .../test/ServerTest20415ApplicationTests.java |   0
+ TonghabTest1_0419/.gitignore                  |  37 +++
+ TonghabTest1_0419/build.gradle                |  41 +++
+ .../gradle/wrapper/gradle-wrapper.jar         | Bin 0 -> 43453 bytes
+ .../gradle/wrapper/gradle-wrapper.properties  |   7 +
+ TonghabTest1_0419/gradlew                     | 249 ++++++++++++++++++
+ TonghabTest1_0419/gradlew.bat                 |  92 +++++++
+ TonghabTest1_0419/settings.gradle             |   1 +
+ .../com/kh/test/TonghabTest1Application.java  |  13 +
+ .../board/controller/BoardController.java     |  42 +++
+ .../com/kh/test/board/model/dto/Board.java    |  20 ++
+ .../test/board/model/mapper/BoardMapper.java  |  19 ++
+ .../board/model/service/BoardService.java     |  15 ++
+ .../board/model/service/BoardServiceImpl.java |  21 ++
+ .../com/kh/test/common/config/DBConfig.java   | 146 ++++++++++
+ .../src/main/resources/application.properties |  10 +
+ .../main/resources/mappers/board-mapper.xml   |  13 +
+ .../src/main/resources/mybatis-config.xml     |  30 +++
+ .../src/main/resources/static/index.html      |  20 ++
+ .../main/resources/templates/searchFail.html  |   6 +-
+ .../resources/templates/searchSuccess.html    |  34 +++
+ .../kh/test/TonghabTest1ApplicationTests.java |  13 +
+ TonghabTest1_0419/통합테스트 SQL 모음.sql     |  80 ++++++
+ boardProject/sql모음.sql                      |  47 +++-
+ .../board/controller/BoardController.java     |  26 +-
+ .../project/board/model/dto/Pagination.java   |  36 ++-
+ .../board/model/mapper/BoardMapper.java       |  13 +
+ .../board/model/service/BoardService.java     |  15 +-
+ .../board/model/service/BoardServiceImpl.java |  49 +++-
+ .../interceptor/BoardNameInterceptor.java     |  13 +-
+ .../interceptor/BoardTypeInterceptor.java     |  31 +--
+ .../main/resources/mappers/board-mapper.xml   | 153 ++++++++---
+ .../resources/static/js/board/boardList.js    |  29 +-
+ .../resources/templates/board/boardList.html  |  62 ++++-
+ .../pawlife/controller/MainController.java    |   9 +-
+ .../main/resources/static/css/main-style.css  | 102 +++++++
+ .../src/main/resources/static/images/logo.png | Bin 0 -> 12993 bytes
+ .../resources/templates/common/common.html    |  19 ++
+ .../resources/templates/common/footer.html    |  20 ++
+ .../resources/templates/common/header.html    |  25 ++
+ .../main/resources/templates/common/main.html |  23 ++
+ 103 files changed, 1464 insertions(+), 117 deletions(-)
+ rename {ServerTest2_0415 => TestProject1_0409}/.gitignore (100%)
+ rename {TestProject-1 => TestProject1_0409}/build.gradle (100%)
+ rename {ServerTest2_0415 => TestProject1_0409}/gradle/wrapper/gradle-wrapper.jar (100%)
+ rename {ServerTest2_0415 => TestProject1_0409}/gradle/wrapper/gradle-wrapper.properties (100%)
+ rename {ServerTest2_0415 => TestProject1_0409}/gradlew (100%)
+ rename {ServerTest2_0415 => TestProject1_0409}/gradlew.bat (100%)
+ rename {TestProject => TestProject1_0409}/settings.gradle (100%)
+ rename {TestProject => TestProject1_0409}/src/main/java/com/kh/test/TestProjectApplication.java (100%)
+ rename {TestProject-1 => TestProject1_0409}/src/main/java/com/kh/test/common/config/DBConfig.java (100%)
+ rename {TestProject => TestProject1_0409}/src/main/java/com/kh/test/user/controller/UserController.java (100%)
+ rename {TestProject => TestProject1_0409}/src/main/java/com/kh/test/user/model/dto/User.java (100%)
+ rename {TestProject => TestProject1_0409}/src/main/java/com/kh/test/user/model/mapper/UserMapper.java (100%)
+ rename {TestProject => TestProject1_0409}/src/main/java/com/kh/test/user/model/service/UserService.java (100%)
+ rename {TestProject => TestProject1_0409}/src/main/java/com/kh/test/user/model/service/UserServiceImpl.java (100%)
+ rename {TestProject => TestProject1_0409}/src/main/resources/application.properties (100%)
+ rename {TestProject => TestProject1_0409}/src/main/resources/mappers/user-mapper.xml (100%)
+ rename {TestProject-1 => TestProject1_0409}/src/main/resources/mybatis-config.xml (100%)
+ rename {TestProject => TestProject1_0409}/src/main/resources/static/index.html (100%)
+ rename {TestProject => TestProject1_0409}/src/main/resources/templates/searchFail.html (100%)
+ rename {TestProject => TestProject1_0409}/src/main/resources/templates/searchSuccess.html (100%)
+ rename {TestProject => TestProject1_0409}/src/test/java/com/kh/test/TestProjectApplicationTests.java (100%)
+ rename {TestProject => TestProject1_0409}/test sql 모음.sql (100%)
+ rename {TestProject-1 => TestProject2_0409}/.gitignore (100%)
+ rename {TestProject => TestProject2_0409}/build.gradle (100%)
+ rename {TestProject-1 => TestProject2_0409}/gradle/wrapper/gradle-wrapper.jar (100%)
+ rename {TestProject-1 => TestProject2_0409}/gradle/wrapper/gradle-wrapper.properties (100%)
+ rename {TestProject-1 => TestProject2_0409}/gradlew (100%)
+ rename {TestProject-1 => TestProject2_0409}/gradlew.bat (100%)
+ rename {TestProject-1 => TestProject2_0409}/settings.gradle (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/java/com/kh/test/TestProject1Application.java (100%)
+ rename {TestProject => TestProject2_0409}/src/main/java/com/kh/test/common/config/DBConfig.java (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/java/com/kh/test/customer/controller/CustomerController.java (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/java/com/kh/test/customer/model/dto/Customer.java (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/java/com/kh/test/customer/model/mapper/CustomerMapper.java (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/java/com/kh/test/customer/model/service/CustomeServiceImpl.java (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/java/com/kh/test/customer/model/service/CustomerService.java (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/resources/application.properties (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/resources/mappers/customer-mapper.xml (100%)
+ rename {TestProject => TestProject2_0409}/src/main/resources/mybatis-config.xml (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/resources/static/index.html (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/main/resources/templates/result.html (100%)
+ rename {TestProject-1 => TestProject2_0409}/src/test/java/com/kh/test/TestProject1ApplicationTests.java (100%)
+ rename {TestProject => TestProject3_0415}/.gitignore (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/build.gradle (100%)
+ rename {TestProject => TestProject3_0415}/gradle/wrapper/gradle-wrapper.jar (100%)
+ rename {TestProject => TestProject3_0415}/gradle/wrapper/gradle-wrapper.properties (100%)
+ rename {TestProject => TestProject3_0415}/gradlew (100%)
+ rename {TestProject => TestProject3_0415}/gradlew.bat (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/settings.gradle (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/ServerTest20415Application.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/common/config/DBConfig.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/controller/UserController.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/model/dto/User.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/model/mapper/UserMapper.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/model/service/UserService.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/java/com/kh/test/model/service/UserServiceImpl.java (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/resources/application.properties (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/resources/mappers/user-mapper.xml (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/resources/mybatis-config.xml (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/resources/static/index.html (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/resources/templates/searchFail.html (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/main/resources/templates/searchSuccess.html (100%)
+ rename {ServerTest2_0415 => TestProject3_0415}/src/test/java/com/kh/test/ServerTest20415ApplicationTests.java (100%)
+ create mode 100644 TonghabTest1_0419/.gitignore
+ create mode 100644 TonghabTest1_0419/build.gradle
+ create mode 100644 TonghabTest1_0419/gradle/wrapper/gradle-wrapper.jar
+ create mode 100644 TonghabTest1_0419/gradle/wrapper/gradle-wrapper.properties
+ create mode 100644 TonghabTest1_0419/gradlew
+ create mode 100644 TonghabTest1_0419/gradlew.bat
+ create mode 100644 TonghabTest1_0419/settings.gradle
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/TonghabTest1Application.java
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/board/controller/BoardController.java
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/board/model/dto/Board.java
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/board/model/mapper/BoardMapper.java
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardService.java
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardServiceImpl.java
+ create mode 100644 TonghabTest1_0419/src/main/java/com/kh/test/common/config/DBConfig.java
+ create mode 100644 TonghabTest1_0419/src/main/resources/application.properties
+ create mode 100644 TonghabTest1_0419/src/main/resources/mappers/board-mapper.xml
+ create mode 100644 TonghabTest1_0419/src/main/resources/mybatis-config.xml
+ create mode 100644 TonghabTest1_0419/src/main/resources/static/index.html
+ rename pawLife/src/main/resources/templates/index.html => TonghabTest1_0419/src/main/resources/templates/searchFail.html (57%)
+ create mode 100644 TonghabTest1_0419/src/main/resources/templates/searchSuccess.html
+ create mode 100644 TonghabTest1_0419/src/test/java/com/kh/test/TonghabTest1ApplicationTests.java
+ create mode 100644 TonghabTest1_0419/통합테스트 SQL 모음.sql
+ create mode 100644 pawLife/src/main/resources/static/css/main-style.css
+ create mode 100644 pawLife/src/main/resources/static/images/logo.png
+ create mode 100644 pawLife/src/main/resources/templates/common/common.html
+ create mode 100644 pawLife/src/main/resources/templates/common/footer.html
+ create mode 100644 pawLife/src/main/resources/templates/common/header.html
+ create mode 100644 pawLife/src/main/resources/templates/common/main.html
+
+diff --git a/ServerTest2_0415/.gitignore b/TestProject1_0409/.gitignore
+similarity index 100%
+rename from ServerTest2_0415/.gitignore
+rename to TestProject1_0409/.gitignore
+diff --git a/TestProject-1/build.gradle b/TestProject1_0409/build.gradle
+similarity index 100%
+rename from TestProject-1/build.gradle
+rename to TestProject1_0409/build.gradle
+diff --git a/ServerTest2_0415/gradle/wrapper/gradle-wrapper.jar b/TestProject1_0409/gradle/wrapper/gradle-wrapper.jar
+similarity index 100%
+rename from ServerTest2_0415/gradle/wrapper/gradle-wrapper.jar
+rename to TestProject1_0409/gradle/wrapper/gradle-wrapper.jar
+diff --git a/ServerTest2_0415/gradle/wrapper/gradle-wrapper.properties b/TestProject1_0409/gradle/wrapper/gradle-wrapper.properties
+similarity index 100%
+rename from ServerTest2_0415/gradle/wrapper/gradle-wrapper.properties
+rename to TestProject1_0409/gradle/wrapper/gradle-wrapper.properties
+diff --git a/ServerTest2_0415/gradlew b/TestProject1_0409/gradlew
+similarity index 100%
+rename from ServerTest2_0415/gradlew
+rename to TestProject1_0409/gradlew
+diff --git a/ServerTest2_0415/gradlew.bat b/TestProject1_0409/gradlew.bat
+similarity index 100%
+rename from ServerTest2_0415/gradlew.bat
+rename to TestProject1_0409/gradlew.bat
+diff --git a/TestProject/settings.gradle b/TestProject1_0409/settings.gradle
+similarity index 100%
+rename from TestProject/settings.gradle
+rename to TestProject1_0409/settings.gradle
+diff --git a/TestProject/src/main/java/com/kh/test/TestProjectApplication.java b/TestProject1_0409/src/main/java/com/kh/test/TestProjectApplication.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/TestProjectApplication.java
+rename to TestProject1_0409/src/main/java/com/kh/test/TestProjectApplication.java
+diff --git a/TestProject-1/src/main/java/com/kh/test/common/config/DBConfig.java b/TestProject1_0409/src/main/java/com/kh/test/common/config/DBConfig.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/common/config/DBConfig.java
+rename to TestProject1_0409/src/main/java/com/kh/test/common/config/DBConfig.java
+diff --git a/TestProject/src/main/java/com/kh/test/user/controller/UserController.java b/TestProject1_0409/src/main/java/com/kh/test/user/controller/UserController.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/user/controller/UserController.java
+rename to TestProject1_0409/src/main/java/com/kh/test/user/controller/UserController.java
+diff --git a/TestProject/src/main/java/com/kh/test/user/model/dto/User.java b/TestProject1_0409/src/main/java/com/kh/test/user/model/dto/User.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/user/model/dto/User.java
+rename to TestProject1_0409/src/main/java/com/kh/test/user/model/dto/User.java
+diff --git a/TestProject/src/main/java/com/kh/test/user/model/mapper/UserMapper.java b/TestProject1_0409/src/main/java/com/kh/test/user/model/mapper/UserMapper.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/user/model/mapper/UserMapper.java
+rename to TestProject1_0409/src/main/java/com/kh/test/user/model/mapper/UserMapper.java
+diff --git a/TestProject/src/main/java/com/kh/test/user/model/service/UserService.java b/TestProject1_0409/src/main/java/com/kh/test/user/model/service/UserService.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/user/model/service/UserService.java
+rename to TestProject1_0409/src/main/java/com/kh/test/user/model/service/UserService.java
+diff --git a/TestProject/src/main/java/com/kh/test/user/model/service/UserServiceImpl.java b/TestProject1_0409/src/main/java/com/kh/test/user/model/service/UserServiceImpl.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/user/model/service/UserServiceImpl.java
+rename to TestProject1_0409/src/main/java/com/kh/test/user/model/service/UserServiceImpl.java
+diff --git a/TestProject/src/main/resources/application.properties b/TestProject1_0409/src/main/resources/application.properties
+similarity index 100%
+rename from TestProject/src/main/resources/application.properties
+rename to TestProject1_0409/src/main/resources/application.properties
+diff --git a/TestProject/src/main/resources/mappers/user-mapper.xml b/TestProject1_0409/src/main/resources/mappers/user-mapper.xml
+similarity index 100%
+rename from TestProject/src/main/resources/mappers/user-mapper.xml
+rename to TestProject1_0409/src/main/resources/mappers/user-mapper.xml
+diff --git a/TestProject-1/src/main/resources/mybatis-config.xml b/TestProject1_0409/src/main/resources/mybatis-config.xml
+similarity index 100%
+rename from TestProject-1/src/main/resources/mybatis-config.xml
+rename to TestProject1_0409/src/main/resources/mybatis-config.xml
+diff --git a/TestProject/src/main/resources/static/index.html b/TestProject1_0409/src/main/resources/static/index.html
+similarity index 100%
+rename from TestProject/src/main/resources/static/index.html
+rename to TestProject1_0409/src/main/resources/static/index.html
+diff --git a/TestProject/src/main/resources/templates/searchFail.html b/TestProject1_0409/src/main/resources/templates/searchFail.html
+similarity index 100%
+rename from TestProject/src/main/resources/templates/searchFail.html
+rename to TestProject1_0409/src/main/resources/templates/searchFail.html
+diff --git a/TestProject/src/main/resources/templates/searchSuccess.html b/TestProject1_0409/src/main/resources/templates/searchSuccess.html
+similarity index 100%
+rename from TestProject/src/main/resources/templates/searchSuccess.html
+rename to TestProject1_0409/src/main/resources/templates/searchSuccess.html
+diff --git a/TestProject/src/test/java/com/kh/test/TestProjectApplicationTests.java b/TestProject1_0409/src/test/java/com/kh/test/TestProjectApplicationTests.java
+similarity index 100%
+rename from TestProject/src/test/java/com/kh/test/TestProjectApplicationTests.java
+rename to TestProject1_0409/src/test/java/com/kh/test/TestProjectApplicationTests.java
+diff --git a/TestProject/test sql 모음.sql b/TestProject1_0409/test sql 모음.sql
+similarity index 100%
+rename from TestProject/test sql 모음.sql
+rename to TestProject1_0409/test sql 모음.sql
+diff --git a/TestProject-1/.gitignore b/TestProject2_0409/.gitignore
+similarity index 100%
+rename from TestProject-1/.gitignore
+rename to TestProject2_0409/.gitignore
+diff --git a/TestProject/build.gradle b/TestProject2_0409/build.gradle
+similarity index 100%
+rename from TestProject/build.gradle
+rename to TestProject2_0409/build.gradle
+diff --git a/TestProject-1/gradle/wrapper/gradle-wrapper.jar b/TestProject2_0409/gradle/wrapper/gradle-wrapper.jar
+similarity index 100%
+rename from TestProject-1/gradle/wrapper/gradle-wrapper.jar
+rename to TestProject2_0409/gradle/wrapper/gradle-wrapper.jar
+diff --git a/TestProject-1/gradle/wrapper/gradle-wrapper.properties b/TestProject2_0409/gradle/wrapper/gradle-wrapper.properties
+similarity index 100%
+rename from TestProject-1/gradle/wrapper/gradle-wrapper.properties
+rename to TestProject2_0409/gradle/wrapper/gradle-wrapper.properties
+diff --git a/TestProject-1/gradlew b/TestProject2_0409/gradlew
+similarity index 100%
+rename from TestProject-1/gradlew
+rename to TestProject2_0409/gradlew
+diff --git a/TestProject-1/gradlew.bat b/TestProject2_0409/gradlew.bat
+similarity index 100%
+rename from TestProject-1/gradlew.bat
+rename to TestProject2_0409/gradlew.bat
+diff --git a/TestProject-1/settings.gradle b/TestProject2_0409/settings.gradle
+similarity index 100%
+rename from TestProject-1/settings.gradle
+rename to TestProject2_0409/settings.gradle
+diff --git a/TestProject-1/src/main/java/com/kh/test/TestProject1Application.java b/TestProject2_0409/src/main/java/com/kh/test/TestProject1Application.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/TestProject1Application.java
+rename to TestProject2_0409/src/main/java/com/kh/test/TestProject1Application.java
+diff --git a/TestProject/src/main/java/com/kh/test/common/config/DBConfig.java b/TestProject2_0409/src/main/java/com/kh/test/common/config/DBConfig.java
+similarity index 100%
+rename from TestProject/src/main/java/com/kh/test/common/config/DBConfig.java
+rename to TestProject2_0409/src/main/java/com/kh/test/common/config/DBConfig.java
+diff --git a/TestProject-1/src/main/java/com/kh/test/customer/controller/CustomerController.java b/TestProject2_0409/src/main/java/com/kh/test/customer/controller/CustomerController.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/customer/controller/CustomerController.java
+rename to TestProject2_0409/src/main/java/com/kh/test/customer/controller/CustomerController.java
+diff --git a/TestProject-1/src/main/java/com/kh/test/customer/model/dto/Customer.java b/TestProject2_0409/src/main/java/com/kh/test/customer/model/dto/Customer.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/customer/model/dto/Customer.java
+rename to TestProject2_0409/src/main/java/com/kh/test/customer/model/dto/Customer.java
+diff --git a/TestProject-1/src/main/java/com/kh/test/customer/model/mapper/CustomerMapper.java b/TestProject2_0409/src/main/java/com/kh/test/customer/model/mapper/CustomerMapper.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/customer/model/mapper/CustomerMapper.java
+rename to TestProject2_0409/src/main/java/com/kh/test/customer/model/mapper/CustomerMapper.java
+diff --git a/TestProject-1/src/main/java/com/kh/test/customer/model/service/CustomeServiceImpl.java b/TestProject2_0409/src/main/java/com/kh/test/customer/model/service/CustomeServiceImpl.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/customer/model/service/CustomeServiceImpl.java
+rename to TestProject2_0409/src/main/java/com/kh/test/customer/model/service/CustomeServiceImpl.java
+diff --git a/TestProject-1/src/main/java/com/kh/test/customer/model/service/CustomerService.java b/TestProject2_0409/src/main/java/com/kh/test/customer/model/service/CustomerService.java
+similarity index 100%
+rename from TestProject-1/src/main/java/com/kh/test/customer/model/service/CustomerService.java
+rename to TestProject2_0409/src/main/java/com/kh/test/customer/model/service/CustomerService.java
+diff --git a/TestProject-1/src/main/resources/application.properties b/TestProject2_0409/src/main/resources/application.properties
+similarity index 100%
+rename from TestProject-1/src/main/resources/application.properties
+rename to TestProject2_0409/src/main/resources/application.properties
+diff --git a/TestProject-1/src/main/resources/mappers/customer-mapper.xml b/TestProject2_0409/src/main/resources/mappers/customer-mapper.xml
+similarity index 100%
+rename from TestProject-1/src/main/resources/mappers/customer-mapper.xml
+rename to TestProject2_0409/src/main/resources/mappers/customer-mapper.xml
+diff --git a/TestProject/src/main/resources/mybatis-config.xml b/TestProject2_0409/src/main/resources/mybatis-config.xml
+similarity index 100%
+rename from TestProject/src/main/resources/mybatis-config.xml
+rename to TestProject2_0409/src/main/resources/mybatis-config.xml
+diff --git a/TestProject-1/src/main/resources/static/index.html b/TestProject2_0409/src/main/resources/static/index.html
+similarity index 100%
+rename from TestProject-1/src/main/resources/static/index.html
+rename to TestProject2_0409/src/main/resources/static/index.html
+diff --git a/TestProject-1/src/main/resources/templates/result.html b/TestProject2_0409/src/main/resources/templates/result.html
+similarity index 100%
+rename from TestProject-1/src/main/resources/templates/result.html
+rename to TestProject2_0409/src/main/resources/templates/result.html
+diff --git a/TestProject-1/src/test/java/com/kh/test/TestProject1ApplicationTests.java b/TestProject2_0409/src/test/java/com/kh/test/TestProject1ApplicationTests.java
+similarity index 100%
+rename from TestProject-1/src/test/java/com/kh/test/TestProject1ApplicationTests.java
+rename to TestProject2_0409/src/test/java/com/kh/test/TestProject1ApplicationTests.java
+diff --git a/TestProject/.gitignore b/TestProject3_0415/.gitignore
+similarity index 100%
+rename from TestProject/.gitignore
+rename to TestProject3_0415/.gitignore
+diff --git a/ServerTest2_0415/build.gradle b/TestProject3_0415/build.gradle
+similarity index 100%
+rename from ServerTest2_0415/build.gradle
+rename to TestProject3_0415/build.gradle
+diff --git a/TestProject/gradle/wrapper/gradle-wrapper.jar b/TestProject3_0415/gradle/wrapper/gradle-wrapper.jar
+similarity index 100%
+rename from TestProject/gradle/wrapper/gradle-wrapper.jar
+rename to TestProject3_0415/gradle/wrapper/gradle-wrapper.jar
+diff --git a/TestProject/gradle/wrapper/gradle-wrapper.properties b/TestProject3_0415/gradle/wrapper/gradle-wrapper.properties
+similarity index 100%
+rename from TestProject/gradle/wrapper/gradle-wrapper.properties
+rename to TestProject3_0415/gradle/wrapper/gradle-wrapper.properties
+diff --git a/TestProject/gradlew b/TestProject3_0415/gradlew
+similarity index 100%
+rename from TestProject/gradlew
+rename to TestProject3_0415/gradlew
+diff --git a/TestProject/gradlew.bat b/TestProject3_0415/gradlew.bat
+similarity index 100%
+rename from TestProject/gradlew.bat
+rename to TestProject3_0415/gradlew.bat
+diff --git a/ServerTest2_0415/settings.gradle b/TestProject3_0415/settings.gradle
+similarity index 100%
+rename from ServerTest2_0415/settings.gradle
+rename to TestProject3_0415/settings.gradle
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/ServerTest20415Application.java b/TestProject3_0415/src/main/java/com/kh/test/ServerTest20415Application.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/ServerTest20415Application.java
+rename to TestProject3_0415/src/main/java/com/kh/test/ServerTest20415Application.java
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/common/config/DBConfig.java b/TestProject3_0415/src/main/java/com/kh/test/common/config/DBConfig.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/common/config/DBConfig.java
+rename to TestProject3_0415/src/main/java/com/kh/test/common/config/DBConfig.java
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/controller/UserController.java b/TestProject3_0415/src/main/java/com/kh/test/controller/UserController.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/controller/UserController.java
+rename to TestProject3_0415/src/main/java/com/kh/test/controller/UserController.java
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/model/dto/User.java b/TestProject3_0415/src/main/java/com/kh/test/model/dto/User.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/model/dto/User.java
+rename to TestProject3_0415/src/main/java/com/kh/test/model/dto/User.java
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/model/mapper/UserMapper.java b/TestProject3_0415/src/main/java/com/kh/test/model/mapper/UserMapper.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/model/mapper/UserMapper.java
+rename to TestProject3_0415/src/main/java/com/kh/test/model/mapper/UserMapper.java
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/model/service/UserService.java b/TestProject3_0415/src/main/java/com/kh/test/model/service/UserService.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/model/service/UserService.java
+rename to TestProject3_0415/src/main/java/com/kh/test/model/service/UserService.java
+diff --git a/ServerTest2_0415/src/main/java/com/kh/test/model/service/UserServiceImpl.java b/TestProject3_0415/src/main/java/com/kh/test/model/service/UserServiceImpl.java
+similarity index 100%
+rename from ServerTest2_0415/src/main/java/com/kh/test/model/service/UserServiceImpl.java
+rename to TestProject3_0415/src/main/java/com/kh/test/model/service/UserServiceImpl.java
+diff --git a/ServerTest2_0415/src/main/resources/application.properties b/TestProject3_0415/src/main/resources/application.properties
+similarity index 100%
+rename from ServerTest2_0415/src/main/resources/application.properties
+rename to TestProject3_0415/src/main/resources/application.properties
+diff --git a/ServerTest2_0415/src/main/resources/mappers/user-mapper.xml b/TestProject3_0415/src/main/resources/mappers/user-mapper.xml
+similarity index 100%
+rename from ServerTest2_0415/src/main/resources/mappers/user-mapper.xml
+rename to TestProject3_0415/src/main/resources/mappers/user-mapper.xml
+diff --git a/ServerTest2_0415/src/main/resources/mybatis-config.xml b/TestProject3_0415/src/main/resources/mybatis-config.xml
+similarity index 100%
+rename from ServerTest2_0415/src/main/resources/mybatis-config.xml
+rename to TestProject3_0415/src/main/resources/mybatis-config.xml
+diff --git a/ServerTest2_0415/src/main/resources/static/index.html b/TestProject3_0415/src/main/resources/static/index.html
+similarity index 100%
+rename from ServerTest2_0415/src/main/resources/static/index.html
+rename to TestProject3_0415/src/main/resources/static/index.html
+diff --git a/ServerTest2_0415/src/main/resources/templates/searchFail.html b/TestProject3_0415/src/main/resources/templates/searchFail.html
+similarity index 100%
+rename from ServerTest2_0415/src/main/resources/templates/searchFail.html
+rename to TestProject3_0415/src/main/resources/templates/searchFail.html
+diff --git a/ServerTest2_0415/src/main/resources/templates/searchSuccess.html b/TestProject3_0415/src/main/resources/templates/searchSuccess.html
+similarity index 100%
+rename from ServerTest2_0415/src/main/resources/templates/searchSuccess.html
+rename to TestProject3_0415/src/main/resources/templates/searchSuccess.html
+diff --git a/ServerTest2_0415/src/test/java/com/kh/test/ServerTest20415ApplicationTests.java b/TestProject3_0415/src/test/java/com/kh/test/ServerTest20415ApplicationTests.java
+similarity index 100%
+rename from ServerTest2_0415/src/test/java/com/kh/test/ServerTest20415ApplicationTests.java
+rename to TestProject3_0415/src/test/java/com/kh/test/ServerTest20415ApplicationTests.java
+diff --git a/TonghabTest1_0419/.gitignore b/TonghabTest1_0419/.gitignore
+new file mode 100644
+index 0000000..c2065bc
+--- /dev/null
++++ b/TonghabTest1_0419/.gitignore
+@@ -0,0 +1,37 @@
++HELP.md
++.gradle
++build/
++!gradle/wrapper/gradle-wrapper.jar
++!**/src/main/**/build/
++!**/src/test/**/build/
++
++### STS ###
++.apt_generated
++.classpath
++.factorypath
++.project
++.settings
++.springBeans
++.sts4-cache
++bin/
++!**/src/main/**/bin/
++!**/src/test/**/bin/
++
++### IntelliJ IDEA ###
++.idea
++*.iws
++*.iml
++*.ipr
++out/
++!**/src/main/**/out/
++!**/src/test/**/out/
++
++### NetBeans ###
++/nbproject/private/
++/nbbuild/
++/dist/
++/nbdist/
++/.nb-gradle/
++
++### VS Code ###
++.vscode/
+diff --git a/TonghabTest1_0419/build.gradle b/TonghabTest1_0419/build.gradle
+new file mode 100644
+index 0000000..2591c2b
+--- /dev/null
++++ b/TonghabTest1_0419/build.gradle
+@@ -0,0 +1,41 @@
++plugins {
++	id 'java'
++	id 'org.springframework.boot' version '3.2.5'
++	id 'io.spring.dependency-management' version '1.1.4'
++}
++
++group = 'com.kh'
++version = '0.0.1-SNAPSHOT'
++
++java {
++	sourceCompatibility = '17'
++}
++
++configurations {
++	compileOnly {
++		extendsFrom annotationProcessor
++	}
++}
++
++repositories {
++	mavenCentral()
++}
++
++dependencies {
++	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
++	implementation 'org.springframework.boot:spring-boot-starter-mail'
++	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
++	implementation 'org.springframework.boot:spring-boot-starter-web'
++	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
++	compileOnly 'org.projectlombok:lombok'
++	developmentOnly 'org.springframework.boot:spring-boot-devtools'
++	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
++	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
++	annotationProcessor 'org.projectlombok:lombok'
++	testImplementation 'org.springframework.boot:spring-boot-starter-test'
++	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
++}
++
++tasks.named('test') {
++	useJUnitPlatform()
++}
+diff --git a/TonghabTest1_0419/gradle/wrapper/gradle-wrapper.jar b/TonghabTest1_0419/gradle/wrapper/gradle-wrapper.jar
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6441136f3d4ba8a0da8d277868979cfbc8ad796
+GIT binary patch
+literal 43453
+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
+UfUyy3EX0IC28@JalTrWuAK7&_a{vGU
+
+literal 0
+HcmV?d00001
+
+diff --git a/TonghabTest1_0419/gradle/wrapper/gradle-wrapper.properties b/TonghabTest1_0419/gradle/wrapper/gradle-wrapper.properties
+new file mode 100644
+index 0000000..b82aa23
+--- /dev/null
++++ b/TonghabTest1_0419/gradle/wrapper/gradle-wrapper.properties
+@@ -0,0 +1,7 @@
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
++networkTimeout=10000
++validateDistributionUrl=true
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
+diff --git a/TonghabTest1_0419/gradlew b/TonghabTest1_0419/gradlew
+new file mode 100644
+index 0000000..1aa94a4
+--- /dev/null
++++ b/TonghabTest1_0419/gradlew
+@@ -0,0 +1,249 @@
++#!/bin/sh
++
++#
++# Copyright © 2015-2021 the original authors.
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      https://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++##############################################################################
++#
++#   Gradle start up script for POSIX generated by Gradle.
++#
++#   Important for running:
++#
++#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
++#       noncompliant, but you have some other compliant shell such as ksh or
++#       bash, then to run this script, type that shell name before the whole
++#       command line, like:
++#
++#           ksh Gradle
++#
++#       Busybox and similar reduced shells will NOT work, because this script
++#       requires all of these POSIX shell features:
++#         * functions;
++#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
++#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
++#         * compound commands having a testable exit status, especially «case»;
++#         * various built-in commands including «command», «set», and «ulimit».
++#
++#   Important for patching:
++#
++#   (2) This script targets any POSIX shell, so it avoids extensions provided
++#       by Bash, Ksh, etc; in particular arrays are avoided.
++#
++#       The "traditional" practice of packing multiple parameters into a
++#       space-separated string is a well documented source of bugs and security
++#       problems, so this is (mostly) avoided, by progressively accumulating
++#       options in "$@", and eventually passing that to Java.
++#
++#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
++#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
++#       see the in-line comments for details.
++#
++#       There are tweaks for specific operating systems such as AIX, CygWin,
++#       Darwin, MinGW, and NonStop.
++#
++#   (3) This script is generated from the Groovy template
++#       https://github.com/gradle/gradle/blob/HEAD/subprojects/plugins/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
++#       within the Gradle project.
++#
++#       You can find Gradle at https://github.com/gradle/gradle/.
++#
++##############################################################################
++
++# Attempt to set APP_HOME
++
++# Resolve links: $0 may be a link
++app_path=$0
++
++# Need this for daisy-chained symlinks.
++while
++    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
++    [ -h "$app_path" ]
++do
++    ls=$( ls -ld "$app_path" )
++    link=${ls#*' -> '}
++    case $link in             #(
++      /*)   app_path=$link ;; #(
++      *)    app_path=$APP_HOME$link ;;
++    esac
++done
++
++# This is normally unused
++# shellcheck disable=SC2034
++APP_BASE_NAME=${0##*/}
++# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
++APP_HOME=$( cd "${APP_HOME:-./}" > /dev/null && pwd -P ) || exit
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD=maximum
++
++warn () {
++    echo "$*"
++} >&2
++
++die () {
++    echo
++    echo "$*"
++    echo
++    exit 1
++} >&2
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++nonstop=false
++case "$( uname )" in                #(
++  CYGWIN* )         cygwin=true  ;; #(
++  Darwin* )         darwin=true  ;; #(
++  MSYS* | MINGW* )  msys=true    ;; #(
++  NONSTOP* )        nonstop=true ;;
++esac
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD=$JAVA_HOME/jre/sh/java
++    else
++        JAVACMD=$JAVA_HOME/bin/java
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD=java
++    if ! command -v java >/dev/null 2>&1
++    then
++        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++fi
++
++# Increase the maximum file descriptors if we can.
++if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
++    case $MAX_FD in #(
++      max*)
++        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
++        # shellcheck disable=SC2039,SC3045
++        MAX_FD=$( ulimit -H -n ) ||
++            warn "Could not query maximum file descriptor limit"
++    esac
++    case $MAX_FD in  #(
++      '' | soft) :;; #(
++      *)
++        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
++        # shellcheck disable=SC2039,SC3045
++        ulimit -n "$MAX_FD" ||
++            warn "Could not set maximum file descriptor limit to $MAX_FD"
++    esac
++fi
++
++# Collect all arguments for the java command, stacking in reverse order:
++#   * args from the command line
++#   * the main class name
++#   * -classpath
++#   * -D...appname settings
++#   * --module-path (only if needed)
++#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
++
++# For Cygwin or MSYS, switch paths to Windows format before running java
++if "$cygwin" || "$msys" ; then
++    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
++    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
++
++    JAVACMD=$( cygpath --unix "$JAVACMD" )
++
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    for arg do
++        if
++            case $arg in                                #(
++              -*)   false ;;                            # don't mess with options #(
++              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
++                    [ -e "$t" ] ;;                      #(
++              *)    false ;;
++            esac
++        then
++            arg=$( cygpath --path --ignore --mixed "$arg" )
++        fi
++        # Roll the args list around exactly as many times as the number of
++        # args, so each arg winds up back in the position where it started, but
++        # possibly modified.
++        #
++        # NB: a `for` loop captures its iteration list before it begins, so
++        # changing the positional parameters here affects neither the number of
++        # iterations, nor the values presented in `arg`.
++        shift                   # remove old arg
++        set -- "$@" "$arg"      # push replacement arg
++    done
++fi
++
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
++
++# Collect all arguments for the java command:
++#   * DEFAULT_JVM_OPTS, JAVA_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
++#     and any embedded shellness will be escaped.
++#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
++#     treated as '${Hostname}' itself on the command line.
++
++set -- \
++        "-Dorg.gradle.appname=$APP_BASE_NAME" \
++        -classpath "$CLASSPATH" \
++        org.gradle.wrapper.GradleWrapperMain \
++        "$@"
++
++# Stop when "xargs" is not available.
++if ! command -v xargs >/dev/null 2>&1
++then
++    die "xargs is not available"
++fi
++
++# Use "xargs" to parse quoted args.
++#
++# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
++#
++# In Bash we could simply go:
++#
++#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
++#   set -- "${ARGS[@]}" "$@"
++#
++# but POSIX shell has neither arrays nor command substitution, so instead we
++# post-process each arg (as a line of input to sed) to backslash-escape any
++# character that might be a shell metacharacter, then use eval to reverse
++# that process (while maintaining the separation between arguments), and wrap
++# the whole thing up as a single "set" statement.
++#
++# This will of course break if any of these variables contains a newline or
++# an unmatched quote.
++#
++
++eval "set -- $(
++        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
++        xargs -n1 |
++        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
++        tr '\n' ' '
++    )" '"$@"'
++
++exec "$JAVACMD" "$@"
+diff --git a/TonghabTest1_0419/gradlew.bat b/TonghabTest1_0419/gradlew.bat
+new file mode 100644
+index 0000000..25da30d
+--- /dev/null
++++ b/TonghabTest1_0419/gradlew.bat
+@@ -0,0 +1,92 @@
++@rem
++@rem Copyright 2015 the original author or authors.
++@rem
++@rem Licensed under the Apache License, Version 2.0 (the "License");
++@rem you may not use this file except in compliance with the License.
++@rem You may obtain a copy of the License at
++@rem
++@rem      https://www.apache.org/licenses/LICENSE-2.0
++@rem
++@rem Unless required by applicable law or agreed to in writing, software
++@rem distributed under the License is distributed on an "AS IS" BASIS,
++@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++@rem See the License for the specific language governing permissions and
++@rem limitations under the License.
++@rem
++
++@if "%DEBUG%"=="" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++set DIRNAME=%~dp0
++if "%DIRNAME%"=="" set DIRNAME=.
++@rem This is normally unused
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Resolve any "." and ".." in APP_HOME to make it shorter.
++for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if %ERRORLEVEL% equ 0 goto execute
++
++echo. 1>&2
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
++echo. 1>&2
++echo Please set the JAVA_HOME variable in your environment to match the 1>&2
++echo location of your Java installation. 1>&2
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto execute
++
++echo. 1>&2
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
++echo. 1>&2
++echo Please set the JAVA_HOME variable in your environment to match the 1>&2
++echo location of your Java installation. 1>&2
++
++goto fail
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
++
++:end
++@rem End local scope for the variables with windows NT shell
++if %ERRORLEVEL% equ 0 goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++set EXIT_CODE=%ERRORLEVEL%
++if %EXIT_CODE% equ 0 set EXIT_CODE=1
++if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
++exit /b %EXIT_CODE%
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+diff --git a/TonghabTest1_0419/settings.gradle b/TonghabTest1_0419/settings.gradle
+new file mode 100644
+index 0000000..3f457cd
+--- /dev/null
++++ b/TonghabTest1_0419/settings.gradle
+@@ -0,0 +1 @@
++rootProject.name = 'TonghabTest1'
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/TonghabTest1Application.java b/TonghabTest1_0419/src/main/java/com/kh/test/TonghabTest1Application.java
+new file mode 100644
+index 0000000..577e326
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/TonghabTest1Application.java
+@@ -0,0 +1,13 @@
++package com.kh.test;
++
++import org.springframework.boot.SpringApplication;
++import org.springframework.boot.autoconfigure.SpringBootApplication;
++
++@SpringBootApplication
++public class TonghabTest1Application {
++
++	public static void main(String[] args) {
++		SpringApplication.run(TonghabTest1Application.class, args);
++	}
++
++}
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/board/controller/BoardController.java b/TonghabTest1_0419/src/main/java/com/kh/test/board/controller/BoardController.java
+new file mode 100644
+index 0000000..98b3148
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/board/controller/BoardController.java
+@@ -0,0 +1,42 @@
++package com.kh.test.board.controller;
++
++import java.util.List;
++
++import org.springframework.stereotype.Controller;
++import org.springframework.ui.Model;
++import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.RequestParam;
++
++import com.kh.test.board.model.dto.Board;
++import com.kh.test.board.model.service.BoardService;
++
++import lombok.RequiredArgsConstructor;
++
++@Controller
++@RequiredArgsConstructor
++public class BoardController {
++
++	private final BoardService service;
++	
++	/** 제목 검색
++	 * @param boardTitle
++	 * @param model
++	 * @return
++	 */
++	@GetMapping("search")
++	public String searchTitle(@RequestParam("boardTitle") String boardTitle, Model model) {
++		
++		List<Board> boardList = service.searchTitle(boardTitle);
++
++		String path = "";
++		
++		if( !boardList.isEmpty()) {
++			path = "searchSuccess";
++			model.addAttribute("boardList", boardList);
++		}
++		else path = "searchFail";
++
++		return path;
++	}
++	
++}
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/board/model/dto/Board.java b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/dto/Board.java
+new file mode 100644
+index 0000000..0ce937d
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/dto/Board.java
+@@ -0,0 +1,20 @@
++package com.kh.test.board.model.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++public class Board {
++	
++	private int boardNo;
++	private String boardTitle;
++	private String userId;
++	private String boardContent;
++	private int boardReadcount;
++	private String boardDate;
++}
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/board/model/mapper/BoardMapper.java b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/mapper/BoardMapper.java
+new file mode 100644
+index 0000000..0c25961
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/mapper/BoardMapper.java
+@@ -0,0 +1,19 @@
++package com.kh.test.board.model.mapper;
++
++import java.util.List;
++
++import org.apache.ibatis.annotations.Mapper;
++
++import com.kh.test.board.model.dto.Board;
++
++@Mapper
++public interface BoardMapper {
++
++	
++	/** 제목 검색
++	 * @param boardTitle
++	 * @return result
++	 */
++	List<Board> searchTitle(String boardTitle);
++
++}
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardService.java b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardService.java
+new file mode 100644
+index 0000000..015ffee
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardService.java
+@@ -0,0 +1,15 @@
++package com.kh.test.board.model.service;
++
++import java.util.List;
++
++import com.kh.test.board.model.dto.Board;
++
++public interface BoardService {
++
++	/** 제목 검색
++	 * @param boardTitle
++	 * @return list
++	 */
++	List<Board> searchTitle(String boardTitle);
++
++}
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardServiceImpl.java b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardServiceImpl.java
+new file mode 100644
+index 0000000..9b4e180
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/board/model/service/BoardServiceImpl.java
+@@ -0,0 +1,21 @@
++package com.kh.test.board.model.service;
++
++import java.util.List;
++
++import org.springframework.stereotype.Service;
++
++import com.kh.test.board.model.dto.Board;
++import com.kh.test.board.model.mapper.BoardMapper;
++
++import lombok.RequiredArgsConstructor;
++
++@Service
++@RequiredArgsConstructor
++public class BoardServiceImpl implements BoardService{
++
++	private final BoardMapper mapper;
++
++	// 제목 검색
++	@Override
++	public List<Board> searchTitle(String boardTitle) { return mapper.searchTitle(boardTitle); }
++}
+diff --git a/TonghabTest1_0419/src/main/java/com/kh/test/common/config/DBConfig.java b/TonghabTest1_0419/src/main/java/com/kh/test/common/config/DBConfig.java
+new file mode 100644
+index 0000000..9f489b6
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/java/com/kh/test/common/config/DBConfig.java
+@@ -0,0 +1,146 @@
++package com.kh.test.common.config;
++
++import javax.sql.DataSource;
++
++import org.apache.ibatis.session.SqlSessionFactory;
++import org.mybatis.spring.SqlSessionFactoryBean;
++import org.mybatis.spring.SqlSessionTemplate;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.context.properties.ConfigurationProperties;
++import org.springframework.context.ApplicationContext;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.context.annotation.PropertySource;
++import org.springframework.jdbc.datasource.DataSourceTransactionManager;
++
++import com.zaxxer.hikari.HikariConfig;
++import com.zaxxer.hikari.HikariDataSource;
++
++/* @Configuration 
++ * - 설정용 클래스임 명시 
++ *   + 객체로 생성해서 내부 코드를 서버 실행시 모두 수행
++ * 
++ * 
++ * @PropertySource("경로")
++ * - 지정된 경로의 properties 파일 내용을 읽어와 사용
++ * - 사용할 properties 파일이 다수일 경우
++ *   해당 어노테이션을 연속해서 작성하면됨
++ *   
++ * @Bean
++ * - 개발자가 수동으로 생성한 객체의 관리를
++ *   스프링에게 넘기는 어노테이션 
++ *   (Bean 등록)
++ *   
++ * @ConfigurationProperties(prefix = "spring.datasource.hikari")
++ * - @PropertySource 로 읽어온 properties 파일의 내용 중
++ *   접두사(앞부분, prefix)이 일치하는 값만 읽어옴
++ *   
++ * - 읽어온 내용을 생성하려는 Bean에 자동으로 세팅
++ * 
++ * 
++ * DataSource : Connection 생성 + Connection Pool 지원 하는 객체를
++ * 				참조하기 위한 Java 인터페이스
++ * 				(DriverManager 대안, Java JNDI 기술 이용)
++ * 
++ * 
++ * @Autowired 
++ * - 등록된 Bean 중에서 
++ *   타입이 일치하거나, 상속 관계에 있는 Bean을
++ *   지정된 필드에 주입
++ *    == 의존성 주입(DI, Dependency Injection, IOC 관련 기술)
++ */
++
++
++@Configuration
++@PropertySource("classpath:/config.properties")
++public class DBConfig {
++	
++	// 필드
++	
++	// import org.springframework.context.ApplicationContext;
++	
++	@Autowired // (DI, 의존성 주입)
++	private ApplicationContext applicationContext; // 현재 프로젝트
++	
++
++	
++	/////////// HikariCP 설정 /////////////
++	
++	@Bean
++	@ConfigurationProperties(prefix = "spring.datasource.hikari")
++	public HikariConfig hikariConfig() {
++		
++		// HikariConfig 설정 객체 생성
++		// -> config.properties 파일에서 읽어온
++		//    spring.datasource.hikari로 시작하는 모든 값이
++		//    알맞은 필드에 세팅된 상태
++		return new HikariConfig(); 
++	}
++	
++	
++	@Bean
++	public DataSource dataSource(HikariConfig config) {
++		// 매개 변수 HikariConfig config
++		// -> 등록된 Bean 중 HikariConfig 타입의 Bean이 자동으로 주입
++		
++		DataSource dataSource = new HikariDataSource(config);
++		return dataSource;
++	}
++	
++	
++	///////////  Mybatis 설정 /////////////
++	
++	@Bean
++	public SqlSessionFactory sessionFactory(DataSource dataSource) throws Exception{
++		
++		SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
++		
++		
++		sessionFactoryBean.setDataSource(dataSource);
++		
++		
++		// mapper.xml(SQL) 파일이 모이는 경로 지정
++		// -> Mybatis 코드 수행 시 mapper.xml을 읽을 수 있음
++		// sessionFactoryBean.setMapperLocations("현재프로젝트.자원.어떤파일");
++		
++		sessionFactoryBean.setMapperLocations( 
++				applicationContext.getResources("classpath:/mappers/**.xml")  );
++		
++		
++		// 해당 패키지 내 모든 클래스의 별칭을 등록
++		// - Mybatis는 특정 클래스 지정 시 패키지명.클래스명을 모두 작성해야함
++		//  -> 긴 이름을 짧게 부를 별칭 설정할 수 있음
++		
++		// - setTypeAliasesPackage("패키지") 이용 시
++		//   클래스 파일명이 별칭으로 등록
++		
++		// ex) (원본) edu.kh.todo.model.dto.Todo   -->  Todo (별칭 등록)
++		sessionFactoryBean.setTypeAliasesPackage("com.kh.test");
++		
++		
++		// 마이바티스 설정 파일 경로 지정
++		sessionFactoryBean.setConfigLocation(
++			applicationContext.getResource("classpath:mybatis-config.xml"));
++		
++		// 설정 내용이 모두 적용된 객체 반환
++		return sessionFactoryBean.getObject();
++	}
++	
++	
++	// DBCP(DataBase Connection Pool)
++	// SqlSessionTemplate : Connection + DBCP + Mybatis + 트랜잭션 제어 처리
++	@Bean
++	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory factory) {
++		return new SqlSessionTemplate(factory);
++	}
++	
++	
++	// DataSourceTransactionManager : 트랜잭션 매니저(제어 처리)
++	@Bean
++	public DataSourceTransactionManager 
++		dataSourceTransactionManager(DataSource dataSource) {
++		return new DataSourceTransactionManager(dataSource);
++	}
++	
++	
++}
+diff --git a/TonghabTest1_0419/src/main/resources/application.properties b/TonghabTest1_0419/src/main/resources/application.properties
+new file mode 100644
+index 0000000..2e48e39
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/resources/application.properties
+@@ -0,0 +1,10 @@
++spring.application.name=TonghabTest1
++server.port=80
++
++spring.devtools.livereload.enabled=true
++spring.devtools.restart.enabled=true
++spring.thymeleaf.cache=false
++
++logging.level.com.kh.test=debug
++
++server.servlet.session.tracking-modes=cookie
+\ No newline at end of file
+diff --git a/TonghabTest1_0419/src/main/resources/mappers/board-mapper.xml b/TonghabTest1_0419/src/main/resources/mappers/board-mapper.xml
+new file mode 100644
+index 0000000..782d2ed
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/resources/mappers/board-mapper.xml
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
++<mapper namespace="com.kh.test.board.model.mapper.BoardMapper">
++
++	<!-- 제목 검색 -->
++	<select id="searchTitle">
++		SELECT BOARD_NO, BOARD_TITLE, USER_ID, BOARD_CONTENT, BOARD_READCOUNT, TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') BOARD_DATE
++		FROM TB_BOARD
++		JOIN TB_USER USING (USER_NO)
++		WHERE BOARD_TITLE LIKE '%${boardTitle}%'
++		ORDER BY BOARD_NO
++	</select>
++</mapper>
+diff --git a/TonghabTest1_0419/src/main/resources/mybatis-config.xml b/TonghabTest1_0419/src/main/resources/mybatis-config.xml
+new file mode 100644
+index 0000000..e818a6f
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/resources/mybatis-config.xml
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
++<configuration>
++	
++	<settings>
++		<!-- Java -> DB로 INSERT,UPDATE 시 Java의 null 값을 DB의 NULL로 인식하도록 설정 -->
++		<setting name="jdbcTypeForNull" value="NULL" />
++		
++		<!-- DB의 UnderScore (_) 표기법 <-> Java의 Camel 표기법 두 표기법이 서로 변환 될 수 있도록 매핑하여 
++			Java 필드명(memberId)과 DB 컬럼명(MEMBER_ID)가 서로 연결되게 함 -->
++		<setting name="mapUnderscoreToCamelCase" value="true" />
++	</settings>
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++</configuration>
+diff --git a/TonghabTest1_0419/src/main/resources/static/index.html b/TonghabTest1_0419/src/main/resources/static/index.html
+new file mode 100644
+index 0000000..549b032
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/resources/static/index.html
+@@ -0,0 +1,20 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:th="http://www.thymeleaf.org">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <title>Document</title>
++</head>
++<body>
++  <div>
++    <h3>게시글 조회 (제목으로 검색)</h3>
++
++    <div>
++      <form action="search" method="GET">
++        <input type="text" name="boardTitle" placeholder="게시글 제목 입력">
++        <button>조회</button>        
++      </form>
++    </div>
++  </div>
++</body>
++</html>
+\ No newline at end of file
+diff --git a/pawLife/src/main/resources/templates/index.html b/TonghabTest1_0419/src/main/resources/templates/searchFail.html
+similarity index 57%
+rename from pawLife/src/main/resources/templates/index.html
+rename to TonghabTest1_0419/src/main/resources/templates/searchFail.html
+index 9b66073..5e85030 100644
+--- a/pawLife/src/main/resources/templates/index.html
++++ b/TonghabTest1_0419/src/main/resources/templates/searchFail.html
+@@ -1,11 +1,13 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+-    메인화면
++    <div>
++        <h3>조회 결과가 없습니다.</h3>
++    </div>
+ </body>
+ </html>
+\ No newline at end of file
+diff --git a/TonghabTest1_0419/src/main/resources/templates/searchSuccess.html b/TonghabTest1_0419/src/main/resources/templates/searchSuccess.html
+new file mode 100644
+index 0000000..c35799b
+--- /dev/null
++++ b/TonghabTest1_0419/src/main/resources/templates/searchSuccess.html
+@@ -0,0 +1,34 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:th="http://www.thymeleaf.org">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Document</title>
++</head>
++<body>
++    <div>
++        <h3>게시글 검색 결과</h3>
++
++        <table border="1">
++            <thead>
++                <th>번호</th>
++                <th>제목</th>
++                <th>작성자</th>
++                <th>내용</th>
++                <th>조회수</th>
++                <th>작성날짜</th>
++            </thead>
++            <tbody>
++                <tr th:each="board : ${boardList}" th:object="${board}">
++                    <td th:text="*{boardNo}">번호</td>
++                    <td th:text="*{boardTitle}">제목</td>
++                    <td th:text="*{userId}">작성자</td>
++                    <td th:text="*{boardContent}">내용</td>
++                    <td th:text="*{boardReadcount}">조회수</td>
++                    <td th:text="*{boardDate}">작성날짜</td>
++                </tr>
++            </tbody>
++        </table>
++    </div>
++</body>
++</html>
+\ No newline at end of file
+diff --git a/TonghabTest1_0419/src/test/java/com/kh/test/TonghabTest1ApplicationTests.java b/TonghabTest1_0419/src/test/java/com/kh/test/TonghabTest1ApplicationTests.java
+new file mode 100644
+index 0000000..bf9aa1c
+--- /dev/null
++++ b/TonghabTest1_0419/src/test/java/com/kh/test/TonghabTest1ApplicationTests.java
+@@ -0,0 +1,13 @@
++package com.kh.test;
++
++import org.junit.jupiter.api.Test;
++import org.springframework.boot.test.context.SpringBootTest;
++
++@SpringBootTest
++class TonghabTest1ApplicationTests {
++
++	@Test
++	void contextLoads() {
++	}
++
++}
+diff --git a/TonghabTest1_0419/통합테스트 SQL 모음.sql b/TonghabTest1_0419/통합테스트 SQL 모음.sql
+new file mode 100644
+index 0000000..27fb3ef
+--- /dev/null
++++ b/TonghabTest1_0419/통합테스트 SQL 모음.sql	
+@@ -0,0 +1,80 @@
++DROP TABLE TB_USER;
++DROP SEQUENCE SEQ_UNO;
++
++
++
++-- 사용자 테이블
++
++CREATE TABLE TB_USER(
++
++USER_NO NUMBER PRIMARY KEY,
++
++USER_ID VARCHAR2(50) UNIQUE NOT NULL,
++
++USER_NAME VARCHAR2(50) NOT NULL,
++
++USER_AGE NUMBER NOT NULL
++
++);
++
++-- 사용자 시퀀스
++
++CREATE SEQUENCE SEQ_UNO;
++
++
++-- 샘플 데이터
++
++INSERT INTO TB_USER VALUES(SEQ_UNO.NEXTVAL, 'gd_hong', '홍길동', 20);
++
++INSERT INTO TB_USER VALUES(SEQ_UNO.NEXTVAL, 'sh_han', '한소희', 28);
++
++INSERT INTO TB_USER VALUES(SEQ_UNO.NEXTVAL, 'jm_park', '지민', 27);
++
++INSERT INTO TB_USER VALUES(SEQ_UNO.NEXTVAL, 'jm123', '지민', 25);
++
++-- 게시판 테이블
++
++CREATE TABLE TB_BOARD(
++
++BOARD_NO NUMBER PRIMARY KEY,
++
++BOARD_TITLE VARCHAR2(50) NOT NULL,
++
++BOARD_CONTENT VARCHAR2(2000) NOT NULL,
++
++BOARD_DATE DATE DEFAULT SYSDATE,
++
++BOARD_READCOUNT NUMBER DEFAULT 0,
++
++USER_NO NUMBER REFERENCES TB_USER
++
++);
++
++-- 게시판 시퀀스
++
++CREATE SEQUENCE SEQ_BNO;
++
++-- 샘플 데이터
++
++INSERT INTO TB_BOARD VALUES(SEQ_BNO.NEXTVAL, '처음입니다', '만나서 반가워요', SYSDATE, DEFAULT, 1);
++
++INSERT INTO TB_BOARD VALUES(SEQ_BNO.NEXTVAL, '신입입니다', '잘 부탁드립니다!', SYSDATE, DEFAULT, 2);
++
++INSERT INTO TB_BOARD VALUES(SEQ_BNO.NEXTVAL, '날씨가 좋네요', '즐거운 한 주 보내세요', SYSDATE, DEFAULT, 3);
++
++INSERT INTO TB_BOARD VALUES(SEQ_BNO.NEXTVAL, '저도 처음이에요', '좋은 추억 쌓아요', SYSDATE, DEFAULT, 4);
++
++INSERT INTO TB_BOARD VALUES(SEQ_BNO.NEXTVAL, '오늘 처음인 분이 많네요', '다들 환영합니다', SYSDATE, DEFAULT, 3);
++
++COMMIT;
++
++-- 테이블 확인
++SELECT * FROM "TB_USER";
++SELECT * FROM "TB_BOARD";
++
++
++SELECT BOARD_NO, BOARD_TITLE, USER_NAME, BOARD_CONTENT, BOARD_READCOUNT, TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') BOARD_DATE
++FROM "TB_BOARD"
++JOIN "TB_USER" USING (USER_NO)
++WHERE BOARD_TITLE LIKE '%처음%'
++ORDER BY BOARD_NO ;
+diff --git a/boardProject/sql모음.sql b/boardProject/sql모음.sql
+index 4ef80ae..a247629 100644
+--- a/boardProject/sql모음.sql
++++ b/boardProject/sql모음.sql
+@@ -753,11 +753,46 @@ ORDER SIBLINGS BY COMMENT_NO;
+ UPDATE "COMMENT" SET COMMENT_DEL_FL = 'Y'
+ WHERER COMMENT_NO = 6003;
+ 
+-	
+-	
+-	
+-	
+-	
+-	
++
+ END
+ 
++
++
++-- 게시글 검색
++SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
++	(SELECT
++	COUNT(*)
++	FROM "COMMENT" C
++	WHERE C.BOARD_NO = B.BOARD_NO  
++	AND COMMENT_DEL_FL = 'N') COMMENT_COUNT,
++
++	(SELECT COUNT(*)
++	FROM "BOARD_LIKE" L
++	WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT,
++	 
++	 CASE
++		 WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60 
++		 THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60 * 60)  || '초 전'
++		 
++		 WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 
++		 THEN FLOOR((SYSDATE - BOARD_WRITE_DATE)* 24 * 60) || '분 전'
++		 
++		 WHEN SYSDATE - BOARD_WRITE_DATE < 1
++		 THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
++		 
++		 ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
++	 	
++	 END BOARD_WRITE_DATE
++
++FROM "BOARD" B
++JOIN "MEMBER" USING(MEMBER_NO)
++WHERE BOARD_DEL_FL = 'N'
++AND BOARD_CODE = 1
++AND ( BOARD_TITLE LIKE '%10%' OR BOARD_CONTENT LIKE '%10%')
++AND MEMBER_NICKNAME LIKE '%샘플%'
++ORDER BY BOARD_NO DESC;
++
++-- 제목에 '10'이 포함된 게시글 조회
++
++
++
+diff --git a/boardProject/src/main/java/edu/kh/project/board/controller/BoardController.java b/boardProject/src/main/java/edu/kh/project/board/controller/BoardController.java
+index b8a3abd..e8de089 100644
+--- a/boardProject/src/main/java/edu/kh/project/board/controller/BoardController.java
++++ b/boardProject/src/main/java/edu/kh/project/board/controller/BoardController.java
+@@ -27,9 +27,7 @@ import jakarta.servlet.http.Cookie;
+ import jakarta.servlet.http.HttpServletRequest;
+ import jakarta.servlet.http.HttpServletResponse;
+ import lombok.RequiredArgsConstructor;
+-import lombok.extern.slf4j.Slf4j;
+ 
+-@Slf4j
+ @Controller
+ @RequiredArgsConstructor
+ @RequestMapping("board")
+@@ -37,9 +35,10 @@ public class BoardController {
+ 
+ 	private final BoardService service;
+ 	
+-	/** 게시글 목록 조회
++	/** 게시글 목록 조회 + 검색
+ 	 * @param boardCode : 게시판 종류
+ 	 * @param cp : 현재 조회 요청한 페이지 (없으면 1, 있으면 cp=2 cp=3...)
++	 * @param map : 제출된 파라미터가 모두 저장된 Map (검색시 key, query 담겨 있음)
+ 	 * @return
+ 	 * 
+ 	 * - /board/000, /board 이하 1레벨 자리에 숫자로된 요청 주소가 작성되어있을떄만 동작 -> 정규표현식 이용
+@@ -48,10 +47,25 @@ public class BoardController {
+ 	@GetMapping("{boardCode:[0-9]+}") 
+ 	public String selectBoardList(@PathVariable("boardCode") int boardCode,
+ //									ㄴ>경로에 있는 주소를 얻어와서 변수에 저장
+-			@RequestParam(value="cp", required = false, defaultValue = "1") int cp, Model model) {
+-	
++			@RequestParam(value="cp", required = false, defaultValue = "1") int cp, Model model,
++//											ㄴ> cp값은 필수X, 값이 없을시 기본값은 1
++			@RequestParam Map<String, Object> paramMap
++			) {
++		
+ 		// 조회 서비스 호출후 결과 반환
+-		Map<String, Object> map = service.selectBoardList(boardCode, cp);
++		Map<String, Object> map = null;
++		
++		// 검색이 아닌 경우 (게시글 목록 조회)
++		if(paramMap.get("key") == null) map = service.selectBoardList(boardCode, cp);
++		
++		else { // 검색인 경우
++			// 검색어가 담긴 map에 추가로 boardCode 담기
++			paramMap.put("boardCode", boardCode);
++			
++			// 검색 서비스 호출
++			map = service.searchList(paramMap, cp);
++		}
++		
+ 		
+ 		model.addAttribute("pagination", map.get("pagination"));
+ 		model.addAttribute("boardList" , map.get("boardList"));
+diff --git a/boardProject/src/main/java/edu/kh/project/board/model/dto/Pagination.java b/boardProject/src/main/java/edu/kh/project/board/model/dto/Pagination.java
+index 1ba16e6..cdd758b 100644
+--- a/boardProject/src/main/java/edu/kh/project/board/model/dto/Pagination.java
++++ b/boardProject/src/main/java/edu/kh/project/board/model/dto/Pagination.java
+@@ -90,26 +90,27 @@ public class Pagination {
+ 		return nextPage;
+ 	}
+ 
+-
+-	public void setCurrentPage(int currentPage) {
++    // 계산후 세팅에 필요한 값
++	
++	public void setCurrentPage(int currentPage) {// 현재 페이지 번호
+ 		this.currentPage = currentPage;
+ 		calculate(); // 필드 계산 메서드 호출
+ 	}
+ 
+-
+-	public void setListCount(int listCount) {
++	
++	public void setListCount(int listCount) {// 전체 게시글 수
+ 		this.listCount = listCount;
+ 		calculate(); // 필드 계산 메서드 호출
+ 	}
+ 
+-
+-	public void setLimit(int limit) {
++	
++	public void setLimit(int limit) {// 한 페이지 목록에 보여지는 게시글 수
+ 		this.limit = limit;
+ 		calculate(); // 필드 계산 메서드 호출
+ 	}
+ 
+-
+-	public void setPageSize(int pageSize) {
++	
++	public void setPageSize(int pageSize) {// 보여질 페이지 번호 개수
+ 		this.pageSize = pageSize;
+ 		calculate(); // 필드 계산 메서드 호출
+ 	}
+@@ -133,22 +134,17 @@ public class Pagination {
+ 	private void calculate() {
+ 		
+ 		
+-		// maxPage : 최대 페이지 == 마지막 페이지 == 총 페이지 수
+-		
+-		// 한 페이지에 게시글이 10개씩 보여질 경우
+-		//  게시글 수 :  95개 -> 10 page 
+-		//  게시글 수 : 100개 -> 10 page
+-		//  게시글 수 : 101개 -> 11 page
+-		
+-		maxPage = (int)Math.ceil( (double)listCount / limit );
++		// > maxPage : 최대 페이지 == 마지막 페이지 == 총 페이지 수
++//		 한 페이지에 게시글이 10개씩 보여질 경우
++//		 게시글 수 :  95개 -> 10 page / 100개 -> 10 page / 101개 -> 11 page
+ 		
++		maxPage = (int)Math.ceil( (double)listCount / limit ); // Math.ceil : 올림
+ 		
+-		// startPage : 페이지 번호 목록의 시작 번호
+ 		
+-		// 페이지 번호 목록이 10개(pageSize) 씩 보여질 경우
++		// > startPage : 페이지 번호 목록의 시작 번호
++//		 페이지 번호 목록이 10개(pageSize) 씩 보여질 경우
++//		 현재 페이지가  1 ~ 10 :   1 page / 11 ~ 20 :  11 page
+ 		
+-		// 현재 페이지가  1 ~ 10 :   1 page
+-		// 현재 페이지가 11 ~ 20 :  11 page
+ 		startPage = (currentPage - 1) / pageSize * pageSize + 1;
+ 		
+ 		
+diff --git a/boardProject/src/main/java/edu/kh/project/board/model/mapper/BoardMapper.java b/boardProject/src/main/java/edu/kh/project/board/model/mapper/BoardMapper.java
+index cca96fb..0a2a5f2 100644
+--- a/boardProject/src/main/java/edu/kh/project/board/model/mapper/BoardMapper.java
++++ b/boardProject/src/main/java/edu/kh/project/board/model/mapper/BoardMapper.java
+@@ -65,4 +65,17 @@ public interface BoardMapper {
+ 	 */
+ 	int selectReadCount(int boardNo);
+ 
++	/** 검색 조건이 맞는 게시글 수 조회
++	 * @param paramMap
++	 * @return
++	 */
++	int getSearchCount(Map<String, Object> paramMap);
++
++	/** 검색 결과 목록 조회
++	 * @param paramMap
++	 * @param rowBounds
++	 * @return
++	 */
++	List<Board> selectSearchList(Map<String, Object> paramMap, RowBounds rowBounds);
++
+ }
+diff --git a/boardProject/src/main/java/edu/kh/project/board/model/service/BoardService.java b/boardProject/src/main/java/edu/kh/project/board/model/service/BoardService.java
+index b537040..7fddbb9 100644
+--- a/boardProject/src/main/java/edu/kh/project/board/model/service/BoardService.java
++++ b/boardProject/src/main/java/edu/kh/project/board/model/service/BoardService.java
+@@ -10,10 +10,10 @@ public interface BoardService {
+ 	// 게시글 타입 테이블은 컬럼이 2개, int나 String 으로 읽어오기가 불가능+DTO도 미존재 => 맵으로 묶어서 읽어옴
+ 	
+ //		ㄴ {"boardCode" :1,					{"boardCode" :2,						<- 하나하나가 Map 이고 그 Map을 묶어서 List로 읽어옴
+-//			"boardName" : "공지 게시판},  	 "boardName" : "정보 게시판}, ... 
++//			"boardName" : "공지 게시판},  	 "boardName" : "정보 게시판}, ... 				(K:V, K:V) <- 게시판 한컬럼
+ 	
+-	/** 게시판 종류 조회
+-	 * @return
++	/** 게시판 종류 조회, 
++	 * @return boardTypeList <~ 호출한 BoardTypeInterceptor로 값 전달
+ 	 */
+ 	List<Map<String, Object>> selectBoardTypeList();
+ 
+@@ -24,6 +24,8 @@ public interface BoardService {
+ 	 */
+ 	Map<String, Object> selectBoardList(int boardCode, int cp);
+ 
++	
++	
+ 	/** 게시글 상세 조회
+ 	 * @param map
+ 	 * @return board
+@@ -41,5 +43,12 @@ public interface BoardService {
+ 	 * @return
+ 	 */
+ 	int updateReadCount(int boardNo);
++
++	/** 게시글 검색
++	 * @param paramMap
++	 * @param cp
++	 * @return map
++	 */
++	Map<String, Object> searchList(Map<String, Object> paramMap, int cp);
+ }
+ 
+diff --git a/boardProject/src/main/java/edu/kh/project/board/model/service/BoardServiceImpl.java b/boardProject/src/main/java/edu/kh/project/board/model/service/BoardServiceImpl.java
+index 9af08e2..72d541e 100644
+--- a/boardProject/src/main/java/edu/kh/project/board/model/service/BoardServiceImpl.java
++++ b/boardProject/src/main/java/edu/kh/project/board/model/service/BoardServiceImpl.java
+@@ -29,14 +29,14 @@ public class BoardServiceImpl implements BoardService{
+ 	@Override
+ 	public Map<String, Object> selectBoardList(int boardCode, int cp) {
+ 
+-		// 1) 지정된 게시판(boardCode)에서 삭제되지 않은 게시글 수를 조회
++		// [1] 지정된 게시판(boardCode)에서  게시글 수를 조회 (미삭제 게시글)
+ 		int listCount = mapper.getListCount(boardCode);
+ 		
+-		// 2) 1번의 결과 + cp를 이용해서 Pagenation 객체를 생성
++		// [2] 1번의 결과 + cp를 이용해서 Pagenation 객체를 생성
+ //										  ㄴ> 게시글 목록 구성에 필요한 값을 저장한 객체
+ 		Pagination pagination = new Pagination(cp, listCount);
+ 		
+-		// 3) 특정 게시판의 지정된 페이지 목록 조회
++		// [3] 특정 게시판의 지정된 페이지 목록 조회
+ 		/* ROWBOUND 객체 (Mybatis 제공 객체)
+ 		 * - 지정된 크기(offset) 만큼 건너 뛰고 제한된 크기(limit) 만큼의 행을 조회하는 객체 -- > 페이징 처리가 간단해짐!
+ 		 * */
+@@ -52,14 +52,13 @@ public class BoardServiceImpl implements BoardService{
+ 		 * */
+ 		List<Board> boardList = mapper.selectBoardList(boardCode, rowBounds);
+ 		
+-		// 4) 목록 조회 결과 + Pagination 객체를 Map으로 묶음 
++		// [4] 목록 조회 결과 + Pagination 객체를 Map으로 묶음 
+ 		Map<String, Object > map = new HashMap<>();
+ 		
+ 		map.put("pagination", pagination);
+ 		map.put("boardList", boardList);
+ 		
+-		// 5) 결과 반환
+-		
++		// [5] 결과 반환
+ 		return map;
+ 	}
+ 
+@@ -114,4 +113,42 @@ public class BoardServiceImpl implements BoardService{
+ 		
+ 		return -1; // 실패한 경우 -1 반환
+ 	}
++
++
++	// 게시글 검색 (게시글 목록 조회 참고), ParamMap (key, query, boardCode)
++	@Override
++	public Map<String, Object> searchList(Map<String, Object> paramMap, int cp) {
++		
++		// [1] 지정된 게시판(boardCode)에서 게시글 수를 조회 (검색 조건 + 미삭제 게시글)
++		int listCount = mapper.getSearchCount(paramMap);
++		
++		// [2] 1번의 결과 + cp를 이용해서 Pagenation 객체를 생성
++		//		  ㄴ> 게시글 목록 구성에 필요한 값을 저장한 객체
++		Pagination pagination = new Pagination(cp, listCount);
++		
++		// [3] 지정된 페이지의 검색 결과 목록 조회
++		/* ROWBOUND 객체 (Mybatis 제공 객체)
++		* - 지정된 크기(offset) 만큼 건너 뛰고 제한된 크기(limit) 만큼의 행을 조회하는 객체 -- > 페이징 처리가 간단해짐!
++		* */
++		
++		int limit = pagination.getLimit();
++		int offset = (cp - 1) * limit;
++		
++		RowBounds rowBounds = new RowBounds(offset, limit);
++		
++		/* Mapper 메서드 호출시
++		* - 첫번째 매개변수 -> SQL에 전달할 파라미터
++		* - 두번쨰 매개변수 -> RowBounds 객체 전달
++		* */
++		List<Board> boardList = mapper.selectSearchList(paramMap, rowBounds);
++
++		// [4] 목록 조회 결과 + Pagination 객체를 Map으로 묶음 
++		Map<String, Object > map = new HashMap<>();
++		
++		map.put("pagination", pagination);
++		map.put("boardList", boardList);
++		
++		// [5] 결과 반환
++		return map;
++	}
+ }
+diff --git a/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardNameInterceptor.java b/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardNameInterceptor.java
+index a8581a0..676829c 100644
+--- a/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardNameInterceptor.java
++++ b/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardNameInterceptor.java
+@@ -19,19 +19,17 @@ public class BoardNameInterceptor implements HandlerInterceptor{ // <- HandlerIn
+ 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+ 			ModelAndView modelAndView) throws Exception {
+ 		
+-		// application scope 에서 boardTypeList 얻어오기
++		// application scope 에서 boardTypeList 얻어오기 
+ 		ServletContext application = request.getServletContext();
+ 		
+-		List<Map<String, Object>> boardTypeList = (List<Map<String, Object>>)application.getAttribute("boardTypeList");
++		// BoardTypeInterceptor클래스에서 application scope에 추가한 boardTypeList 속성값 얻어오기
++		List<Map<String, Object>> boardTypeList = (List<Map<String, Object>>) application.getAttribute("boardTypeList");
+ 		
+-		
+-		log.debug(boardTypeList.toString());
++//		log.debug(boardTypeList.toString());
+ 		
+ 		String uri = request.getRequestURI(); // Uniform Resource Identifier : 통합 자원 식별자 (자원 이름,주소만 봐도 무엇인지 구별할수 있는 문자열)
+ //												 		ㄴ uri : /board/1    /      url : localhost/board/1
+-		
+-		log.debug("uri : " + uri);
+-		
++//		log.debug("uri : " + uri);
+ 		
+ 		try { // /board 로 시작되는 요청 주소시 오류가 나면 ...
+ 			int boardCode = Integer.parseInt( uri.split("/")[2] );
+@@ -49,7 +47,6 @@ public class BoardNameInterceptor implements HandlerInterceptor{ // <- HandlerIn
+ 					request.setAttribute("boardName", boardType.get("boardName"));
+ 					break;
+ 				}
+-				
+ 			}
+ 		} catch (Exception e) {
+ 					// 오류시 무시하고 그냥 실행
+diff --git a/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardTypeInterceptor.java b/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardTypeInterceptor.java
+index a4ced9d..de5dea3 100644
+--- a/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardTypeInterceptor.java
++++ b/boardProject/src/main/java/edu/kh/project/common/interceptor/BoardTypeInterceptor.java
+@@ -35,25 +35,22 @@ public class BoardTypeInterceptor implements HandlerInterceptor{ // defult는 
+ 	@Autowired
+ 	private /*final*/ BoardService service;
+ 	
+-	
+-	//
+-	// 전처리: 서블릿 -> 컨트롤러로 가는 요청을 가로채서 서비스 - 매퍼로 전달 (가로채서 원래의 서비스로 가지않음)
++	/* header.html 에서 게시판 메뉴를 클릭했을때 요청 주소가 "/board/~"면 모두 컨트롤러로 가기 전에 가로챔*/
++	// 전처리: 서블릿 -> 컨트롤러로 가는 요청을 가로채서 서비스 - 매퍼로 전달 (컨트롤러 생략)
+ 	@Override
+-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) // <- 요청
++	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+ 			throws Exception {
+ 		
+ 		// application scope 객체 얻어오기
+ //			ㄴ> 서버 종료시까지 유지되는 Servlet 내장 객체, 서버 내 딱 한개 존재 - 모든 클라이언트가 공용으로 사용
+-		
+ 		 ServletContext application = request.getServletContext();
+ 		 
+-		 
+-		 // application scope 범위에 "boardTypeList"가 없을 경우, 최초 접속시
++		 // application scope 범위에 "boardTypeList"가 없을 경우 (== 최초 접속시)
+ 		 if(application.getAttribute("boardTypeList") == null) {
+ 			 
+-			 log.info("BoardTypeInterceptor - postHandle(전처리) 동작 실행");
++//			 log.info("BoardTypeInterceptor - postHandle(전처리) 동작 실행");
+ 			 
+-			 // boardTypeList 조회 서비스 호출
++			 // boardTypeList 조회 서비스 호출 <- [K:V, K:V], [K:V, K:V], ..형태로 맵으로 한컬럼 저장후 List로 묶어옴
+ 			 List<Map<String, Object>> boardTypeLit = service.selectBoardTypeList();
+ 			 
+ 			 // 조회 결과를 application scope에 추가
+@@ -62,20 +59,4 @@ public class BoardTypeInterceptor implements HandlerInterceptor{ // defult는 
+ 		
+ 		return HandlerInterceptor.super.preHandle(request, response, handler);
+ 	}
+-
+-	// 후처리
+-	@Override
+-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+-			ModelAndView modelAndView) throws Exception { // 요청에 사용하는것  + Model (modelview는 응답할때만 사용)
+-		// TODO Auto-generated method stub
+-		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+-	}
+-
+-	@Override
+-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+-			throws Exception {
+-		// TODO Auto-generated method stub
+-		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+-	} 
+-
+ }
+diff --git a/boardProject/src/main/resources/mappers/board-mapper.xml b/boardProject/src/main/resources/mappers/board-mapper.xml
+index 4061329..11df063 100644
+--- a/boardProject/src/main/resources/mappers/board-mapper.xml
++++ b/boardProject/src/main/resources/mappers/board-mapper.xml
+@@ -1,32 +1,13 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ <mapper namespace="edu.kh.project.board.model.mapper.BoardMapper">
+-  
+-  <!-- [resultType 미작성 가능한 조건]
+-  		ㄴ mapper 메서드의 반환형이 별칭으로 등록되어있을때 ~> DTO(dbconfig에서 별칭 등록), 기본 자료형등...  -->
+-  
+-  <!-- [resultMap 태그]
+-  		ㄴ1) 조회된 컬럼명과 DTO 필드명이 불일치시 결과를 매핑(연결) 시켜주는 역할
+-  		ㄴ2) <collection> 태그를 추가 작성, 여러행 결과가 조회되는 다른 select를 수행 ~> 그 결과를 지정된 DTO에 대입 
+-  		 
+-  		ㄴ type 속성 : 연결할 DTO 경로/별칭
+-  		ㄴ id 속성 : 해당 태그를 식별할 값(이름 지정) 
+-  		 -->
++	
++	<!-- resuptMaps -->
+ 	<resultMap type="Board" id="board_rm">
+ 		
+ 		<!-- id 태그 : PK 역할을 하는 컬럼, 필드를 작성하는 태그 -->
+ 		<id property="boardNo"  column="BOARD_NO"/>
+-		
+-		<!-- collection 태그
+-			select로 조회된 결과를 컬렉션(List)에 담아
+-			지정된 필드에 세팅
+-			
+-			property : List를 담을 DTO의 필드명
+-			select : 실행할 select의 id
+-			column : 조회 결과 중 지정된 컬럼의 값을 파라미터로 전달
+-			javaType : List(컬렉션)의 타입을 지정
+-			ofType : List(컬렉션)의 제네릭(타입 제한) 지정
+-		-->
++
+ 		<!-- 해당 게시글 이미지 목록 조회후 필드에 저장 -->
+ 		<collection 
+ 			property="imageList"
+@@ -44,9 +25,7 @@
+ 			ofType="Comment"/>
+ 	</resultMap>
+   
+-  <!-- 게시판 종류 조회 -->
+-  <!-- map으로 불러왔기때문에 key : 컬럼명 -> java에서 _표기법 미적절 => 별칭 이용해서 표기법 변경 -->
+-  
++  <!-- 게시판 종류 조회, map으로 불러왔기때문에 key : 컬럼명 -> java에서 _표기법 미적절 => 별칭 이용해서 표기법 변경 -->
+   <select id="selectBoardTypeList">
+ 	SELECT BOARD_CODE "boardCode", BOARD_NAME "boardName"
+ 	FROM BOARD_TYPE
+@@ -61,12 +40,6 @@
+ 	AND BOARD_CODE = #{boardCode}  
+   </select>
+   
+-  <!-- 
+-  	<![CDATA[ "문자열" ]]>
+-  		ㄴ> 해당 태그 내부에 작성된 문자열은 특수 기호로 해석하지 말고 문자(Character) 그대로 인식하라는 태그
+-  					(순수 문자 데이터임을 지정)
+-   -->
+-  
+   <!-- 특정 게시판의 지정된 페이지 목록 조회 -->
+   <select id="selectBoardList">
+ 	SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
+@@ -194,6 +167,124 @@
+ 		FROM "BOARD"
+ 		WHERE BOARD_NO = #{boardNo}
+ 	</select>
++	
++	<!-- 검색 조건이 맞는 게시글 수 조회 -->
++	<select id="getSearchCount">
++		SELECT COUNT(*)
++		FROM "BOARD"
++		
++		<!-- 작성자 검색인 경우 -->
++		<if test='key == "w"'>
++			JOIN "MEMBER" USING(MEMBER_NO)
++		</if>
++		
++		WHERE BOARD_DEL_FL = 'N'
++		AND BOARD_CODE = #{boardCode}
++		
++		<choose>
++			<!-- 제목 검색 (key 값이 "t"인 경우) -->
++			<when test='key == "t"' >
++				AND BOARD_TITLE LIKE '%'||#{query}||'%'
++			</when>
++			
++			<!-- 내용 검색 (key 값이 "c"인 경우) -->
++			<when test='key == "c"' >
++				AND BOARD_CONTENT LIKE '%'||#{query}||'%'
++			</when>	
++			
++			<!-- 내용+내용 검색 (key 값이 "tc"인 경우) -->
++			<when test='key == "tc"' >
++				AND ( BOARD_TITLE LIKE '%'||#{query}||'%' OR BOARD_CONTENT LIKE '%'||#{query}||'%' )
++			</when>
++			
++			<!-- 내용 검색 (key 값이 "w"인 경우) -->
++			<otherwise>
++				AND MEMBER_NICKNAME LIKE '%'||#{query}||'%'
++			</otherwise>				
++		</choose>
++	</select>
++	
++	
++	<!-- 
++	동적 SQL : <choose> , <when>, <otherwise>
++	
++	- <choose> : 조건문을 작성할 영역 지정, 내부에 <when>, <otherwise> 태그 작성 가능
++	
++	- <when> : if, else, if 역할의 태그, test 속성 : 조건식을 작성하는 속성
++	
++	- <otherwise> : else 역할의 태그
++	
++	
++	 -->
++	<!-- 검색 결과 목록 조회 -->
++	<select id="selectSearchList">
++		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
++		
++		(SELECT
++		COUNT(*)
++		FROM "COMMENT" C
++		WHERE C.BOARD_NO = B.BOARD_NO  
++		AND COMMENT_DEL_FL = 'N') COMMENT_COUNT,
++
++		(SELECT COUNT(*)
++		FROM "BOARD_LIKE" L
++		WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT,
++		 
++		 <![CDATA[  
++		 CASE
++			 WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60 
++			 THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60 * 60)  || '초 전'
++			 
++			 WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 
++			 THEN FLOOR((SYSDATE - BOARD_WRITE_DATE)* 24 * 60) || '분 전'
++			 
++			 WHEN SYSDATE - BOARD_WRITE_DATE < 1
++			 THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
++			 
++			 ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
++		 	
++		 END BOARD_WRITE_DATE
++		 ]]>
++
++		FROM "BOARD" B
++		JOIN "MEMBER" USING(MEMBER_NO)
++		WHERE BOARD_DEL_FL = 'N'
++		AND BOARD_CODE = #{boardCode}
++		
++		<choose>
++			<!-- 제목 검색 (key 값이 "t" 인 경우) -->
++			<when test='key == "t"'>
++				AND BOARD_TITLE LIKE '%' || #{query} || '%'
++			</when>
++			
++			<!-- 내용 검색 (key 값이 "c" 인 경우) -->
++			<when test='key == "c"'>
++				AND BOARD_CONTENT LIKE '%' || #{query} || '%'
++			</when>
++			
++			<!-- 제목 + 내용 검색 (key 값이 "tc" 인 경우) -->
++			<when test='key == "tc"'>
++				AND ( 
++					BOARD_TITLE   LIKE '%' || #{query} || '%'
++					OR  
++					BOARD_CONTENT LIKE '%' || #{query} || '%'
++				)
++			</when>
++			
++			<!-- 작성자 검색 (key 값이 "w" 인 경우) -->
++			<otherwise>
++				AND MEMBER_NICKNAME LIKE '%' || #{query} || '%'
++			</otherwise>
++			
++		</choose>
++		
++		ORDER BY BOARD_NO DESC
++	
++	
++	</select>
++	
++	
++	
+ </mapper>
+ 
+ 
+diff --git a/boardProject/src/main/resources/static/js/board/boardList.js b/boardProject/src/main/resources/static/js/board/boardList.js
+index fbe4d82..227f667 100644
+--- a/boardProject/src/main/resources/static/js/board/boardList.js
++++ b/boardProject/src/main/resources/static/js/board/boardList.js
+@@ -15,4 +15,31 @@ if(insertBtn != null){
+ 
+         location.href = `/editBoard/${boardCode}/insert`; // ${}는 el이 아닌 `` 안에서 변수명으로 사용
+     });
+-}
+\ No newline at end of file
++}
++
++
++/* 검색 관련된 요소 */
++const searchKey = document.querySelector("#searchKey");
++const searchQuery = document.querySelector("#searchQuery");
++
++const options = document.querySelectorAll("#searchKey > option");
++
++// 검색창에 이전 검색 기록을 남겨놓기, ( () => {}) (); :  즉시 실행 함수 (함수가 되자마자 바로 실행)
++(()=>{
++    // 쿼리스트링값을 k, v 구분해서 저장하는 객체 반환
++    const params = new URL(location.href).searchParams;
++  
++    const key = params.get("key"); // t, c, tc, w 중 하나
++    const query = params.get("query"); // 검색어
++  
++    if(key != null){ // 검색을 했을 때
++        searchQuery.value = query; // 검색어를 화면에 출력
++  
++        // option태그를 하나씩 순차 접근해서 value가 key랑 같으면
++        // selected 속성 추가
++        for(let op of options){
++            if(op.value == key){
++                op.selected = true;
++            }
++        }
++    }
+diff --git a/boardProject/src/main/resources/templates/board/boardList.html b/boardProject/src/main/resources/templates/board/boardList.html
+index 12190b6..c8a9f35 100644
+--- a/boardProject/src/main/resources/templates/board/boardList.html
++++ b/boardProject/src/main/resources/templates/board/boardList.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>게시판 이름</title>
++    <title th:text="${boardName}">게시판 이름</title>
+ 
+     <th:block th:replace="~{common/common}"></th:block>
+ 
+@@ -70,9 +70,14 @@
+                                 <td> 
+                                    <!-- 썸네일 추가 예정 -->
+                                    <!--          /board/    1   /   1999    --> <!-- cp=${pagination.currentPage}는 상세에서 목록으로 다신 돌아올때 사용 -->
+-                                   <a th:href="@{ /board/{boardCode}/{boardNo} ( boardCode=${boardCode}, 
+-                                        boardNo=*{boardNo}, cp=${pagination.currentPage} ) }" th:text="*{boardTitle}">게시글 제목</a>
+-                                   <!-- 댓글 수 -->
++                                <!-- 일반 조회 -->
++                                   <a th:unless="${param.key}" th:href="@{ /board/{boardCode}/{boardNo} ( boardCode=${boardCode}, boardNo=*{boardNo}, 
++                                        cp=${pagination.currentPage} ) }" th:text="*{boardTitle}">게시글 제목</a>
++                                    <!-- 검색 조회 -->
++                                    <a th:if="${param.key}" th:href="@{ /board/{boardCode}/{boardNo} ( boardCode=${boardCode}, boardNo=*{boardNo}, 
++                                        cp=${pagination.currentPage}, key=${param.key}, query=${param.query} ) }" th:text="*{boardTitle}">게시글 제목</a>
++                               
++                                    <!-- 댓글 수 -->
+                                    <th:block th:text="|[*{commentCount}]|">댓글수</th:block> 
+                                 </td>
+     
+@@ -107,10 +112,50 @@
+             <!-- 게시글이 있을 때만 페이지네이션이 보이게 할 예정 -->
+             <div class="pagination-area">
+ 
+-                <ul class="pagination" th:object="${pagination}">
++                <!-- 일반 목록 조회 (검색한 키값이 없을떄) -->
++                <ul th:unless="${param.key}" class="pagination" th:object="${pagination}">
+                 
+                     <!-- 첫 페이지로 이동 --> <!-- 아래 작성시 쿼리스트링으로 자동 변환 -->
+-                    <li><a th:href="@{ /board/{boardCode} ( boardCode = ${boardCode}, cp=1 ) }">&lt;&lt;</a></li>
++                    <li><a th:href="@{ /board/{boardCode} ( boardCode = ${boardCode}, cp=1, key=${param.key}, query=${param.query} ) }">&lt;&lt;</a></li>
++
++                    <!-- 이전 목록 마지막 번호로 이동 -->
++                    <li><a th:href="@{/board/{boardCode} ( boardCode = ${boardCode}, cp= *{prevPage} ) }">&lt;</a></li>
++
++					<!-- 특정 페이지로 이동 -->
++					
++					<th:block th:if="${startPage lt endPage}" th:each="i : *{#numbers.sequence(startPage, endPage)}">
++						
++						<!-- 현재 보고있는 페이지 --><!-- if문 조건내기때문에 여러개의 중괄호도 사용 가능 -->
++						<li th:if="${i} == *{currentPage}">
++							<a class="current" th:text="${i}">현재 페이지</a>
++						</li>
++	
++						<!-- 보고있지 않은 페이지 -->
++						<!-- <li th:unless="${i == pagination.currentPage}">  -->
++						<li th:unless="${i} == *{currentPage}">
++							<a th:href="@{/board/{boardCode} (boardCode=${boardCode}, cp=${i})}" 
++								 th:text="${i}">이동할 페이지</a> 
++						</li>
++					</th:block>
++                    
++                    <!-- 일치하는 게시글이 없을 경우 -->
++					<th:block th:unless="*{startPage lt endPage}">
++						<li>
++							<a class="current">1</a>
++						</li>
++					</th:block>
++
++                    <!-- 다음 목록 시작 번호로 이동 -->
++                    <li><a th:href="@{/board/{boardCode} ( boardCode = ${boardCode}, cp= *{nextPage} ) }">&gt;</a></li>
++
++                    <!-- 끝 페이지로 이동 -->
++                    <li><a th:href="@{/board/{boardCode} ( boardCode = ${boardCode}, cp= *{maxPage} ) }">&gt;&gt;</a></li>
++                </ul>
++
++                <ul th:if="${param.key}" class="pagination" th:object="${pagination}">
++                
++                    <!-- 첫 페이지로 이동 --> <!-- 아래 작성시 쿼리스트링으로 자동 변환 -->
++                    <li><a th:href="@{ /board/{boardCode} ( boardCode = ${boardCode}, cp=1, key=${param.key}, query=${param.query} ) }">&lt;&lt;</a></li>
+ 
+                     <!-- 이전 목록 마지막 번호로 이동 -->
+                     <li><a th:href="@{/board/{boardCode} ( boardCode = ${boardCode}, cp= *{prevPage} ) }">&lt;</a></li>
+@@ -139,13 +184,14 @@
+                     <!-- 끝 페이지로 이동 -->
+                     <li><a th:href="@{/board/{boardCode} ( boardCode = ${boardCode}, cp= *{maxPage} ) }">&gt;&gt;</a></li>
+                 </ul>
++
+             </div>
+ 
+ 
+ 
+ 
+-			<!-- 검색창 -->
+-            <form action="#" method="get" id="boardSearch">
++			<!-- 검색창, 요청주소 :  -->
++            <form th:action="@{{boardCode}(boardCode=${boardCode})}" method="get" id="boardSearch">
+ 
+                 <select name="key" id="searchKey">
+                     <option value="t">제목</option>
+diff --git a/pawLife/src/main/java/com/project/pawlife/controller/MainController.java b/pawLife/src/main/java/com/project/pawlife/controller/MainController.java
+index 6ed110d..6094447 100644
+--- a/pawLife/src/main/java/com/project/pawlife/controller/MainController.java
++++ b/pawLife/src/main/java/com/project/pawlife/controller/MainController.java
+@@ -1,11 +1,18 @@
+ package com.project.pawlife.controller;
+ 
+ import org.springframework.stereotype.Controller;
++import org.springframework.web.bind.annotation.RequestMapping;
+ 
+ import lombok.RequiredArgsConstructor;
+ 
+ @Controller
+ @RequiredArgsConstructor
+ public class MainController {
+-
++	
++	@RequestMapping("/") 
++	public String mainPage() {
++		
++		return "common/main";
++	}
++	
+ }
+diff --git a/pawLife/src/main/resources/static/css/main-style.css b/pawLife/src/main/resources/static/css/main-style.css
+new file mode 100644
+index 0000000..e19d929
+--- /dev/null
++++ b/pawLife/src/main/resources/static/css/main-style.css
+@@ -0,0 +1,102 @@
++:root{
++   --main-color : rgb(204, 204, 204);
++   /* --hover-color : #e9ae2f; */
++}
++
++*{
++   /* border: 1px solid grey; */
++   box-sizing: border-box;
++   padding: 0;
++   margin: 0;
++}
++
++body{
++   display: flex;
++   flex-direction: column; 
++   align-items: center;  
++   min-height: 100vh;     
++}
++
++main{
++   width: 1140px;
++   flex-grow: 1;         
++   min-height: 500px;
++}
++
++/* 화면 너비가 1140px이 되기 전에 적용할 css == 1140이하일때 적용 */
++@media (max-width: 1140px){
++   main{width: 100vw;}
++
++}
++
++/* a태그 스타일 지정 */
++a{
++   text-decoration: none;
++   color : black;
++ }
++/* ***** header ***** */
++
++/* 로그인, 회원가입 */
++header{
++   margin: 10px;
++   height: 160px;
++   display: flex;
++   flex-direction: column;  
++}
++.header-top-menu{
++   display: flex;
++   align-items: flex-end;
++   flex-direction: column;
++}
++
++/* 로고(사진, 글) */
++.home-logo-area{
++   display: flex;
++   align-items: center;
++   justify-content: center;
++}
++.home-logo-area > a{
++   margin: 10px;
++}
++#homeLogoImage{
++   width: 60px;
++}
++#homeLogoTitle{
++   font-size: 46px;
++   font-weight: bold;
++}
++/* 네비게이션 바 */
++nav{
++   border-top: 1px solid var(--main-color);
++   height: 50px;
++   position: sticky;   /* 화면 밖으로 벗어났을때 지정된 위치에 부착 */
++   z-index: 1000;
++}
++
++nav > ul{
++   display: flex;
++   list-style: none;
++   height: 100%;
++   align-items: center;
++   justify-content: center;
++
++}
++
++nav li{
++   flex: 0 1 280px;    /* 각 순서대로 grow shrink basis */
++   text-align: center;
++   font-weight: bold;
++}
++nav a{
++   font-weight: bold;
++   padding: 11px 0;  
++   display: block;
++   text-align: center;
++   height: 100%;
++}
++
++/*  */
++.cc{
++   height: 300px;
++   background-color: var(--main-color);
++}
+\ No newline at end of file
+diff --git a/pawLife/src/main/resources/static/images/logo.png b/pawLife/src/main/resources/static/images/logo.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..521dce8839a0f5c2782fe0825e5f78af9d9c5eae
+GIT binary patch
+literal 12993
+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
+E1FBE(*#H0l
+
+literal 0
+HcmV?d00001
+
+diff --git a/pawLife/src/main/resources/templates/common/common.html b/pawLife/src/main/resources/templates/common/common.html
+new file mode 100644
+index 0000000..a218df7
+--- /dev/null
++++ b/pawLife/src/main/resources/templates/common/common.html
+@@ -0,0 +1,19 @@
++<!-- 공통으로 사용될 css, js 추가 코드 작성 -->
++<link rel="stylesheet" href="/css/main-style.css">
++
++<!-- font awesome 라이브라리 추가 + key 등록 -->
++<script src="https://kit.fontawesome.com/8affe1c744.js" crossorigin="anonymous"></script>
++
++<!-- <script src="/js/header.js"></script> -->
++
++
++
++
++
++
++
++
++
++
++
++
+diff --git a/pawLife/src/main/resources/templates/common/footer.html b/pawLife/src/main/resources/templates/common/footer.html
+new file mode 100644
+index 0000000..cfbe9a7
+--- /dev/null
++++ b/pawLife/src/main/resources/templates/common/footer.html
+@@ -0,0 +1,20 @@
++<footer>
++    <p>Copyright &copy; KH Information Educational Institute A-Class</p>
++  
++    <article>
++        <a href="#">프로젝트 소개</a>    
++        <span>|</span>
++        <a href="#">이용약관</a>    
++        <span>|</span>
++        <a href="#">개인정보처리방침</a>    
++        <span>|</span>
++        <a href="#">고객센터</a>    
++    </article>
++  </footer>
++  
++  
++  <!-- <script th:inline="javascript">
++    const message =  /*[[${message}]]*/ "전달 받은 message";
++  
++    if(message != null) alert(message);
++  </script> -->
+\ No newline at end of file
+diff --git a/pawLife/src/main/resources/templates/common/header.html b/pawLife/src/main/resources/templates/common/header.html
+new file mode 100644
+index 0000000..88a5107
+--- /dev/null
++++ b/pawLife/src/main/resources/templates/common/header.html
+@@ -0,0 +1,25 @@
++<header>
++
++    <!-- 로그인, 회원가입 -->
++    <section class="header-top-menu">
++        <div><a href="#">로그인</a>|<a href="#">회원가입</a></div>
++    </section>
++
++    <!-- 로고(사진, 글) -->
++    <section class="home-logo-area">
++        <a href="/"><img src="/images/logo.png" alt="메인 로고" id="homeLogoImage"></a>
++        <a href="/" id="homeLogoTitle">PAWLIFE</a>  
++    </section>
++
++    <!-- 네비게이션 바 -->
++    <section>
++        <nav>
++            <ul>
++                <li><a href="#">홈</a></li>
++                <li><a href="#">입양</a></li>
++                <li><a href="#">후기</a></li>
++                <li><a href="#">마이페이지</a></li>
++            </ul>
++        </nav>
++    </section>
++</header>
+\ No newline at end of file
+diff --git a/pawLife/src/main/resources/templates/common/main.html b/pawLife/src/main/resources/templates/common/main.html
+new file mode 100644
+index 0000000..5e5dc4a
+--- /dev/null
++++ b/pawLife/src/main/resources/templates/common/main.html
+@@ -0,0 +1,23 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:th="http://www.thymeleaf.org">
++<head>
++   <meta charset="UTF-8">
++   <meta name="viewport" content="width=device-width, initial-scale=1.0">
++   <title>메인</title>
++
++   <!-- templetes/common/common.html  조각 추가 -->
++   <th:block th:replace="~{common/common}"></th:block>
++</head>
++<body>
++   <main>
++      <!-- templetes/common/header.html  조각 추가 -->
++      <th:block th:replace="~{common/header}"></th:block>
++      
++      <div class="cc">
++
++      </div>
++   </main>
++   <!-- templetes/common/footer.html  조각 추가 -->
++   <th:block th:replace="~{common/footer}"></th:block>   
++</body>
++</html>
+\ No newline at end of file
+-- 
+2.43.0.windows.1
+
