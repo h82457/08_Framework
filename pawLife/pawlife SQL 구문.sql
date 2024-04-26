@@ -361,8 +361,7 @@ ALTER TABLE "UPLOAD_FILE"
 ----------------------
 -- 이미지 저장
 INSERT INTO "UPLOAD_FILE"
-VALUES(SEQ_REVIEW_NO.NEXTVAL, '파일패스', '오리지널네임','리네임'
-			 DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 2);
+VALUES(SEQ_REVIEW_NO.NEXTVAL, '파일패스', '오리지널네임','리네임', DEFAULT,  DEFAULT, '리뷰게시글범ㄴ호', 2, '풀주소');
 
 -- not null 조건 제거		
 ALTER TABLE UPLOAD_FILE MODIFY ADOPT_NO NULL;
