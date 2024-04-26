@@ -55,7 +55,7 @@ public class EditBoardController {
 	public String boardInsert(@PathVariable("boardCode") int boardCode, 
 			Board inputBoard,
 			@SessionAttribute("loginMember") Member loginMember, 
-			@RequestParam("images") List<MultipartFile> images,
+			@RequestParam("images") List<MultipartFile> images, //input -file 속성으로 가져온 값을 MultipartFile형식의 리스트로 받아옴
 			RedirectAttributes ra
 			) throws IllegalStateException, IOException {
 		

@@ -1,11 +1,11 @@
 package com.project.pawlife.review.model.service;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.pawlife.review.model.dto.Review;
+import com.project.pawlife.review.model.dto.UploadFile;
 import com.project.pawlife.review.model.mapper.ReviewMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -13,11 +13,34 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
+
 public class ReviewServiceImpl implements ReviewService{
 
 	private final ReviewMapper mapper;
 
-	@Override
-	public int reviewWrite(Map<String, Object> map) { return mapper.reviewWrite(map) ; }
+	/* config.properties 값을 얻어와 필드에 저장 */
+	@Value("${my.board.web-path}")  // 게시글 이미지 요청 주소(DB 저장용)
+	private String webPath;
 	
+	@Value("${my.board.folder-path}") // 게시글 이미지를 서버에 저장시에 사용하는 경로 (transferTo)
+	private String folderPath;
+	
+	
+	
+	// 후기 게시글 작성
+	@Override
+	public int reviewWrite(Review inputReivew) { return mapper.reviewWrite(inputReivew); }
+
+
+
+	// 게시글 이미지 저장
+	@Override
+	public int ImageUpload(UploadFile img) { return mapper.ImageUpload(img); };
+	
+
+
+	
+		
+		
 }
+

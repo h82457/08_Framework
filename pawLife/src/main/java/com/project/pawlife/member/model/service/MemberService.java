@@ -16,4 +16,11 @@ public interface MemberService {
 	 */
 	Member quickLogin(String memberEmail);
 
+	/** 회원 가입
+	 * @param inputMember
+	 * @return
+	 */
+	int signup(Member inputMember);
+
+	
 }

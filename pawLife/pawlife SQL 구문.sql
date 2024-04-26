@@ -345,6 +345,25 @@ SELECT * FROM REVIEW;
 INSERT INTO "REVIEW"
 VALUES(SEQ_REVIEW_NO.NEXTVAL, '게시글 테스트', '게시글 내용',
 			 DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 2);
+			
+			
+-----------------------------------------------------------------------------------------------------
+-- UPLOAD_FILE 테이블 입양완료 여부 컬럼 추가
 
+ALTER TABLE emp ADD email VARCHAR(25);
+ALTER TABLE "UPLOAD_FILE" ADD FILE_FULLPATH VARCHAR2(500) NOT NULL;
 
+SELECT * FROM "UPLOAD_FILE";
 
+ALTER TABLE "UPLOAD_FILE"
+      RENAME COLUMN ADDFILE_FULLPATH to FILE_FULLPATH;
+     
+----------------------
+-- 이미지 저장
+INSERT INTO "UPLOAD_FILE"
+VALUES(SEQ_REVIEW_NO.NEXTVAL, '파일패스', '오리지널네임','리네임'
+			 DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 2);
+
+-- not null 조건 제거		
+ALTER TABLE UPLOAD_FILE MODIFY ADOPT_NO NULL;
+ALTER TABLE UPLOAD_FILE MODIFY REVIEW_NO NULL;

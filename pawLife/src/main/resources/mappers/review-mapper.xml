@@ -5,7 +5,13 @@
 	<insert id="reviewWrite"><!-- 뒤에서2번째 memberNo로 바꾸기 -->
 		INSERT INTO "REVIEW"
 		VALUES(SEQ_REVIEW_NO.NEXTVAL, #{reviewTitle}, #{reviewContent}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 2)
+	</insert>
 	
+	<insert id="ImageUpload">
+		INSERT INTO "UPLOAD_FILE"
+		VALUES(SEQ_REVIEW_NO.NEXTVAL, #{img.filePath}, #{img.fileUploadDate},#{img.fileRename},
+			DEFAULT,  DEFAULT, #{img.reviewNo}, 2, #{img.fileFullpath})
+		
 	</insert>
 	
 </mapper>

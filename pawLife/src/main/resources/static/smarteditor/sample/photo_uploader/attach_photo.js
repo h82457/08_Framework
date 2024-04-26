@@ -290,7 +290,7 @@
 		}
     }
 	
-    /**
+    /** (검색용! ?)
      * 이미지를 추가하기 위해서 file을 저장하고, 목록에 보여주기 위해서 string을 만드는 함수.
      * @param ofile 한개의 이미지 파일
      * @return
@@ -334,7 +334,9 @@
     	var tempFile,
     		sUploadURL;
     	
-    	sUploadURL= 'file_uploader_html5.php'; 	//upload URL (컨트롤러에서 처리할수 있는 경로 <- 검색용!!!)
+    	//sUploadURL= 'file_uploader_html5.php'; 	//upload URL (컨트롤러에서 처리할수 있는 경로 <- 검색용!!!)
+    	
+    	sUploadURL = '/review/ImageUpload'; //upload URL (컨트롤러에서 처리할수 있는 경로 <- 검색용!!!)
     	
     	//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
@@ -480,6 +482,8 @@
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
  			//sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다. (수정전) <- 사진을 업로드할 서버의 경로
  			// ^^^ 컨트롤러에의 메소드로 보낼 요청 주소 입력
+ 			sUrl  : '/review/ImageUpload',
+ 			
  			
  	        //sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	        
@@ -546,25 +550,25 @@
     }
     
 	window.onload = function(){
-//  		checkDragAndDropAPI();
+  		checkDragAndDropAPI();
   		
-//  		if(bSupportDragAndDropAPI){
-//  			$Element("pop_container2").hide();
-//  			$Element("pop_container").show();
-//  			
-//  			welTextGuide.removeClass("nobg");
-//  			welTextGuide.className("bg");
-//  			
-//  			addEvent();
-//  		} else {
-//  			$Element("pop_container").hide();
-//  			$Element("pop_container2").show();
-//  			callFileUploader();
-//  		}
+  		if(bSupportDragAndDropAPI){
+  			$Element("pop_container2").hide();
+  			$Element("pop_container").show();
+  			
+  			welTextGuide.removeClass("nobg");
+  			welTextGuide.className("bg");
+  			
+  			addEvent();
+  		} else {
+  			$Element("pop_container").hide();
+  			$Element("pop_container2").show();
+  			callFileUploader();
+  		}
   		
-  		$Element("pop_container").hide();
-  		$Element("pop_container2").show();
-  		callFileUploader();
+//  		$Element("pop_container").hide();
+//  		$Element("pop_container2").show();
+//  		callFileUploader();
   		
   		fnUploadImage = $Fn(uploadImage,this);
   		$Fn(closeWindow,this).attach(welBtnCancel.$value(), "click");

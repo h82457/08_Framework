@@ -64,7 +64,7 @@
             </div>
             <div  class="card-row">
 
-               <div class="card" th:each="adopt : ${adoptList}" th:object="${adopt}" th:if="${adoptStat.index} lt 4">
+               <div class="card" th:each="adopt : ${adoptList}" th:object="${adopt}" th:if="${adoptStat.index} lt 8 and ${adoptStat.index} gt 3">
                   <!-- <a th:href="/adoption/adoptionDetail" class="link"></a> -->
                   <img class="card-img" th:src="*{thumnail}">
                   <span th:text="*{adoptTitle}" class="card-title">예쁜 강아지</span>

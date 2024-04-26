@@ -7,11 +7,17 @@ import com.project.pawlife.member.model.dto.Member;
 @Mapper
 public interface MemberMapper {
 
-	/** 로그인 SQL 실행
+	/** 로그인 
 	 * @param memberEmail
 	 * @return loginMember
 	 */
 	public Member login(String memberEmail);
+
+	/**  회원 가입
+	 * @param inputMember
+	 * @return result
+	 */
+	public int signup(Member inputMember);
 
 
 }

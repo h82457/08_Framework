@@ -11,38 +11,42 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
        
-       
-        <from action="adoption/adoptionWrite">
+        
+        <form action="/adoption/adoptionInsert" method="POST" id="submitPost" enctype="multipart/form-data">
             <section class="board">
-                <h1><input type="text" placeholder="제목" id="adoptTitle"></h1>
+                <h1><input type="text" placeholder="제목" id="adoptTitle" name="adoptTitle"></h1>
                 <section class="board-box">
                     <div class="info-box">
                         <!-- 이미지 칸 -->
                         <div class="info-img">
                             <label for="thumnail">
-                                <img class="preview" src="">
+                                <img class="preview" src="" id="preview">
                             </label>
-                            <input type="file" class="adoption-img" id="thumnail" accept="image/*">
+                            <input type="file" class="adoption-img" id="thumnail" name="thumnailImg" accept="image/*">
                             <span class="delete-image">&times;</span>
                         </div>
 
                         <!-- 양식 -->
                         <div class="infomation">
-                            <input type="text" placeholder="이름"><br>
-                            <input type="text" placeholder="나이"><br>
-                            <input type="text" placeholder="종"><br>
-                            <input type="text" placeholder="발견장소"><br>
+                            <input type="text" id="infoName" name="adoptName" placeholder="이름"><br>
+                            <input type="text" id="infoAge" name="adoptAge"  placeholder="나이"><br>
+                            <input type="text" id="infoType" name="adoptType" placeholder="종"><br>
+                            <input type="text" id="infoAddress" name="adoptAddress" placeholder="발견장소">
                         </div>
 
     
                     </div>
 
                     <textarea name="adoptContent" id="adoptContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
-                    <button onclick="submitPost()">글작성</button>
+                   
+                   
+                    <button>글작성</button>
+
+                    <!-- onclick="submitPost()" -->
     
                 </section>
             </section>
-        </from>
+        </form>
 
 
 

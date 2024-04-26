@@ -112,7 +112,7 @@ public class MemberController {
 		
 		
 		
-		/** 로그 아웃
+		/** 로그아웃
 		 * @param status
 		 * @return "redirect:/"
 		 */
@@ -147,8 +147,35 @@ public class MemberController {
 			
 			return "redirect:/";
 		}
+
+
+
+	  @PostMapping("signup")
+	   public String signup(
+			 Member inputMember,
+			 RedirectAttributes ra
+			   ) {
+		 
+		  int result = service.signup(inputMember);
+		  
+		  // 가입 성공하면 메인으로 보내고 실패하면 회원 가입 페이지로 redirect
+		  String path = null;
+		  String message = null;
+		  
+		  if(result >0 ) { 
+			  
+			  message = inputMember.getMemberNickname() + "님의 가입 환영합니다";
+			  
+			  path= "/";
+		  }else {
+			  message = "회원 가입을 실패했습니다";
+			  path= "signup";
+		  }
+		  
+		  ra.addFlashAttribute("message", message);
+		  return "redirect:/"+path;
+	  }
+
+
+
 }
-
-
-
-

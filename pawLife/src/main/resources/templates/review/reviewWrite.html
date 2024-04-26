@@ -11,17 +11,17 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
         
-        <from action="review/reviewWrite" method="POST">
+        <form action="/review/reviewWrite" method="POST" id="submitPost">
             <section class="board">
-                <h1><input type="text" placeholder="제목" id="reviewTitle"></h1>
+                <h1><input type="text" placeholder="제목" name="reviewTitle" id="reviewTitle"></h1>
                 <section class="board-box">
 
                     <textarea name="reviewContent" id="reviewContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
-                    <button onclick="submitPost()">글작성</button>
+                    <button>글작성</button>
 
                 </section>
             </section>
-        </from>
+        </form>
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block> 

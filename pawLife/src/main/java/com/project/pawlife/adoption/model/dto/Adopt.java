@@ -29,10 +29,10 @@ public class Adopt {
 	private String adoptName;
 	private String adoptAge;
 	private String adoptType;
+	private String adoptAddress;
 	private int memberNo;
 	private int boardCode;
 	private String adoptCompl;
-	private String adoptAddress;
 	
 	
 
