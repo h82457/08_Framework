@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 입양리스트</title>
+</head>
+<body>
+    <!-- 페이지 내이션도 넣어야 함 -->
+    
+
+
+    <!--  //입양 리스트 페이지 --> 
+
+    <div class="profile-container">
+    
+    
+
+        <table class="adoptionList-container board-table">
+            <thead>
+            <tr>
+                <th>이미지</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>종</th>
+                <th>발견장소</th>
+                <th>버튼</th>
+                
+            </tr>
+            </thead>
+
+            <tbody id="adoptionTbody">
+
+            <tr>
+                <td><img src="/images/cat1.jpg" id="adoptionProfileImg" alt="입양 리스트 이미지"></td>
+                <td>고등어</td>
+                <td>2살</td>
+                <td>코리안 숏헤어</td>
+                <td>ㅇㅇ 시 ㅇㅇ구 ㅇㅇ동 ㅇㅇㅇ동 어디 어디</td>
+                <td class="adoptionbtn-area">
+                <button type="button" class= "button" id="adoption-updateBtn">수정</button>
+        
+
+                <button type="button" class= "button" id="adoption-completeBtn">입양완료</button>
+                
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        </div>
+
+
+</body>
+</html>

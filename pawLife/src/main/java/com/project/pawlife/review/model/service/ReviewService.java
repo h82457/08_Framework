@@ -1,21 +1,25 @@
 package com.project.pawlife.review.model.service;
 
+import java.util.Map;
+
 import com.project.pawlife.review.model.dto.Review;
-import com.project.pawlife.review.model.dto.UploadFile;
 
 public interface ReviewService {
 
-	/** 게시글 작성
-	 * @param inputReivew
-	 * @return
-	 */
+	// 게시글 작성
 	int reviewWrite(Review inputReivew);
 
-	/** 게시글 이미지 저장
-	 * @param img
+	/** 게시글 리스트
+	 * @param cp
+	 * @return map
+	 */
+	Map<String, Object> selectReviewList(int cp);
+
+	/** 게시글 상세 조회
+	 * @param map
 	 * @return
 	 */
-	int ImageUpload(UploadFile img);
+	Review selectOneReview(Map<String, Integer> map);
 
 
 

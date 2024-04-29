@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.pawlife.myPage.model.mapper.MyPageMapper">
+  
+  
+  
+  <!-- 로그인한 회원이 작성한 게시글 조회 -->
+    <select id="selectReview" resultType="review">
+     SELECT REVIEW_TITLE, READ_COUNT,
+       TO_CHAR(REVIEW_WRITE_DATE, 'YYYY-MM-DD DAY') AS "REVIEW_WRITE_DATE"
+     
+     FROM "REVIEW"
+     WHERE MEMBER_No=#{memberNo}
+    </select>
+    
+     <!-- 로그인한 회원이 작성한 댓글 조회 -->
+    <select id="selectComment" parameterType="int" resultType="review">
+    SELECT C.REVIEW_NO, C.MEMBER_NO, R.REVIEW_TITLE, C.COMMENT_CONTENT, 
+	    TO_CHAR(C.COMMENT_WRITE_DATE, 'YYYY-MM-DD DAY') AS "COMMENT_WRITE_DATE"
+	    FROM "REVIEW" R
+	   JOIN "COMMENT" C ON R.REVIEW_NO = C.REVIEW_NO
+    	WHERE C.COMMENT_NO = (
+	    SELECT COMMENT_NO 
+	    FROM "COMMENT"
+	    WHERE MEMBER_NO = #{memberNo})
+
+    </select>
+    
+    
+    <!-- 로그인한 회원이 북마크한 게시물 조회 -->
+    <select id="selectBookMark" resultType="adopt">
+       
+    </select>
+    
+    <!-- 프로필 이미지 변경 -->
+    <update id="profile">
+      UPDATE "MEMBER" SET
+      PROFILE_IMG = #{profileImg}
+      WHERE MEMBER_NO =#{memberNo}
+    </update>
+    
+  
+</mapper>

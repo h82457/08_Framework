@@ -56,6 +56,14 @@ body{
     align-items: center;
     padding: 20px;
 }
+
+/* 북마크바 check시 색 변환 */
+#bookmarkCheck{
+  background-color: white;
+  color: black;
+}
+
+
 /* 프로필 이미지 */
 #profile{
     width: 30px;
@@ -66,12 +74,14 @@ body{
 .bookmark{
     display: flex;
     justify-content: end;
-    
+   
     cursor: pointer;
 }
 
 .view-count{
     margin-bottom: 5px;
+    display: flex;
+    justify-content: end;
 }
 
 .right-bar{

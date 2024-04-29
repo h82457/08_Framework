@@ -19,7 +19,15 @@
 
  <section class="update-area">
 
-  <form action="/myPage/profileUpdate" method="POST" name="profileUpdateForm" id="profileUpdateForm">
+  <div class="boardTitle-area">
+              
+    <h2 class="board-name">프로필</h2> <!-- 가운데 배치 + 글씨 얇게 크기 줄이기 -->
+
+  </div>
+  
+
+  <form action="profileUpdate" method="POST"
+    name="profileUpdateForm" id="profileUpdateForm" enctype="multipart/form-data">
     
      <!-- 마이페이지 수정-->
   <section class="myPage-update">
@@ -28,25 +36,18 @@
 
     <div class="profile-updatecontainer">
 
-      <div class="boardTitle-area">
-              
-        <h2 class="board-name">개인정보 수정</h2> 
-
-      </div>
       
-
-      <div class="profileImg-area">
       
-        <img src="/images/cat1.jpg" id="memberProfileImg" alt="프로필 이미지">
+    
+    
+    
+      <div class="memberNicknamebox">
+        <label>닉네임</label>
+        <input type="text" id="memberNickname" name="memberNickname" 
+        maxlength="10"  
+        th:value="${session.loginMember.memberNickname}">
 
-      </div>
-      
-      <div class="profileNickNamebox">
-
-        <input type="text" id="profileNickName" placeholder="닉네임">
-
-        <span class="signUp-message" id="nickMessage">한글,영어,숫자로만 2~10글자</span>
-
+        
       </div>
       
 
@@ -67,43 +68,46 @@
       
       <!-- 비밀 번호, 닉네임, 전화번호 부분-->
 
+
+     
       <section class="signup-updatebox">
 
-        <label for="memberPw">
-          <span class="required">*</span> 
-          <span class="required">비밀번호</span>
-        </label>
-  
-        <div class="signUp-input-area">
-          <input type="password" name="memberPw" id="memberPw" 
-          placeholder="비밀번호" maxlength="20" >
-        </div>
-        <div class="signUp-input-area">
-          <input type="password" name="memberPwConfirm" id="memberPwConfirm" 
-          placeholder="비밀번호 확인" maxlength="20" >
-        </div>
-  
-        <!-- 정규 표현식 -->
-        <span class="signUp-message" id="pwMessage">영어,숫자,특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
-  
-       
-  
+
+        <h1 class="myPage-title">비밀번호 변경</h1>
+        <span class="myPage-subject">현재 비밀번호가 일치하는 경우 
+            새 비밀번호로 변경 가능</span>
+
+
+      
+
+            <div class="myPage-row">
+                <label>현재 비밀번호</label>
+                <input type="password" name="currentPw" id="currentPw" maxlength="30" >              
+            </div>
+
+            <div class="myPage-row">
+                <label>새 비밀번호</label>
+                <input type="password" name="newPw" id="newPw" maxlength="30">              
+            </div>
+
+            <div class="myPage-row">
+                <label>새 비밀번호 확인</label>
+                <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="30">              
+            </div>
+
+
         
-  
+       
+
   
         <!-- 전화번호 입력 -->
-        <label for="memberTel">
-          <span class="required">*</span> 
-          <span class="required"> 전화번호</span> 
-        </label>
-  
+       
         <div class="signUp-input-area">
-          <input type="text" name="memberTel" id="memberTel" placeholder="(- 없이 숫자만 입력)" maxlength="11">
+          <label>전화번호</label>
+          <input type="text" name="memberTel" id="memberTel"  maxlength="11"
+          th:value="${session.loginMember.memberTel}">
         </div>
   
-        <span class="signUp-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
-  
-
       </section>
       
 
@@ -125,6 +129,9 @@
 
      <!-- 푸터 추가 -->
      <th:block th:replace="~{common/footer}"></th:block>
+
+
+   
 
     <script src="/js/myPage/myPage.js"></script>
 

@@ -34,6 +34,14 @@ public class Adopt {
 	private int boardCode;
 	private String adoptCompl;
 	
+	// 테이블 조인
+	private String memberNickname;
 	
+	
+	// 게시글 작성자 프로필 이미지
+	private String profileImg;
+	
+	// 북마크
+	private String bookmarkCheck;
 
 }

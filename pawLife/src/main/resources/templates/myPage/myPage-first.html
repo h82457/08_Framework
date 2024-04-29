@@ -46,7 +46,7 @@
               <button type="button" class= "button" id="commentListBtn">내가 쓴 댓글</button>
             
 
-              <button type="button" class= "button" id="likeListBtn">입양 게시글 북마크</button>
+              <button type="button" class= "button" id="likeListBtn">북마크한 게시글</button>
             
           </div>
 
@@ -54,38 +54,65 @@
 
 
          <!-- 마이페이지 본문 -->
-         <section class="myPage-main">
+      <section class="myPage-main">
 
           <!-- 프로필  -->
 
-           <div class="profile-container">
+        <div class="profile-container" id="profileContainer">
 
-            <div class="profileImg-area">
+                    
+          <form action="profile" method="POST"
+          name="profileForm" id="profileForm" enctype="multipart/form-data">
+          
+            <!-- session.loginMember.profileImg ?:  -->
+              <div class="profileImg-area">
+
+                <img th:with="user=#{user.default.image}" 
+                th:src="${user }" 
+                id="profileImg">
+
+              </div>
+              
+
+              <span id="deleteImage">x</span>
+
+
+              <div class="profile-btn-area">
+                <label for="imageInput">이미지 선택</label>
+                <input type="file" name="profileImg" id="imageInput" accept="image/*">
+                <button id="pImageUpdate">변경하기</button>
+                
+              </div>
+
             
-              <img src="/images/user.png" id="memberProfileImg" alt="프로필 이미지">
- 
-            </div>
-            
-            <p id="profileNickName">닉네임</p>
+              
+              <p id="profileNickName">닉네임</p>
+    
+              <div class="profileIntroduce-area">
+   
+               
+                <p type="text" name="profileIntroduceText" id="profileIntroduceText">
   
-            <div class="profileIntroduce-area">
- 
-             
-              <p type="text" name="profileIntroduceText" id="profileIntroduceText">
+                자기소개 한마디
+                </p>
+              </div>
+   
+            
+          </form>
 
-              자기소개 한마디
+
+              <div>
+                <button id="profileUpdateBtn">개인정보 수정하기</button>
+              </div>
+
+              <p class="memberDelete-area">
+                <a href="#" >회원 탈퇴</a>
               </p>
-            </div>
- 
-            <div>
-              <button id="profileUpdateBtn">개인정보 수정하기</button>
-            </div>
- 
-            <p class="memberDelete-area">
-              <a href="#" >회원 탈퇴</a>
-            </p>
- 
-           </div>
+
+            
+        </div>
+                    
+            
            
              <!-- 
                 //입양 리스트 페이지 
@@ -134,10 +161,13 @@
                  -->
                  
 
+               <!-- ----------------------------------------------------------- -->
 
-                 <div class="profile-container">
+                    <!--  //입양 리스트 페이지 --> 
+
+                <!--  <div class="profile-container">
                  
-                  <!--  //입양 리스트 페이지 --> 
+                 
             
                   <table class="adoptionList-container board-table">
                     <thead>
@@ -173,17 +203,17 @@
                   </table>
                   </div>
 
+ -->
 
 
-
-
+              <!-- ------------------------------------------------------- -->
 
 
 
 
             <!-- 내가 쓴 게시글 (입양후기) -->
 
-            <div class="profile-container">
+           <!--  <div class="profile-container">
 
               <table class="board-table review-table">
                 <thead>
@@ -195,7 +225,7 @@
                   </tr>
                 </thead>
 
-                <tbody id="reviewList">
+                <tbody id="reviewList"> 
                   <tr>
                     <td>안녕하세요</td>
                     <td>100</td>
@@ -216,14 +246,14 @@
                     <td>2024.02.02</td>
                   </tr>
 
-
+                   
                 </tbody>
               </table>
             </div>
-
+            -->
 
             <!-- 내가 쓴 댓글 -->
-            <div class="profile-container">
+           <!--  <div class="profile-container">
 
               <table class="board-table col-2">
                 <thead>
@@ -252,10 +282,12 @@
                 </tbody>
               </table>
             </div>
+ -->
 
+          <!-- ---------------------------------------------------- -->
 
             <!-- 북마크 -->
-            <div class="profile-container">
+          <!--   <div class="profile-container">
 
               <table class="board-table col-2">
                 <thead>
@@ -283,7 +315,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div> -->
 
 
 
@@ -295,6 +327,15 @@
 
     <!-- 푸터 추가 -->
     <th:block th:replace="~{common/footer}"></th:block>
+
+    
+    
+
+
+        <!-- 타임리프 코드를 JS 코드로 해석해줌 -->
+        <script th:inline="javascript">
+          const loginMemberProfileImg = /* [[${session.loginMember.profileImg}]] */"회원 프로필 이미지";
+        </script>
 
     <script src="/js/myPage/myPage.js"></script>
 </body>

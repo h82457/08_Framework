@@ -54,11 +54,13 @@
 
             <div  class="card-row">
 
-               <div class="card" th:each="adopt : ${adoptList}" th:object="${adopt}" th:if="${adoptStat.index} lt 4">
-                  <!-- <a th:href="/adoption/adoptionDetail" class="link"></a> -->
+               <a 
+               href="#"
+               class="card" th:each="adopt : ${adoptList}" th:object="${adopt}" th:if="${adoptStat.index} lt 4">
+                  <!-- <a th:href="@{/adoption/adoptionList/{adoptNo} (adoptNo=*{adoptNo},cp=${pagination.currentPage})}" class="link"></a> -->
                   <img class="card-img" th:src="*{thumnail}">
                   <span th:text="*{adoptTitle}" class="card-title">예쁜 강아지</span>
-               </div>
+               </a>
 
 
             </div>

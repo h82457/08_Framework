@@ -99,14 +99,7 @@
 }
 
 
-/* 프로필 이미지 */
-#memberProfileImg {
 
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-
-}
 
 /* 프로필 닉네임 */
 #profileNickName{
@@ -224,22 +217,24 @@
 /* ------------------------- */
 /* ***** 내가 쓴 게시글 ***** */
 /* ------------------------- */
-.board-table {
+.reviewbox {
+  display: flex;
+  
     text-align: center;
     width: 98%;
     border-collapse: collapse;
 }
-.review-table tr > *:nth-of-type(1){ width: 30%; }
-.review-table tr > *:nth-of-type(2){ width: 20%; }
-.review-table tr > *:nth-of-type(3){ width: 20%; }
-.review-table tr > *:nth-of-type(4){ width: 30%; }
+.reviewbox tr > *:nth-of-type(1){ width: 30%; }
+.reviewbox tr > *:nth-of-type(2){ width: 20%; }
+.reviewbox tr > *:nth-of-type(3){ width: 20%; }
+.reviewbox tr > *:nth-of-type(4){ width: 30%; }
 
-.board-table > thead {
+.reviewbox > thead {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     background-color: var(--title-background-color);
 }
-.board-table tr {
+.reviewbox tr {
     border-bottom: 1px solid gray;
     height: 40px;
 }
@@ -270,6 +265,8 @@
     padding: 16px;  
 
 }
+
+
 
 /* 프로필 부분 가운데 배치 + 위 아래 거리 */
 .myPage-update{
@@ -402,4 +399,77 @@
     height: 30px;
     width: 200px;
     border-radius: 15px;
+
+    
 }
+
+
+/* ************* 프로필 화면 ************* */
+  .profileImg-area{
+    width: 150px;
+    height: 150px;
+    border: 3px solid #ccc;
+    border-radius: 50%;
+  
+    position: relative;
+  
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* 프로필 이미지 */
+  #profileImg {
+    width: auto;
+    height: 100%;
+    border-radius: 50%;
+
+  }
+  
+  /* 삭제버튼 */
+  form[name='profileForm']{position: relative;}
+
+  #profileForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #deleteImage{
+    position: absolute;
+    top: 0px;
+    right: 100px;
+    cursor: pointer;
+  }
+  
+  /* 이미지 버튼 영역 */
+  .profile-btn-area{
+    width: 230px;
+    margin: 20px 0;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-btn-area > *{
+    width: 110px;
+    height: 30px;
+    padding: 5px 10px;
+  
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  #imageInput{ display: none;}
+  
+  .profile-btn-area > button{
+    background-color: black;
+    color : white;
+    margin-left: 2px;
+  }
