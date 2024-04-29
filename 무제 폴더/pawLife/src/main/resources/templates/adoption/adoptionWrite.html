@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입양 게시판 글쓰기</title>
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/adoption/adoption-write.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+       
+        
+        <form action="/adoption/adoptionInsert" method="POST" id="submitPost" enctype="multipart/form-data">
+            <section class="board">
+                <h1><input type="text" placeholder="제목" id="adoptTitle" name="adoptTitle"></h1>
+                <section class="board-box">
+                    <div class="info-box">
+                        <!-- 이미지 칸 -->
+                        <div class="info-img">
+                            <label for="thumnail">
+                                <img class="preview" src="" id="preview">
+                            </label>
+                            <input type="file" class="adoption-img" id="thumnail" name="thumnailImg" accept="image/*">
+                            <span class="delete-image">&times;</span>
+                        </div>
+
+                        <!-- 양식 -->
+                        <div class="infomation">
+                            <input type="text" id="infoName" name="adoptName" placeholder="이름"><br>
+                            <input type="text" id="infoAge" name="adoptAge"  placeholder="나이"><br>
+                            <input type="text" id="infoType" name="adoptType" placeholder="종"><br>
+                            <input type="text" id="infoAddress" name="adoptAddress" placeholder="발견장소">
+                        </div>
+
+    
+                    </div>
+
+                    <textarea name="adoptContent" id="adoptContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
+                   
+                   
+                    <button>글작성</button>
+
+                    <!-- onclick="submitPost()" -->
+    
+                </section>
+            </section>
+        </form>
+
+
+
+
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block> 
+    <!-- editor -->
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        var oEditors = [];
+
+        nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "adoptContent", // textarea id값
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html", // SmartEditor2Skin.html 경로
+        fCreator: "createSEditor2"
+        });
+    </script>
+
+    <script src="/js/adoption/adoptionWrite.js"></script>
+</body>
+</html>

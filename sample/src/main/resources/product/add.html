@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <title>Insert title here</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- sweetalert (alert창 예쁘게) -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 파일 업로드를 할 경로를 지정하자. (with csrf)
+            const $ckUploadPath = "/product/image?_csrf=" + $('#_csrf').val();
+            CKEDITOR.replace('info', {
+                filebrowserUploadUrl : $ckUploadPath
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="page">
+    <!-- 시맨틱 마크업 -->
+    <header th:replace="/fragments/header.html">
+    </header>
+    <nav th:replace="/fragments/nav.html">
+    </nav>
+    <div id="main">
+        <aside th:replace="/fragments/aside.html">
+        </aside>
+        <section>
+            <input type="hidden" name="_csrf" id="_csrf" th:value="${_csrf.token}">
+            <div class="form-group">
+                <!-- 이 textarea를 ckeditor에 넘겨 준다. -->
+                <textarea class="form-control" rows="5" id="info" name="info"></textarea>
+            </div>			
+        </section>
+    </div>
+    <footer th:replace="/fragments/footer.html">
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+:root{
+    --main-color : #cccccc;
+    /* --hover-color : #e9ae2f; */
+ }
+
+a{
+    text-decoration: none;
+    color : black;
+}
+
+h1{
+    margin: 50px 0 10px 0;
+    min-width: 150px;
+}
+
+main{
+    flex-grow: 1;
+}
+
+body{
+    display: flex;
+    flex-direction: column; /* 중심축 방향 세로 */
+    align-items: center;    /* 교차축 방향 가운데 정렬 */
+    min-height: 100vh;      /* 최소 높이를 화면 비율 100% */
+ }
+
+/* ********************************************************************* */
+
+/* 제목 */
+#inputTitle{
+    outline: none;
+    border:none;
+    border-bottom: 1px solid gray;
+    margin: 20px 0;
+    padding: 10px 5px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+}
+
+/* 글쓰기 전체 영역 */
+.board{
+    max-width: 800px;
+    margin: auto;
+    display: block;
+}
+
+/* 글쓰기 박스 */
+.board-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* 글쓰기 버튼 */
+#writeBtn{
+    width: 300px;
+    height: 40px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    cursor: pointer;
+}
+
+textarea{
+    width: 100%;
+    height: 500px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입양 페이지</title>
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/adoption/adoption-list.css">
+
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+        <div class="tag">
+            <h3>입양 게시판</h3>
+            <button id="writeBtn">글쓰기</button>
+        </div>
+        
+        <div class="card-container">
+
+            <div class="card-row">
+               <!-- 1,2,3,4 -->
+               <div class="card">
+                    <a href="/adoption/adoptionDetail" class="link"></a>
+                    <img class="card-img" src="/images/dog1.jpg" alt="게시판 썸네일 이미지" id="card">
+                    <span class="card-title">예쁜 강아지</span>
+               </div>
+               <!--  -->
+               <div class="card">
+                  <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/dog2.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+               <div class="card">
+                  <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/dog3.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+               <div class="card">
+                  <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/dog1.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+            </div>
+
+            <div class="card-row">
+               <div class="card">
+                  <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/cat1.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+               <div class="card">
+                  <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/cat2.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+               <div class="card">
+                  <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/cat3.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+               <div class="card">
+                    <a href="/adoption/adoptionDetail" class="link"></a>
+                  <img class="card-img" src="/images/cat1.jpg" alt="게시판 썸네일 이미지">
+                  <span class="card-title">예쁜 강아지</span>
+               </div>
+            </div>
+         </div>
+        
+
+    <!-- 게시글이 있을 때만 페이지네이션이 보이게 할 예정 -->
+    <div class="pagination-area">
+
+        <ul class="pagination">
+        
+            <!-- 첫 페이지로 이동 -->
+            <li><a href="#">&lt;&lt;</a></li>
+
+            <!-- 이전 목록 마지막 번호로 이동 -->
+            <li><a href="#">&lt;</a></li>
+
+            <!-- 특정 페이지로 이동 -->
+            <!-- 현재 보고있는 페이지 -->
+            <li>
+                <a class="current">1</a>
+            </li>
+
+            <!-- 보고있지 않은 페이지 -->                    
+            <li> <a href="#">2</a> </li>
+            <li> <a href="#">3</a> </li>
+            <li> <a href="#">4</a> </li>
+            <li> <a href="#">5</a> </li>
+            <li> <a href="#">6</a> </li>
+            <li> <a href="#">7</a> </li>
+            <li> <a href="#">8</a> </li>
+            <li> <a href="#">9</a> </li>
+            <li> <a href="#">10</a> </li>
+
+            <!-- 다음 목록 시작 번호로 이동 -->
+            <li><a href="#">&gt;</a></li>
+
+            <!-- 끝 페이지로 이동 -->
+            <li><a href="#">&gt;&gt;</a></li>
+        </ul>
+    </div>
+        
+
+    <!-- 검색창 -->
+    
+    <div class="search-container">
+        <form action="#" method="get" id="boardSearch">
+    
+            <select name="key" id="searchKey">
+                <option value="t">제목</option>
+                <option value="c">내용</option>
+                <option value="tc">제목+내용</option>
+                <option value="w">작성자</option>
+            </select>
+    
+            <input type="text" name="query"  id="searchQuery" placeholder="검색어를 입력해주세요.">
+    
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+    </main>
+    <th:block th:replace="~{common/footer}"></th:block> 
+
+    <script src="/js/adoption/adoptionList.js"></script>
+</body>
+</html>

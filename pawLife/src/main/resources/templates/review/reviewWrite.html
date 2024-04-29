@@ -6,17 +6,30 @@
     <title>후기 게시판 글쓰기</title>
     <th:block th:replace="~{common/common}"></th:block>
     <link rel="stylesheet" href="/css/review/review-write.css">
+
+    <!-- 기본적인 에디터와 번역을 위한 script 이식 -->
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 </head>
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
         
-        <form action="/review/reviewWrite" method="POST" id="submitPost">
+        <form action="/review/reviewWrite" method="POST" id="upload">
             <section class="board">
-                <h1><input type="text" placeholder="제목" name="reviewTitle" id="reviewTitle"></h1>
-                <section class="board-box">
 
-                    <textarea name="reviewContent" id="reviewContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
+                <!-- <input type="hidden" name="_csrf" id="_csrf" th:value="${_csrf?.token}"> -->
+                <div class="form-group">
+                    <!-- 이 textarea를 ckeditor에 넘겨 준다. -->
+                    <textarea name="editor1"></textarea>
+
+
+                </div>	
+
+                <!-- <h1><input type="text" placeholder="제목" name="reviewTitle" id="reviewTitle"></h1>
+                <section class="board-box">
+                    <textarea class="form-control" id="ckeditor" name="ckeditor"	rows="3">${bbs.content}</textarea>
+                    <textarea name="reviewContent" id="editor"></textarea> -->
+                    <!--  -->
                     <button>글작성</button>
 
                 </section>
@@ -26,19 +39,58 @@
 
     <th:block th:replace="~{common/footer}"></th:block> 
     <!-- editor -->
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <!--  -->
+    <!-- 기본적인 에디터와 번역을 위한 script 이식 -->
 
-    <script type="text/javascript">
-        var oEditors = [];
 
-        nhn.husky.EZCreator.createInIFrame({
-        oAppRef: oEditors,
-        elPlaceHolder: "reviewContent", // textarea id값
-        sSkinURI: "/smarteditor/SmartEditor2Skin.html", // SmartEditor2Skin.html 경로
-        fCreator: "createSEditor2"
-        });
-    </script>
+<script>
+CKEDITOR.replace('editor1', {
+    filebrowserUploadUrl : 'imageUpload'
+});
 
-    <script src="/js/review/reviewWrite.js"></script>
+// CKEDITOR.replace('contents', {
+// 		filebrowserUploadUrl : '${pageContext.request.contextPath}/adm/fileupload.do'
+// 	});
+// $(function () {
 
-  </script>
+// });
+
+// $(document).ready(function() {
+
+//     $(document).ready(function() {
+//         // 파일 업로드를 할 경로를 지정하자. (with csrf)
+//         const $ckUploadPath = "/review/image?_csrf=" + $('#_csrf').val();
+//         CKEDITOR.replace('info', {
+//             filebrowserUploadUrl : $ckUploadPath
+//         })
+//     })
+
+
+// CKEDITOR.replace( 'editor1', {//해당 이름으로 된 textarea에 에디터를 적용
+//     width:'100%',
+//     height:'400px',
+//     filebrowserUploadUrl:  "/review/ckEditorUpload",
+//     image_previewText: ' '
+
+// });
+
+
+// //이미지 업로드가 끝나고 실행하는 함수
+// CKEDITOR.on( 'dialogDefinition', function( ev ) {
+//    // Take the dialog name and its definition from the event data.
+//     let dialogName = ev.data.name;
+//     let dialogDefinition = ev.data.definition;
+
+
+//     let uploadTab = dialogDefinition.getContents( 'Upload' );
+//     let uploadButton = uploadTab.get('uploadButton');
+
+//     uploadButton['filebrowser']['onSelect'] = function( fileUrl, errorMessage ) {
+
+//     }
+
+// });
+</script>
+    <!-- <script src="/js/review/reviewWrite.js"></script> -->
+
+

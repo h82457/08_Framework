@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후기 게시판 글쓰기</title>
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/review/review-write.css">
+
+    <style>
+        .ck-editor__editable { height: 400px; }
+      </style>
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+        
+        <form action="/review/reviewWrite" method="POST" id="upload">
+            <section class="board">
+                <h1><input type="text" placeholder="제목" name="reviewTitle" id="reviewTitle"></h1>
+                <section class="board-box">
+                    <textarea name="reviewContent" id="editor"></textarea>
+                    <!--  -->
+                    <button>글작성</button>
+
+                </section>
+            </section>
+        </form>
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block> 
+    <!-- editor -->
+    <!--  -->
+    <!-- 기본적인 에디터와 번역을 위한 script 이식 -->
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
+
+<script>
+    ClassicEditor.create( document.querySelector( '#editor' ) );
+
+</script>
+    <script src="/js/review/reviewWrite.js"></script>
+
+

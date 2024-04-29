@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:replace="~{common/common}"></th:block>
+    <title>입양 문의</title>
+    <link rel="stylesheet" href="/css/adoption/adoption-contact.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+
+
+            <div class="content">
+                
+                <form action="#" method="POST">
+
+                    <p>* 다음 양식을 채워주세요</p>
+
+                    <div class="row text-input">
+                        <label for="adoptTitle"><span>입양 공고 제목</span></label>
+                        <input type="text" name="adoptTitle" id="adoptTitle" placeholder="신청인 성명">            
+                    </div>
+
+                    <div class="row text-input">
+                        <label for="adoptTitle"><span>1. 신청인 성명</span></label>
+                        <input type="text" name="adoptTitle" id="adoptTitle" placeholder="신청인 성명">            
+                    </div> 
+                    
+                    <div class="row radio-input">
+                        <span>2. 성별</span>
+                        
+                        <label for="adoptGender">
+                            <input type="radio" name="adoptGender" id="adoptGender" value="남">남
+                        </label>          
+                        <label for="adoptGender">
+                            <input type="radio" name="adoptGender" id="adoptGender" value="여">여
+                        </label>          
+                    </div>
+
+                    <div class="row text-input">
+                        <label for="adoptTitle"><span>3. 연령</span></label>
+                        <input type="text" name="adoptTitle" id="adoptTitle" placeholder="신청인 연령">            
+                    </div> 
+
+                    <div class="row text-input">
+                        <label for="adoptTel"><span>4. 연락처</span></label>
+                        <input type="text" name="adoptTel" id="adoptTel" placeholder="연락처">            
+                    </div> 
+                    
+                    <div class="row text-input">
+                        <label for="adoptTime"><span>6. 연락 가능한 시간</span></label>
+                        <input type="text" name="adoptTime" id="adoptTime" placeholder="연락 가능한 시간">            
+                    </div> 
+
+                    <div class="row text-input">
+                        <label for="adoptAddress"><span>7. 거주 지역</span></label>
+                        <input type="text" name="adoptAddress" id="adoptAddress" placeholder="거주 지역">            
+                    </div> 
+
+                    <div class="row radio-input">
+                        <span>8. 결혼여부</span>
+                        
+                        <label for="adoptMarr">
+                            <input type="radio" name="adoptMarr" id="adoptMarr" value="기혼">기혼
+                        </label>          
+                        <label for="adoptMarr">
+                            <input type="radio" name="adoptMarr" id="adoptMarr" value="미혼">미혼
+                        </label>          
+                    </div>
+
+                    <div class="row text-input">
+                        <label for="adoptJob"><span>9. 신청인 직업</span></label>
+                        <input type="text" name="adoptJob" id="adoptJob" placeholder="신청인 직업">            
+                    </div> 
+                    
+                    <div class="btn-area">
+                        <button>문의 등록</button>
+                        <button>취소</button>                        
+                    </div>
+
+                </form>
+
+            </div>
+
+
+    </main>
+    <th:block th:replace="~{common/footer}"></th:block> 
+
+    
+</body>
+</html>

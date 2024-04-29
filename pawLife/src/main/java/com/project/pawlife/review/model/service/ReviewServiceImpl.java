@@ -17,13 +17,6 @@ import lombok.RequiredArgsConstructor;
 public class ReviewServiceImpl implements ReviewService{
 
 	private final ReviewMapper mapper;
-
-	/* config.properties 값을 얻어와 필드에 저장 */
-	@Value("${my.board.web-path}")  // 게시글 이미지 요청 주소(DB 저장용)
-	private String webPath;
-	
-	@Value("${my.board.folder-path}") // 게시글 이미지를 서버에 저장시에 사용하는 경로 (transferTo)
-	private String folderPath;
 	
 	
 	
