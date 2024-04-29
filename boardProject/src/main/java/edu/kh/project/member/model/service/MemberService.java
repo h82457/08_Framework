@@ -15,7 +15,7 @@ public interface MemberService {
 	 * @param memberAddress
 	 * @return result
 	 */
-	int signup(Member inputMember, String[] memberAddress);
+	int signup(Member inputMember);
 
 
 	/** 이메일 중복 겁사
