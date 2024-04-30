@@ -19,30 +19,30 @@ const createTd = (text) => {
     return td;
 }
 
-// 조회 버튼 클릭시
-// selectBtn.addEventListener("click", () => {
+//조회 버튼 클릭시
+selectBtn.addEventListener("click", () => {
 
-//     bookList.innerHTML = "";
+    bookList.innerHTML = "";
 
-//     fetch("selectBookList")
+    fetch("selectBookList")
 
-//     .then(resp => resp.json() )
+    .then(resp => resp.json() )
 
-//     .then( list => {
-//         // console.log(list);
+    .then( list => {
+        // console.log(list);
 
-//         list.forEach( (book, index) => {
+        list.forEach( (book, index) => {
 
-//             const keyList = ['bookNo', 'bookTitle', 'bookWriter', 'bookPrice', 'regDate'];
-//             const tr = document.createElement("tr");
+            const keyList = ['bookNo', 'bookTitle', 'bookWriter', 'bookPrice', 'regDate'];
+            const tr = document.createElement("tr");
 
-//             keyList.forEach( key => tr.append( createTd(book[key])) );
+            keyList.forEach( key => tr.append( createTd(book[key])) );
 
-//             bookList.append(tr);
-//         });
+            bookList.append(tr);
+        });
 
-//     })
-// });
+    })
+});
 
 
 /* 검색버튼 클릭시 비동기로 해당하는 도서 조회 */

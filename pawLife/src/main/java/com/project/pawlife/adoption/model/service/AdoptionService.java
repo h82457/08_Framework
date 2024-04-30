@@ -27,6 +27,19 @@ public interface AdoptionService {
 	 * @param map
 	 * @return result
 	 */
-	int bookCheck(Map<String, Integer> map);
+	int bookCheck(Map<String, Integer> obj);
+
+	/** 게시글 수정
+	 * @param adoptInput
+	 * @param thumnailImg 
+	 * @return
+	 */
+	int adoptUpdate(Adopt adoptInput, MultipartFile thumnailImg,int statusCheck);
+
+	/** 입양 게시글 삭제
+	 * @param map
+	 * @return
+	 */
+	int adoptDelete(Map<String, Integer> map);
 
 }

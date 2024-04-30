@@ -21,14 +21,12 @@
 
   <div class="boardTitle-area">
               
-    <h2 class="board-name">프로필</h2> <!-- 가운데 배치 + 글씨 얇게 크기 줄이기 -->
+    <h2 class="board-name">개인 정보 수정</h2> <!-- 가운데 배치 + 글씨 얇게 크기 줄이기 -->
 
   </div>
   
 
-  <form action="profileUpdate" method="POST"
-    name="profileUpdateForm" id="profileUpdateForm" enctype="multipart/form-data">
-    
+ 
      <!-- 마이페이지 수정-->
   <section class="myPage-update">
 
@@ -38,9 +36,13 @@
 
       
       
+    <form action="profileUpdate" method="POST"
+    name="profileUpdateForm" id="profileUpdateForm">
+    
+
     
     
-    
+      <!-- 닉네임 -->
       <div class="memberNicknamebox">
         <label>닉네임</label>
         <input type="text" id="memberNickname" name="memberNickname" 
@@ -50,37 +52,46 @@
         
       </div>
       
-
-      <div class="profileIntroduce-area">
-
-      
-        <input type="text" name="profileIntroduceText" id="profileIntroduceText"
-        placeholder="자기소개 한마디">
-
-      
+         <!-- 전화번호 입력 -->
+       
+      <div class="memberTelbox">
+          <label>전화번호</label>
+          <input type="text" name="memberTel" id="memberTel"  maxlength="11"
+          th:value="${session.loginMember.memberTel}">
       </div>
+  
+    
 
-    </div>
-    </section>
+      <button id="updateOneBtn">닉네임/전화번호 수정</button>
 
 
-    <section class="signup-updatecontent">
-      
-      <!-- 비밀 번호, 닉네임, 전화번호 부분-->
-
+    
+     </form>
+   </div>
 
      
-      <section class="signup-updatebox">
+      
+  </section>
 
 
+    <section class="profile-updatecontent">
+      
+   
+
+     
+      <div class="profile-updatebox">
+
+
+    
+       
         <h1 class="myPage-title">비밀번호 변경</h1>
         <span class="myPage-subject">현재 비밀번호가 일치하는 경우 
             새 비밀번호로 변경 가능</span>
 
 
-      
+            <form action="changePw" method="POST" name="changePwForm" id="changePwForm">
 
-            <div class="myPage-row">
+              <div class="myPage-row">
                 <label>현재 비밀번호</label>
                 <input type="password" name="currentPw" id="currentPw" maxlength="30" >              
             </div>
@@ -95,35 +106,33 @@
                 <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="30">              
             </div>
 
+             
+            <button id="changePwBtn">비밀번호 수정</button>
 
-        
-       
 
+            </form>
+
+           
+
+          </div>
+      
   
-        <!-- 전화번호 입력 -->
-       
-        <div class="signUp-input-area">
-          <label>전화번호</label>
-          <input type="text" name="memberTel" id="memberTel"  maxlength="11"
-          th:value="${session.loginMember.memberTel}">
-        </div>
-  
+     
       </section>
       
 
 
     </section>
       
+    <!-- 다시 프로필로 보내는 버튼 -->
         <div class="profileUpdateBtn-area">
           <button id="profileCompeleteBtn">개인정보 수정 완료</button>
         </div>
 
 
-  </form>
 
- 
 
-   
+
   </section>
   </main>
 
@@ -131,9 +140,8 @@
      <th:block th:replace="~{common/footer}"></th:block>
 
 
-   
 
-    <script src="/js/myPage/myPage.js"></script>
+    <script src="/js/myPage/myPageUpdate.js"></script>
 
 </body>
 </html>

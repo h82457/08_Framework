@@ -1,6 +1,7 @@
 package com.project.pawlife.adoption.controller;
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,10 +62,16 @@ public class AdoptionController {
 	public String adoptionDetail(
 			@PathVariable("adoptNo") int adoptNo,
 			Model model,
-			RedirectAttributes ra
+			RedirectAttributes ra,
+			@SessionAttribute(value="loginMember", required = false) Member loginMember
 			) {
 		
 		Map<String, Integer> map = new HashMap<>();
+		if(loginMember!=null) {
+			int memberNo = loginMember.getMemberNo();
+			map.put("memberNo",memberNo);
+		}
+		
 		map.put("adoptNo",adoptNo);
 		
 		
@@ -111,12 +118,12 @@ public class AdoptionController {
 			Adopt inputAdopt,
 			@RequestParam("thumnailImg") MultipartFile thumnailImg,
 			@RequestParam("adoptContent") String adoptContent,
-			@SessionAttribute("loginMember") Member loginMember
+			@SessionAttribute(value="loginMember", required = false) Member loginMember
 			) {
 
 
-		int memberNo = loginMember.getMemberNo(); 
 		
+		int memberNo = loginMember.getMemberNo(); 
 		int result = service.adoptionInsert(inputAdopt,thumnailImg,memberNo);
 		
 		
@@ -145,17 +152,137 @@ public class AdoptionController {
 	@GetMapping("adoptionContact")
 	public String contact() { return "adoption/adoptionContact"; }
 	
-	/** 입양 수정
+	
+	/** 입양 수정 화면 전환
 	 * @return
 	 */
-	@GetMapping("adoptionUpdate")
-	public String adoptionUpdate() {
-		return "adoption/adoptionUpdate";
+	@GetMapping("editAdoption/{adoptNo:[0-9]+}/update")
+	public String adoptionUpdate(
+			@PathVariable("adoptNo") int adoptNo,
+			@SessionAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra,
+			Model model
+			) {
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("adoptNo",adoptNo);
+		Adopt adopt = service.selectOneAdopt(map);
+		
+		
+		String message = null;
+		String path = null;
+		
+		if(adopt == null) {
+			message = "해당 게시글이 존재하지 않습니다.";
+			path = "redirect:/adoption/adoptionList"; // 메인페이지로 리다이렉트 
+			
+			ra.addFlashAttribute("message",message);
+			
+		}else if(adopt.getMemberNo() != loginMember.getMemberNo()) {
+			message = "자신이 작성한 글만 수정할 수 있습니다.";
+			// 해당 글 상세 조회
+			path = String.format("redirect:/adoption/adoptionList/%d",adoptNo);
+			
+			ra.addFlashAttribute("message",message);
+			
+		}else {
+			path ="adoption/adoptionUpdate";
+			
+			// forward의 경우
+			model.addAttribute("adopt",adopt);
+		}
+		
+		return path;
+	}
+	
+	/** 수정하기
+	 * @param adoptNo
+	 * @param adoptInput
+	 * @param loginMember
+	 * @param thumnailImg
+	 * @param deleteOrder
+	 * @param querystring
+	 * @param ra
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
+	@PostMapping("editAdoption/{adoptNo:[0-9]+}/update")
+	public String editAdopt(
+			@PathVariable("adoptNo") int adoptNo,
+			Adopt adoptInput,
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("thumnailImg") MultipartFile thumnailImg,
+			@RequestParam(value="deleteOrder", required=false)String deleteOrder,
+			@RequestParam(value="querystring", required=false, defaultValue="")String querystring,
+			@RequestParam("statusCheck") int statusCheck,
+			RedirectAttributes ra
+			) throws IllegalStateException, IOException{
+		
+		
+		int memberNo = loginMember.getMemberNo();
+		adoptInput.setMemberNo(memberNo);
+		
+		int result = service.adoptUpdate(adoptInput,thumnailImg,statusCheck);
+		
+		String message = null;
+		String path = null;
+		
+		if(result>0) {
+			message = "게시글이 수정되었습니다.";
+			path = String.format("/adoption/adoptionList/%d%s", adoptNo, querystring);
+		}else {
+			message = "수정 실패";
+			path = "update"; // 수정화면 전환 상대 경로
+		}
+		
+		ra.addFlashAttribute("message",message);
+		
+		return "redirect:"+path;
+		
 	}
 	
 	
+	@PostMapping("editAdoption/{adoptNo:[0-9]+}/delete")
+	public String deleteAdopt(
+			@SessionAttribute("loginMember") Member loginMember,
+			@PathVariable("adoptNo") int adoptNo,
+			RedirectAttributes ra
+			) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("adoptNo", adoptNo);
+		
+		int result = service.adoptDelete(map);
+		
+		String path = null;
+		String message = null;
+		
+		if(result>0) {
+			path = "/adoption/adoptionList";
+			message="삭제 되었습니다.";
+		}else {
+			path = "/adoption/adoptionList/"+adoptNo;
+			message="삭제 실패.";
+		}
+		
+		ra.addFlashAttribute("message",message);
+		
+		return "redirect:"+path;
+	}
+	
+	
+	
+	
+	/** 북마크
+	 * @param map
+	 * @return 
+	 */
 	@ResponseBody
-	@PostMapping("bookMark")
+	@PostMapping("bookmark")
 	public int bookMark(
 			 @RequestBody Map<String,Integer> map 
 			) {
@@ -164,6 +291,10 @@ public class AdoptionController {
 		
 		 return service.bookCheck(map);
 	}
+	
+	
+	
+	
 	
 
 }

@@ -3,6 +3,11 @@
 <mapper namespace="com.project.pawlife.adoption.model.mapper.AdoptionMapper">
 
 	<insert id="adoptionInsert"><!-- 2,1 나중에 memberNo, boardCode로 바꾸기 -->
+		
+		<selectKey order="BEFORE" resultType="_int" keyProperty="adoptNo">
+		SELECT SEQ_ADOPT_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
 		INSERT INTO "ADOPT"
 		VALUES(SEQ_ADOPT_NO.NEXTVAL,
 				#{adoptTitle},
@@ -43,10 +48,12 @@
 				READ_COUNT,
 				MEMBER_NO,MEMBER_NICKNAME,PROFILE_IMG,
 				TO_CHAR(ADOPT_WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') ADOPT_WRITE_DATE,
-				TO_CHAR(ADOPT_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS') ADOPT_DATE_DATE,
+				TO_CHAR(ADOPT_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS') ADOPT_DATE_DATE
 				
-				(SELECT COUNT(*) FROM BOOKMARK
-				WHERE ADOPT_NO=#{adoptNo}) BOOKMARK
+				<if test="memberNo!=null">
+				,(SELECT COUNT(*) FROM BOOKMARK
+				WHERE ADOPT_NO=#{adoptNo} AND MEMBER_NO=#{memberNo}) BOOKMARK
+				</if>
 				
 		FROM ADOPT
 		JOIN "MEMBER" USING(MEMBER_NO)
@@ -69,6 +76,36 @@
    	INSERT INTO "BOOKMARK" (MEMBER_NO, ADOPT_NO)
 	VALUES(#{memberNo}, #{adoptNo})
  </insert>
+ 
+ 
+ <!-- 게시글 수정  -->
+ <update id="adoptUpdate">
+ 	UPDATE ADOPT
+ 	SET
+ 	ADOPT_TITLE = #{adoptTitle},
+ 	ADOPT_CONTENT = #{adoptContent},
+ 	
+ 	<if test='thumnail != "none"'>
+ 		THUMNAIL = #{thumnail},
+ 	</if>
+ 	
+ 	ADOPT_NAME = #{adoptName},
+ 	ADOPT_AGE = #{adoptAge},
+ 	ADOPT_TYPE = #{adoptType},
+ 	ADOPT_ADDRESS = #{adoptAddress}
+ 	WHERE ADOPT_NO = #{adoptNo}
+ 	AND BOARD_CODE = 1
+ 	AND MEMBER_NO = #{memberNo} 
+ 
+ </update>
+ 
+ <delete id="adoptDelete">
+ 	UPDATE ADOPT
+ 	SET ADOPT_DEL_FL = 'Y'
+ 	WHERE ADOPT_NO = #{adoptNo}
+ 	AND BOARD_CODE = 1
+ 	AND MEMBER_NO = #{memberNo} 
+ </delete>
  
 	
 </mapper>

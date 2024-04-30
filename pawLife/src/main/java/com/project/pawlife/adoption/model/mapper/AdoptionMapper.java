@@ -47,5 +47,17 @@ public interface AdoptionMapper {
 	 * @return
 	 */
 	int insertBookCheck(Map<String, Integer> map);
+
+	/** 수정
+	 * @param adoptInput
+	 * @return
+	 */
+	int adoptUpdate(Adopt adoptInput);
+
+	/** 삭제
+	 * @param map
+	 * @return
+	 */
+	int adoptDelete(Map<String, Integer> map);
 	
 }

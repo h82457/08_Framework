@@ -63,6 +63,11 @@ body{
   color: black;
 }
 
+.right-bar{
+    padding: 10px 0;
+}
+
+
 
 /* 프로필 이미지 */
 #profile{
@@ -74,8 +79,10 @@ body{
 .bookmark{
     display: flex;
     justify-content: end;
-   
     cursor: pointer;
+}
+#bookmarkCheck{
+    color: #0c8aff;
 }
 
 .view-count{

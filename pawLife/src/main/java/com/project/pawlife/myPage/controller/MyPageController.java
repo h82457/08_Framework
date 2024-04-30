@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,6 +48,13 @@ public class MyPageController {
    public String profileUpdate() {
       
       return "myPage/myPage-profileupdate";
+   }
+   
+  // myPage 수정 화면에서 프로필로 보내줌
+   @GetMapping("myPage-first")
+   public String profileUpdateComplete() {
+      
+      return "myPage/myPage-first";
    }
 
 
@@ -88,6 +96,11 @@ public class MyPageController {
 	}
 
    
+    /** 로그인한 회원이 북마크한 게시물 조회
+     * @param loginMember
+     * @param ra
+     * @return bookmarkList
+     */
     @GetMapping("selectBookMark")
     public List<Adopt> selectBookMark(
     	@SessionAttribute("loginMember") Member loginMember, 
@@ -100,7 +113,96 @@ public class MyPageController {
     	
     	return bookmarkList;
     }
+    
+    
+   @PostMapping("profileUpdate")
+   public String profileUpdate(
+		   Member inputMember,
+		   @SessionAttribute("loginMember") Member loginMember,
+		   RedirectAttributes ra
+		   ) {
+      
+	   // inputMember에 로그인한 회원 번호 추가
+	   int memberNo = loginMember.getMemberNo();
+	   inputMember.setMemberNo(memberNo);
+	   
+	   // 회원 정보 수정 서비스
+	   int result = service.profileUpdate(inputMember);
+	   
+	   String message= null;
+	   
+	   if(result>0) {
+		   message="회원 정보가 수정되었습니다";
+		   
+		   // loginMember에 저장된 정보 입력한 정보로 수정
+		   loginMember.setMemberNickname(inputMember.getMemberNickname());
+			loginMember.setMemberTel(inputMember.getMemberTel());
+	   } else {
+		   message="회원 정보가 수정되지 않았습니다";
+	   }
+       
+	   ra.addFlashAttribute("message",message);
+	   
+       return "redirect:/myPage/myPage-profileupdate";
+   }
+   
+   @PostMapping("changePw")
+   public String changeMemberPw(
+		   @SessionAttribute("loginMember") Member loginMember,
+		   @RequestParam("currentPw") String currentPw,
+		   @RequestParam("newPw") String newPw,
+		   RedirectAttributes ra
+		   ) {
+	   
+	   
+	   int memberNo = loginMember.getMemberNo();
+	   
+	   int result = service.changeMemberPw(memberNo, currentPw, newPw);
+	   
+	   String path = null;
+	   String message = null;
+	   
+		if(result>0) {
+			message=("비밀번호가 변경 되었습니다.");
+		
+			path="/myPage/myPage-profileupdate";
+		}else {
+		 message = "현재 비밀번호가 일치하지 않습니다.";
 
+		 path= "/myPage/myPage-profileupdate";
+		}
+		
+		 ra.addFlashAttribute("message",message);
+		 return "redirect:" +path;
+   }
+   
+   
+   @PostMapping("memberdel")
+   public String memberDel(
+		   @SessionAttribute("loginMember") Member loginMember,
+		   SessionStatus status,			
+			 RedirectAttributes ra
+		   ) {
+	   
+	   int memberNo = loginMember.getMemberNo();
+	   int result = service.deleteMember(memberNo);
+	   
+	   String path = null;
+	   String message = null;
+	   
+	   if(result > 0) {
+		   message = "탈퇴 되었습니다";
+		   status.setComplete();
+		   path="/";
+	   }else {
+		   message = "탈퇴 실패하였습니다";
+		   path = "/myPage/myPage-first";
+	   }
+	   
+	   ra.addFlashAttribute("message",message);
+	   return "redirect:" + path;
+   }
+   
    
    /**
 	 * 프로필 이미지 변경
@@ -134,7 +236,7 @@ public class MyPageController {
 
 		ra.addFlashAttribute("message", message);
 
-		return "redirect:profile";
+		return "redirect:/myPage/myPage-first";
 	}
 
 }

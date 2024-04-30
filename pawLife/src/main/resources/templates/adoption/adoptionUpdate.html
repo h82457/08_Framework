@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>입양 게시판 글쓰기</title>
+    <title>입양 게시판 수정 페이지</title>
     <th:block th:replace="~{common/common}"></th:block>
-    <link rel="stylesheet" href="/css/adoption/adoption-write.css">
+    <link rel="stylesheet" href="/css/adoption/adoption-update.css">
 </head>
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
        
        
-        <from action="/adoptionWrite">
+        <form th:action="@{update}" id="adoptUpdateForm" th:object="${adopt}" method="POST" enctype="multipart/form-data">
             <section class="board">
     
     
-                <h1><input type="text" placeholder="제목" id="inputTitle"></h1>
+                <h1><input type="text" placeholder="제목" name="adoptTitle" id="adoptTitle" th:value="*{adoptTitle}"></h1>
     
     
     
@@ -27,34 +27,36 @@
 
                         <!-- 이미지 칸 -->
                         <div class="info-img">
-                            <label for="thumnail">
-                                <img class="preview" src="">
-                            </label>
-                            <input type="file" class="adoption-img" id="thumnail" accept="image/*">
+                                <label for="thumnail">
+                                    <img class="preview" th:src="*{thumnail}">
+                                </label>
+                                <input type="file" class="adoption-img" name="thumnailImg" id="thumnail" accept="image/*">
                             <span class="delete-image">&times;</span>
                         </div>
 
                         <!-- 양식 -->
                         <div class="infomation">
-                            <input type="text" placeholder="이름"><br>
-                            <input type="text" placeholder="나이"><br>
-                            <input type="text" placeholder="종"><br>
-                            <input type="text" placeholder="발견장소"><br>
+                            <input type="text" id="adoptName" name="adoptName" placeholder="이름" th:value="*{adoptName}"><br>
+                            <input type="text" id="adoptAge" name="adoptAge" placeholder="나이" th:value="*{adoptAge}"><br>
+                            <input type="text" id="adoptType" name="adoptType" placeholder="종" th:value="*{adoptType}"><br>
+                            <input type="text" id="adoptAddress" name="adoptAddress" placeholder="발견장소" th:value="*{adoptAddress}"><br>
                         </div>
 
     
                     </div>
 
 
-                    <textarea name="adoptionContent" id="adoptionContent" cols="100" rows="10" placeholder="내용 입력"></textarea>
+                    <textarea name="adoptContent" id="adoptContent" cols="100" rows="10" placeholder="내용 입력" th:text="*{adoptContent}"></textarea>
 
 
                     <button id="updateBtn">수정하기</button>
+
+                    <input type="hidden" name="statusCheck" value="-1">
     
                 </section>
 
             </section>
-        </from>
+        </form>
 
 
 
@@ -68,11 +70,20 @@
         var oEditors = [];
         nhn.husky.EZCreator.createInIFrame({
          oAppRef: oEditors,
-         elPlaceHolder: "adoptionContent",
+         elPlaceHolder: "adoptContent",
          sSkinURI: "/smarteditor/SmartEditor2Skin.html",
          fCreator: "createSEditor2"
         });
-        </script>
+
+
+    </script>
+
+    <script>
+        const thumnailImage =/*[[${adopt.thumnail}]]*/ "썸네일";
+    </script>
+
+
+    <script src="/js/adoption/adoptionUpdate.js"></script>
 
     
 </body>

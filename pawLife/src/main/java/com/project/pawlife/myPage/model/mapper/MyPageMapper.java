@@ -1,6 +1,7 @@
 package com.project.pawlife.myPage.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -33,6 +34,30 @@ public interface MyPageMapper {
 	 * @return result
 	 */
 	int profile(Member mem);
+
+	/** 개인 정보 수정(닉네임/ 전화번호)
+	 * @param inputMember
+	 * @return result
+	 */
+	int profileUpdate(Member inputMember);
+
+	/** 비밀번호 대조
+	 * @param memberNo
+	 * @return
+	 */
+	String selectPw(int memberNo);
+
+	/** 비밀번호 수정
+	 * @param map
+	 * @return
+	 */
+	int changeMemberPw(Map<String, Object> map);
+
+	/** 회원 탈퇴
+	 * @param memberNo
+	 * @return
+	 */
+	int deleteMember(int memberNo);
 
 
 }

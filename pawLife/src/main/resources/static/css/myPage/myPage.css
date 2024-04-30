@@ -302,7 +302,24 @@
   font-size: 15px;
 }
 
+/* 비밀번호 변경 공간 */
+.profile-updatecontent{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  
+}
+.profile-updatebox{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  
+}
 
+.profile-updatebox >*{
+
+margin-top: 10px;
+}
 /* 비밀번호, 닉네임, 전화번호 부분 */
 
 
@@ -439,7 +456,7 @@
   #deleteImage{
     position: absolute;
     top: 0px;
-    right: 100px;
+    right: 20px;
     cursor: pointer;
   }
   

@@ -3,9 +3,9 @@
 <mapper namespace="com.project.pawlife.review.model.mapper.ReviewMapper">
 
 	<!-- 후기 게시글 작성 -->
-	<insert id="reviewWrite"><!-- 뒤에서2번째 memberNo로 바꾸기 -->
+	<insert id="reviewWrite">
 		INSERT INTO "REVIEW"
-		VALUES(SEQ_REVIEW_NO.NEXTVAL, #{reviewTitle}, #{reviewContent}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 2)
+		VALUES(SEQ_REVIEW_NO.NEXTVAL, #{reviewTitle}, #{reviewContent}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{memberNo}, 2, #{thumnail})
 	</insert>
 	
 	<!-- 삭제되지 않은 게시글 수 조회 -->
@@ -25,15 +25,9 @@
 	<select id="selectOneReview">
 		SELECT REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, READ_COUNT, MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG,
 				TO_CHAR(REVIEW_WRITE_DATE,'YYYY-MM-DD HH24:MI:SS') REVIEW_WRITE_DATE,
-				TO_CHAR(REVIEW_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS') REVIEW_DATE_DATE,
-				
-				(SELECT COUNT(*) FROM BOOKMARK
-				WHERE REVIEW_NO = #{reviewNo} ) BOOKMARK
-				
+				TO_CHAR(REVIEW_UPDATE_DATE,'YYYY-MM-DD HH24:MI:SS') REVIEW_UPDATE_DATE
 		FROM "REVIEW"
 		JOIN "MEMBER" USING(MEMBER_NO)
-		WHERE REVIEW_DEL_FL='N'
-		AND BOARD_CODE=2
-		AND REVIEW_NO=#{reviewNo}
+		WHERE REVIEW_DEL_FL='N' AND BOARD_CODE = 2 AND REVIEW_NO = #{reviewNo}
 	</select>
 </mapper>

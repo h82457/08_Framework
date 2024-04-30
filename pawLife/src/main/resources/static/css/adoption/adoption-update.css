@@ -54,6 +54,7 @@ body{
     flex-direction: column;
 }
 
+
 /* 동물 정보 박스 */
 .info-box{
     display: flex;
@@ -64,6 +65,7 @@ body{
 /* 이미지 인풋*/
 .adoption-img{
     display: none;
+    width: 100%;
 }
 
 /* 이미지 칸 */
@@ -74,6 +76,12 @@ body{
     text-align: center;
     position: relative;
     margin-right: 20px;
+}
+
+.preview{
+    height: 350px;
+    width: 250px;
+    object-fit: cover;
 }
 
 /* 삭제 버튼 */

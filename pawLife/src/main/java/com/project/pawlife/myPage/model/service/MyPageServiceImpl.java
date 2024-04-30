@@ -3,9 +3,13 @@ package com.project.pawlife.myPage.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,11 +25,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional(rollbackFor = Exception.class) // 모든 예외 발생 시 롤백
 @RequiredArgsConstructor
-//@PropertySource("classpath:/config.properties") // config에서 가져와서 쓰겠다는 의미
+@PropertySource("classpath:/config.properties") // config에서 가져와서 쓰겠다는 의미
 public class MyPageServiceImpl implements MyPageService{
 
 	
 	private final MyPageMapper mapper;
+	
+	private final BCryptPasswordEncoder bcrypt;
 	
 	@Value("${my.profile.web-path}")  // /myPage/profile/
 	private String profileWebPath;
@@ -56,6 +62,44 @@ public class MyPageServiceImpl implements MyPageService{
 	
 		return mapper.selectBookMark(memberNo);
 	}
+	
+	// 개인 정보 수정(닉네임/전화번호)
+	@Override
+	public int profileUpdate(Member inputMember) {
+		
+		return mapper.profileUpdate(inputMember);
+	}
+	
+	   // 개인 정보 수정 (비밀번호)
+		@Override
+		public int changeMemberPw(int memberNo, String currentPw, String newPw) {
+			
+			// 암호화된 비밀번호 조회
+			String pw = mapper.selectPw(memberNo); 
+			
+			
+			 if(!bcrypt.matches(currentPw, pw)) {
+				 
+				 return 0;
+			 }
+			 
+			 // 새 비밀번호 암호화
+			 String encPw = bcrypt.encode(newPw);
+			 
+			 // 성공하면 새 Map 객체 생성
+			 Map<String, Object> map = new HashMap<>();
+			 
+			 map.put("memberNo", memberNo);
+			 map.put("encPw", encPw);
+			 
+			 
+			 int result = mapper.changeMemberPw(map);
+			
+			
+			return result;
+		}
+
+
 
 
 	// 프로필 이미지 변경
@@ -110,6 +154,19 @@ public class MyPageServiceImpl implements MyPageService{
 		}
 		return result;
 	}
+
+
+	// 회원 탈퇴
+	@Override
+	public int deleteMember(int memberNo) {
+		
+		int result = mapper.deleteMember(memberNo);
+		
+		return result;
+	}
+
+
+
 
 
 
