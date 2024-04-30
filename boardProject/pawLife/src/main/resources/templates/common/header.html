@@ -1,0 +1,40 @@
+<header>
+
+    <!-- th:src="${session.loginMember.profileImg ?: user }"  
+        // 나중에 프로필 파일 올리기 하고 추가 -->
+        
+    <!-- 로그인, 회원가입 -->
+    <section class="header-top-menu">
+        <div class="login-area">
+            <div class="login-box">
+                <a href="/myPage/first">
+                    <img th:with="user=#{user.default.image}" 
+                      th:src="${user}"  
+                      id="memberProfile"
+                      alt="프로필 이미지">
+                </a>
+            </div>
+            <div class="login-acontainer">
+                <a href="/member/login">로그인</a>|<a href="/member/signup">회원가입</a>|<a href="/member/logout" id="logoutBtn">로그아웃</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 로고(사진, 글) -->
+    <section class="home-logo-area">
+        <a href="/"><img src="/images/logo.png" alt="메인 로고" id="homeLogoImage"></a>
+        <a href="/" id="homeLogoTitle">PAWLIFE</a>  
+    </section>
+
+    <!-- 네비게이션 바 -->
+    <section>
+        <nav>
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/adoption/adoptionList">입양</a></li>
+                <li><a href="/review/reviewList">후기</a></li>
+                <li><a href="/myPage/first">마이페이지</a></li>
+            </ul>
+        </nav>
+    </section>
+</header>

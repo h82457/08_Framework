@@ -25,7 +25,19 @@ public class Review {
    private String reviewDelFl;
    private int memberNo;
    private int boardCode;
+   private String thumnail;
    
+   // Comment
+   private int commentNo;
+   private String commentContent;
+   private String commentWriteDate;
+   private String commentDelFl;
+
+   
+	// 댓글 조회시 회원 프로필,닉네임
+	private String memberNickname;
+	private String profileImg;
+	   
    
    
 }

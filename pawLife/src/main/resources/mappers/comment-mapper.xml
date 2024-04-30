@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN " "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.pawlife.review.model.mapper.CommentMapper">
+	
+	<!-- 댓글 목록 조회 -->
+	<select id="select">
+		SELECT COMMENT_NO, REVIEW_NO, MEMBER_NO, MEMBER_NICKNAME, COMMENT_CONTENT , TO_CHAR(COMMENT_WRITE_DATE, 'YYYY"년" MM"월" DD"일"') COMMENT_WRITE_DATE
+		FROM "COMMENT"
+		JOIN MEMBER USING(MEMBER_NO)
+		WHERE REVIEW_NO = #{reviewNo} AND COMMENT_DEL_FL = 'N'
+		ORDER BY COMMENT_WRITE_DATE
+	</select>
+
+	<!-- 댓글 등록 -->
+	<insert id="insert">
+		INSERT INTO "COMMENT"
+		VALUES(SEQ_COMMENT_NO.NEXTVAL, #{commentContent}, DEFAULT, #{memberNo}, #{reviewNo}, DEFAULT)
+	</insert>
+		
+	<!-- 댓글 수정 -->
+	<update id="update">
+		UPDATE "COMMENT" SET COMMENT_CONTENT  = #{commentContent}
+		WHERE COMMENT_NO = #{commentNo} AND MEMBER_NO = #{memberNo}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="delete">
+		UPDATE "COMMENT" SET COMMENT_DEL_FL = 'Y'
+		WHERE COMMENT_NO = #{commentNo}
+	</delete>
+
+	
+</mapper>

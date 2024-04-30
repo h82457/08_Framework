@@ -81,5 +81,26 @@ public Member login(Member inputMember) {
 		
 		return mapper.signup(inputMember);
 	}
+
+	// 이메일 중복 검사
+	@Override
+	public int emailCheck(String memberEmail) {
+		
+		return mapper.emailCheck(memberEmail);
+	}
+
+	// 닉네임 중복 검사
+	@Override
+	public int checkNickname(String memberNickname) {
+		
+		return mapper.checkNickname(memberNickname);
+	}
+
+	// 전화번호 중복 검사
+	@Override
+	public int checkTel(String memberTel) {
+		
+		return mapper.checkTel(memberTel);
+	}
 		
 }

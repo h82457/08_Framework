@@ -13,6 +13,7 @@
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
+<<<<<<< HEAD
         
         <form action="/review/reviewWrite" method="POST" id="upload">
             <section class="board">
@@ -30,6 +31,30 @@
                     <textarea class="form-control" id="ckeditor" name="ckeditor"	rows="3">${bbs.content}</textarea>
                     <textarea name="reviewContent" id="editor"></textarea> -->
                     <!--  -->
+=======
+
+        <form action="/review/reviewWrite" method="POST" id="submitPost"  enctype="multipart/form-data">
+            <section class="board">
+                <section class="board-box">
+
+                <!-- 에디터 -->
+                <h1><input type="text" placeholder="제목" name="reviewTitle" id="reviewTitle"></h1>
+                
+
+                <textarea name="reviewContent" id="reviewContent" cols="100" rows="10" placeholder="내용을 입력해주세요."></textarea>
+               
+                <!-- 이미지 -->
+                <div class="info-img">
+                    <label for="thumnail">
+                        <img class="preview" src="" id="preview">
+                    </label>
+                    <input type="file" class="review-img" id="thumnail" name="thumnailImg" accept="image/*">
+                    <span class="delete-image">&times;</span>
+                </div>
+                    
+                    
+                    
+>>>>>>> c28837a1946e008b1ff30a17a628d52b56b6ac71
                     <button>글작성</button>
 
                 </section>

@@ -13,12 +13,12 @@
         <th:block th:replace="~{common/header}"></th:block>
        
        
-        <section class="board">
+        <section class="board" th:object="${review}">
 
 
             <div class="title-area">
-                <h1>제목</h1>
-                <div class="btn-area">
+                <h1 th:text="*{reviewTitle}">제목</h1>
+                <div class="btn-area" th:if="${session.loginMember?.memberNo==review.memberNo}">>
                     <button class="update-btn">수정</button>
                     <button class="delete-btn">삭제</button>
                 </div>
@@ -27,14 +27,18 @@
 
             <div class="info-bar">
                 <div class="info">
-                <img src="/images/cat1.jpg" id="profile">
-                <th:block>회원명</th:block>
+                <img th:src="*{profileImg}" id="profile">
+                <th:block th:text="*{memberNickname}">회원명</th:block>
             </div>
 
             <div class="right-bar">
                 <div class="view-count">
                     <i class="fa-regular fa-eye"></i>
-                    <th:block>조회수</th:block>
+                    <th:block th:text="*{readCount}">조회수</th:block>
+                </div>
+                <div class="view-count">
+                    <th:block>작성일</th:block>
+                    <th:block th:text="*{reviewWriteDate}">yyyy-mm-dd</th:block>
                 </div>
             </div>
 
@@ -46,9 +50,9 @@
 
             <section class="board-box">
                 <div class="info-box">
-                    <img src="/images/cat1.jpg" class="adoption-img">
+                    <img th:src="*{thumnail}" class="reviewion-img">
                 </div>
-                <th:block class="reviewContent">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리 나라만세</th:block>
+                <th:block class="reviewContent" th:utext="*{reviewContent}"></th:block>
             </section>
 
 
@@ -63,8 +67,14 @@
         </section>
 
     </main>
+
+    <script th:inline="javascript">
+        const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호"; 
+        const reviewNo = /*[[${review.reviewNo}]]*/ "리뷰 게시글 번호";
+    </script>
+
     <th:block th:replace="~{common/footer}"></th:block> 
     <script src="/js/review/reviewDetail.js"></script>
-    
+
 </body>
 </html>

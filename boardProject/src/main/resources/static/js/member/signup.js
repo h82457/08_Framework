@@ -45,7 +45,7 @@ function execDaumPostcode() {
 
 
    /* 이메일 유효성 검사 */
-//    1) 이메일 유효성 검사시 사용할 요소 어더옹기
+//    1) 이메일 유효성 검사시 사용할 요소 얻어오기
 const memberEmail = document.querySelector("#memberEmail");
 const emailMessage = document.querySelector("#emailMessage");
 
@@ -197,10 +197,6 @@ memberPwConfirm.addEventListener("input", () => {
 });
 
 /* 닉네임 유효성 검사 */
-
-
-
-
 const memberNickname = document.querySelector("#memberNickname");
 const nickMessage = document.querySelector("#nickMessage");
 
@@ -464,8 +460,5 @@ checkAuthKeyBtn.addEventListener("click", () => {
       authKeyMessage.classList.add("confirm");
   
       checkObj.authKey = true; // 인증번호 검사여부 true
-  
     })
-  
-  
   });

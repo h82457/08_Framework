@@ -47,6 +47,14 @@ public class FileConfig implements WebMvcConfigurer{
 	@Value("${my.board.resource-location}")
 	private String boardResourceLocation;
 	
+	// 게시글 이미지 요청 주소
+	@Value("${my.adopt.resource-handler}")
+	private String adoptResourceHandler; 
+	
+	// 게시글 이미지 요청 시 연결할 서버 폴더 경로
+	@Value("${my.adopt.resource-location}")
+	private String adoptResourceLocation;
+	
 	
 	
 
@@ -68,6 +76,13 @@ public class FileConfig implements WebMvcConfigurer{
 		registry
 		.addResourceHandler(boardResourceHandler) 
 		.addResourceLocations(boardResourceLocation);
+		
+		// 입양 게시글
+		registry
+		.addResourceHandler(adoptResourceHandler) 
+		.addResourceLocations(adoptResourceLocation);
+		
+		//
 		
 		
 		

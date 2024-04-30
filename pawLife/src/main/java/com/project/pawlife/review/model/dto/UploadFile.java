@@ -17,10 +17,8 @@ public class UploadFile {
 	private String filePath;
 	private String fileOriginalName;
 	private String fileRename;
-	private String fileUploadDate;
+	private String uploadDate;
 	private int adoptNo;
 	private int reviewNo;
 	private int memberNo;
-	private String fileFullpath;
-	
 }

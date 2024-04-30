@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.kh.project.board.model.dto.Comment;
@@ -43,6 +44,7 @@ public class CommentController {
 	 * @param comment
 	 * @return result
 	 */
+	@ResponseBody
 	@PostMapping("")
 	public int insert(@RequestBody Comment comment) { return service.insert(comment); }
 //						ㄴ> 요청 데이터가 패치의 헤더에서 JSON으로 명시되어 전달됨

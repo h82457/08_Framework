@@ -145,10 +145,10 @@ public class MemberController {
 	 * @return
 	 */
 	@PostMapping("signup")
-	public String signup(/* @ModelAttribute */ Member inputMember, @RequestParam("memberAddress") String[] memberAddress, RedirectAttributes ra) {
+	public String signup(/* @ModelAttribute */ Member inputMember, RedirectAttributes ra) {
 		
 		// 회원가입 서비스 호출
-		int result = service.signup(inputMember, memberAddress);
+		int result = service.signup(inputMember);
 		
 		String path = null;
 		String message = null;
@@ -161,7 +161,7 @@ public class MemberController {
 		} else {
 			
 			message = "회원가입 실패";
-			path = "signup";
+			path = "/signup";
 		}
 		
 		ra.addFlashAttribute("message", message);
