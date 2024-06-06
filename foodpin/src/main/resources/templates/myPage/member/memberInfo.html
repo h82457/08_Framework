@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 수정</title>
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/myPage/myPage-style.css">
+    <link rel="stylesheet" href="/css/myPage/member-myPage.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+
+        <div class="myPage-container">
+
+            <!-- templetes/myPage/store/storeSide.html  조각 추가 -->
+            <th:block th:replace="~{myPage/member/memberSide}"></th:block>
+            
+            <hr>
+      
+            <!-- 마이페이지 본문 -->
+            <section class="content-container">
+      
+                <!-- 타이틀 영역 -->
+                <div class="myPage-title-container">
+                    <section class="myPage-title">회원 정보 수정</section>
+         
+                    <!-- 서브타이틀 버튼 -->
+                    <section class="myPage-sub-title">
+                        <button class="sub-title-btn" id="infoBtn">기본 정보</button>
+                        <button class="sub-title-btn" id="changePwBtn">비밀번호 변경</button>
+                    </section>
+                    
+                    <section id="infoContainer">
+                        <form action="memberInfo" method="POST" name="member-myPageFrm" id="updateInfo" enctype="multipart/form-data">
+                            <div class="profile-img-area">
+                                <label for="profileInput">
+                                <img th:with="user=#{user.default.image}"
+                                     th:src="${session.loginMember.profileImg ?: user}" 
+                                     id="profileImg">
+                                </label> 
+                                <input type="file" id="profileInput" name="uploadImg" style="display: none;" accept="image/*"> 
+                            </div>
+                                    
+                            <span id="deleteImage">&times;</span>
+                            
+                            <div class="profile-input-area">
+                                <div class="member-myPage-row">
+                                    <label>닉네임</label> 
+                                    <input type="text" name="memberNickname" 
+                                    id="memberNickname" maxlength="10"
+                                    th:value="${session.loginMember.memberNickname}">
+                                </div>
+
+                                <div class="member-myPage-row">
+                                    <label>이메일</label> 
+                                    <input type="text" name="memberEmail" 
+                                    id="memberEmail"
+                                    th:value="${session.loginMember.memberEmail}">
+                                </div>
+
+                                <div class="member-myPage-row">
+                                    <label>전화번호</label> 
+                                    <input type="text" name="memberTel" 
+                                    id="memberTel" maxlength="11"
+                                    th:value="${session.loginMember.memberTel}">
+                                </div>
+                                
+                                
+                            </div>
+
+                            <button class="updateInfo">회원 정보 수정</button>
+                        </form>
+                    </section>
+
+
+                    <!-- 비밀번호 변경 -->
+                    <section id="changePwContainer">
+                        <form action="memberChangePw" method="POST" name="member-myPageFrm" id="memberChangePw">
+                            <div class="member-changePw-row">
+                                <label>현재 비밀번호</label>
+                                <input type="password" name="currentPw" id="currentPw" maxlength="20">
+                            </div>
+
+                            <div class="member-changePw-row">
+                                <label>새 비밀번호</label>
+                                <input type="password" name="newPw" id="newPw" maxlength="20">
+                            </div>  
+                            <span class="changePwMessage">영어,숫자,특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
+                            
+                            <div class="member-changePw-row">
+                                <label>새 비밀번호 확인</label>
+                                <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="20">
+                            </div>
+                            <button class="member-changePw-submit">변경하기</button>
+                        </form>
+                      
+                    </section>
+                </div>
+      
+            </section>
+      
+        </div>
+
+    </main>
+
+    <script th:inline="javascript">
+        const loginMember = /*[[${session.loginMember}]]*/ "로그인 회원 정보";
+        const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "회원 프로필 이미지";
+    </script>
+
+    <th:block th:replace="~{common/footer}"></th:block> 
+
+    <script src="/js/main.js"></script>
+    <script src="/js/myPage/member/info.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<div class="notification-area" id="notificationArea" >
+    
+    <button type="button" id="myNotification" class="notification-bell-btn fa-regular fa-bell" th:if="${session.loginMember}">
+        <span class="notReadCount"></span> <!-- 안읽은 알림 개수 -->
+    </button>
+
+    <div th:unless="${session.loginMember}" class="temp"></div>
+
+    <div class="box-content">
+        <div class="notification-header">
+            <p class="title">알림</p>
+        </div>
+
+        <!-- memberCode == 1 -->
+        <div class="notification-view">   
+
+            <div class="pre-notification">
+                <p class="title">이전 알림</p>
+            </div>
+
+            <!-- 비동기?? -->
+            <th:block th:replace="~{reservation/notificationCategory}"></th:block>
+
+            <!-- notiList -->
+            <div class="notification-list">
+
+                <!-- notoItem -->
+                <!-- <div class="notification-item"> -->
+
+                    <!-- notiText -->
+                    <!-- <div class="notification-text"> -->
+
+                        <!-- border -->
+                        <!-- 반복 -->
+                        <div class="border">
+
+                            <!-- contentContainer -->
+                            <div class="notification-content-container"> 
+                                
+                                <!-- reservationInfo -->
+                                <div class="reservation-info">
+                                    
+                                    <!-- storeLogo -->
+                                    <img src="#" alt="가게로고" class="image" id="image" name="storeLogo">
+                                    
+                                    <!-- notiTitle -->
+                                    <span class="notification-store" name="storeName">가게이름, 관리자 </span>
+                                    
+                                    <!-- notiDate -->
+                                    <span class="notification-date" id="notificationDate" name="notificationDate">5분전</span>
+
+                                    <!-- xmark -->
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                </div>
+
+                                <!-- notiContent -->
+                                <div class="notification-content">
+
+                                    <!-- notiMessage -->
+                                    <div class="notification-message">
+
+                                        <!-- reserDate -->
+                                        <!-- <b>5.13.(목) 오후 06:00</b>
+
+                                        예약이 확정되지 않았습니다. -->
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        
+                       </div>
+                    <!-- </div> -->
+
+                <!-- </div> -->
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>

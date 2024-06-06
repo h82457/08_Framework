@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.foodpin.myPage.model.mapper.StoreMyPageMapper">
+
+	<!-- 리뷰 조회 resultMap -->
+	<resultMap type="Review" id="review_rm">
+
+	
+		<id property="reviewNo" column="REVIEW_NO"/>
+		
+		<collection 
+			property="uploadList"
+			select = "uploadImageList"
+			column = "REVIEW_NO"
+			javaType = "java.util.ArrayList"
+			ofType = "UploadImage"
+		/>
+		
+		<collection 
+			property="hashList"
+			select = "selectHashList"
+			column = "REVIEW_NO"
+			javaType = "java.util.ArrayList"
+			ofType = "ReviewHash"
+		/>
+		
+		<collection 
+			property="replyList"
+			select = "selectReplyList"
+			column = "REVIEW_NO"
+			javaType = "java.util.ArrayList"
+			ofType = "ReviewReply"
+		/>
+		
+	</resultMap>
+
+
+
+	<!-- *** 가게 정보 *** -->
+	
+	<!-- 가게 정보 수정 화면 이동 -->
+	<select id="selectstoreInfo">
+		SELECT STORE_NO, STORE_IMG, STORE_NAME, STORE_TEL, STORE_LOCATION, OPEN_HOUR, CLOSE_HOUR, 
+			BREAKTIME_START, BREAKTIME_END, STORE_STATUS, STORE_MAX_NUMBER, STORE_MAX_TABLE, STORE_INFO
+			
+		FROM "STORE"
+		WHERE STORE_NO = (
+			SELECT STORE_NO
+			FROM "STORE"
+			JOIN MEMBER USING(MEMBER_NO)
+			WHERE MEMBER_NO = #{memberNo}
+		)
+	</select>
+	
+	<!-- 가게 정보 수정 -->
+	<update id="storeInfoUpdate">
+		UPDATE "STORE" SET STORE_IMG = #{storeImg}, STORE_STATUS = 'Y', 
+			STORE_MAX_NUMBER = #{storeMaxNumber}, STORE_MAX_TABLE = #{storeMaxTable}, 
+			OPEN_HOUR = #{openHour}, CLOSE_HOUR = #{closeHour}, 
+			BREAKTIME_START = #{breaktimeStart}, BREAKTIME_END = #{breaktimeEnd}, STORE_INFO = #{storeInfo}
+		WHERE STORE_NO =(
+			SELECT STORE_NO FROM "STORE"
+			JOIN MEMBER USING(MEMBER_NO)
+			WHERE MEMBER_NO = #{memberNo}
+		)
+	</update>
+	
+	<!-- *** 메뉴 정보 *** -->
+	
+	<!--  메뉴 조회  -->
+	<select id="menuSelect">
+	SELECT MENU_NO, MENU_IMG_URL, MENU_TITLE, MENU_AMOUNT, MENU_CONTENT 
+	FROM "MENU" WHERE STORE_NO = #{storeNo} AND MENU_FL = 'N'
+	</select>
+	
+	<!-- 메뉴 번호 조회 -->
+	<select id="selectMenuNo">
+		SELECT MENU_NO 
+		FROM "MENU"
+		WHERE STORE_NO = #{storeNo} AND MENU_TITLE = #{menuTitle} AND MENU_FL = 'N'
+	</select>
+	
+	<!-- 메뉴 삭제 -->
+	<update id="deleteAllMenu">
+		UPDATE "MENU" SET MENU_FL = 'Y' WHERE STORE_NO = #{storeNo}
+	</update>
+	
+	<!-- 메뉴 등록 -->
+	<insert id="insertMenu">
+		INSERT INTO "MENU" VALUES(SEQ_MENU_NO.NEXTVAL, #{menuTitle}, 
+		#{menuAmount}, #{menuContent}, #{menuImgUrl}, #{storeNo}, DEFAULT)
+	</insert>
+	
+	<!-- 완전히 동일한 메뉴인지 조회 -->
+	<select id="selectSameMenuNo">
+		SELECT COUNT(*) FROM "MENU"
+		WHERE STORE_NO = #{storeNo} AND MENU_TITLE = #{menuTitle} AND MENU_AMOUNT = #menuAmount}
+			AND MENU_CONTENT = #{menuContent} AND MENU_IMG_URL #{menuImgUrl} AND MENU_FL = 'N';
+	</select> 
+	
+	
+	<!-- *** 휴무일 정보 *** -->
+
+	<!-- 기존 고정 휴무일 삭제 -->
+	<select id="countOffWeek">
+		SELECT COUNT(*) FROM "OFF_WEEK" WHERE STORE_NO = #{storeNo}
+	</select>
+	
+	<!-- 기존 고정 휴무일 삭제 -->
+	<delete id="deleteOffWeek">
+		DELETE FROM "OFF_WEEK" WHERE STORE_NO = #{storeNo}
+	</delete>
+	
+	<!-- 해당하는 결과가 없을 경우 등록 -->
+	<insert id="insertOffWeek">
+		INSERT INTO "OFF_WEEK" VALUES(SEQ_WEEK_OFF_NO.NEXTVAL, #{storeNo}, #{offWeek})
+	</insert>
+	
+	<!-- 고정 휴무일 조회 -->
+	<select id="selectWeekOff">
+		SELECT OFF_WEEK FROM "OFF_WEEK" WHERE STORE_NO = #{storeNo}
+	</select>
+	
+	<!-- 지정 휴무일 조회 (달력) -->
+	<select id="calendarOffSelect">
+		SELECT OFF_DAY_NO, OFF_DAY_TITLE, TO_CHAR(OFF_DAY_START, 'YYYY-MM-DD') OFF_DAY_START, 
+			TO_CHAR(OFF_DAY_END, 'YYYY-MM-DD') OFF_DAY_END
+		FROM "OFF_DAY"
+		WHERE STORE_NO = #{storeNo}
+	</select>
+	
+	<!-- 지정 휴무일 등록 -->
+	<insert id="calendarOffInsert">
+		INSERT INTO "OFF_DAY" VALUES(SEQ_DAY_OFF_NO.NEXTVAL, #{offDayTitle}, 
+		#{offDayStart}, #{offDayEnd}, #{storeNo})
+	</insert>
+	
+	
+	<!-- *** 예약 *** -->
+	
+	<!-- 전체 예약 조회 -->
+	<select id="reservAll">
+		SELECT MEMBER_NAME, RESERV_NO, MEMBER_TEL, TO_CHAR(RESERV_DATE, 'YYYY"년" MM"월" DD"일"') RESERV_DATE, 
+			RESERV_TIME, RESERV_COUNT, RESERV_REQUEST, RESERV_STATUS_FL, STORE_NO
+		FROM "RESERVATION"
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE STORE_NO = (
+			SELECT STORE_NO
+			FROM "STORE"
+			JOIN MEMBER USING(MEMBER_NO)
+			WHERE MEMBER_NO = #{memberNo}
+		)
+		ORDER BY RESERV_DATE
+	</select>
+	
+	<!-- 예약 조회 -->
+	<select id="selectReserv">
+		SELECT MEMBER_NAME, RESERV_NO, MEMBER_TEL, TO_CHAR(RESERV_DATE, 'YYYY"년" MM"월" DD"일"') RESERV_DATE, 
+			RESERV_TIME, RESERV_COUNT, RESERV_REQUEST, RESERV_STATUS_FL, STORE_NO
+		FROM "RESERVATION"
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE STORE_NO = #{storeNo} 
+				
+		<if test='reservStatusFl == ""'>
+			AND RESERV_DATE > SYSDATE
+		</if>
+		
+		<if test='reservStatusFl == "Y"'>
+			AND RESERV_STATUS_FL = #{reservStatusFl} AND RESERV_DATE > SYSDATE
+		</if>
+		
+		<if test='reservStatusFl == "N"'>
+			AND RESERV_STATUS_FL = #{reservStatusFl} AND RESERV_DATE > SYSDATE
+		</if>
+		
+		<if test='reservStatusFl == "C"'>
+			AND RESERV_STATUS_FL = #{reservStatusFl} AND RESERV_DATE > SYSDATE
+		</if>
+		
+		ORDER BY RESERV_DATE
+	</select>
+	
+	<!-- 예약 승인 -->
+	<update id="updateReservStatus">
+		UPDATE "RESERVATION" SET RESERV_STATUS_FL = 'Y'
+		WHERE RESERV_NO = #{reservNo}
+	</update>
+	
+	<!-- 예약 거절 -->
+	<update id="rejectReservStatus">
+		UPDATE "RESERVATION" SET RESERV_STATUS_FL = 'C'
+		WHERE RESERV_NO = #{reservNo}
+	</update>
+	
+	<!-- 확정된 예약 조회 -->
+	<select id="reservConfirm">
+		SELECT RESERV_NO, TO_CHAR(RESERV_DATE, 'YYYY-MM-DD') RESERV_DATE, 
+			RESERV_TIME, RESERV_COUNT
+		FROM "RESERVATION"
+		WHERE STORE_NO = #{storeNo} AND RESERV_DATE > SYSDATE
+	</select>
+	
+	
+	<!-- *** 사장님 정보 *** -->
+	
+	<!-- 사장님 정보 변경 화면으로 전환 + 기존 정보 조회 -->
+	<select id="selectCeoInfo">
+		SELECT MEMBER_EMAIL, MEMBER_TEL FROM "MEMBER" WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 사장님 정보 변경 -->
+	<update id="ceoInfoUpdate">
+		UPDATE "MEMBER" SET
+		MEMBER_EMAIL = #{memberEmail}, MEMBER_TEL = #{memberTel}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<!-- 암호화 비밀번호 조회 -->
+	<select id="selectPw">
+		SELECT MEMBER_PW FROM "MEMBER" WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="ceoPwUpdate">
+		UPDATE "MEMBER" SET MEMBER_PW = #{encPw} WHERE MEMBER_NO = #{memberNo}
+		
+	</update>
+	
+	
+	<!-- 사장님 리뷰 조회 -->
+	<select id="reviewAll" resultMap="review_rm">
+		SELECT DISTINCT MEMBER_NICKNAME, PROFILE_IMG, REVIEW_NO, REVIEW_RATING, REVIEW_CONTENT,
+			TO_CHAR(REVIEW__REG_DATE, 'YYYY-MM-DD') REVIEW__REG_DATE, REVIEW_DEL_FL,
+			STORE_NO, MEMBER_NO
+		FROM REVIEW
+		JOIN "MEMBER" USING (MEMBER_NO)
+		WHERE STORE_NO = (
+			SELECT STORE_NO
+			FROM "STORE"
+			JOIN MEMBER USING(MEMBER_NO)
+			WHERE MEMBER_NO = #{memberNo})
+		AND REVIEW_DEL_FL = 'N'
+		ORDER BY REVIEW_NO DESC
+	</select>
+	
+	<!-- 리뷰 이미지 조회 -->
+   <select id="uploadImageList" resultType="UploadImage">
+		SELECT * 
+		FROM UPLOAD_IMAGE
+		WHERE REVIEW_NO = #{reviewNo}
+		ORDER BY IMAGE_ORDER
+	</select> 
+	
+	<!-- 리뷰 해시태그 조회 -->
+	 <select id="selectHashList" resultType="ReviewHash">
+		SELECT HASH_NO, REVIEW_NO, HASH_TITLE 
+		FROM REVIEW_HASH
+		JOIN HASH USING (HASH_NO)
+		WHERE REVIEW_NO = #{reviewNo}
+	</select>
+	
+	<!-- 리뷰 사장님 댓글 조회 -->
+	 <select id="selectReplyList" resultType="ReviewReply">
+		SELECT R.REPLY_NO , R.REPLY_CONENT, R.REPLY_REG_DATE ,R.REPLY_DEL_FL, 
+			R.REVIEW_NO,  S.STORE_IMG
+		FROM REVIEW_REPLY R
+		JOIN STORE S ON (R.STORE_NO = S.STORE_NO)
+		WHERE REVIEW_NO = #{reviewNo}
+		AND REPLY_DEL_FL = 'N'
+	</select>
+	
+	<!-- 사장님 댓글 삽입 -->
+	<insert id="insertReply">
+		INSERT INTO "REVIEW_REPLY"
+		VALUES (NEXT_REPLY_NO(), #{storeNo}, #{replyContent}, SYSDATE, DEFAULT, #{reviewNo})
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

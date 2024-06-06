@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.foodpin.reservation.model.mapper.ReservationMapper">
+
+	<select id="storeDetail" resultType="store">
+		SELECT STORE_NO, STORE_NAME, STORE_INFO, STORE_LOCATION, STORE_STATUS, STORE_MAX_NUMBER, STORE_TEL, OPEN_HOUR, CLOSE_HOUR,
+				BREAKTIME_START, BREAKTIME_END, STORE_CLOSED, STORE_IMG, TOTAL_RATING, MEMBER_NO, STORE_MAX_TABLE
+		FROM "STORE"
+		WHERE STORE_NO=#{storeNo}
+		AND STORE_CLOSED = 'N'
+	</select>
+
+	<!-- 이용시간 조회 -->
+	<select id="selectUseTime">
+		SELECT OPEN_HOUR , CLOSE_HOUR, BREAKTIME_START , BREAKTIME_END
+		FROM "STORE"
+		WHERE STORE_NO = #{storeNo}
+		AND STORE_CLOSED = 'N'
+	</select>
+	
+	<!-- 예약 저장 -->
+	<insert id="insertReservation" useGeneratedKeys="true">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="reservNo">
+			SELECT SEQ_RESERV_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO "RESERVATION" VALUES(
+			#{reservNo},
+			TO_DATE(#{reservDate}, 'YYYY-MM-DD'),
+			#{reservTime},
+			#{reservCount}, 
+			DEFAULT,
+			#{reservRequest},
+			#{memberNo},
+			#{storeNo},
+			#{visitName},
+			#{visitTel}
+	)
+	</insert>
+	
+	
+	<!-- 예약하려는 날짜의 예약 건수 조회 -->
+	<select id="confirmReservDate">
+		SELECT RESERV_TIME , COUNT(RESERV_TIME) "COUNTS"
+		FROM "RESERVATION"
+		JOIN "STORE" USING (STORE_NO)
+		WHERE TO_CHAR(RESERV_DATE, 'MM.DD') IN (
+		    SELECT TO_CHAR(TO_DATE(RESERV_DATE, 'YYYY-MM-DD'), 'MM.DD') "RESERV_DATE"
+		    FROM "RESERVATION"
+		    WHERE TO_CHAR(RESERV_DATE, 'YYYY-MM-DD') = #{reservDate}
+		)
+		AND STORE_NO = #{storeNo}
+		AND STORE_CLOSED = 'N'
+		AND RESERV_STATUS_FL IN ('Y', 'N')
+		GROUP BY RESERV_DATE, RESERV_TIME
+	</select>
+
+	<!-- 가게 이름 조회 -->
+	<select id="selectStoreName">
+		SELECT STORE_NAME
+		FROM "STORE"
+		WHERE STORE_NO = #{storeNo}
+	</select>
+	
+	
+	<!-- 지정 휴무일 조회 -->
+	<select id="selecetOffDay">
+		SELECT OFF_DAY_NO, OFF_DAY_TITLE , TO_CHAR(OFF_DAY_START, 'YYYY-MM-DD') OFF_DAY_START, 
+			   TO_CHAR(OFF_DAY_END, 'YYYY-MM-DD') OFF_DAY_END
+		FROM "OFF_DAY"
+		WHERE STORE_NO = #{storeNo}
+	</select>
+	
+	<!-- 고정 휴무일 조회 -->
+	<select id="selectOffWeek">
+		SELECT OFF_WEEK_NO, STORE_NO, OFF_WEEK
+		FROM "OFF_WEEK"
+		WHERE STORE_NO = #{storeNo}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

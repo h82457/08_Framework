@@ -55,7 +55,7 @@ const selectCommentList = () => {
 
                 const updateBtn = document.createElement("button");
                 updateBtn.innerText = "수정";
-                updateBtn.setAttribute("onclick", `showUpdateComment(${comment.commentNo}, this)`);
+                updateBtn.setAttribute("onclick", `UpdateComment(${comment.commentNo}, this)`);
 
                 const deleteBtn = document.createElement("button");
                 deleteBtn.innerText = "삭제";
@@ -110,102 +110,6 @@ addComment.addEventListener("click", e => {
     })
     .catch( err => console.log(err));
 });
-
-/* 댓글 수정 화면 전환 */
-let beforeCommentRow; // 수정 취소시 돌아가기 위한 백업 변수
-
-const showUpdateComment = (commentNo, btn) => {
-
-    const temp = document.querySelector(".update-textarea");
-
-    if(temp != null) {
-        
-        if(confirm("수정중인 댓글이 있습니다. 현재 댓글을 수정 하시겠습니까?")) {
-
-            const CommentRow = temp.parentElement;
-            CommentRow.after(beforeCommentRow);
-            CommentRow.remove();
-        }
-        else return; 
-    }
-    //
-    const commentRow = btn.closet("li");
-    beforeCommentRow = commentRow.cloneNode(true);
-    let beforeComment = commentRow.children[1].innerText;
-    commentRow.innerHTML = "";
-
-    const commentBtnArea = document.createElement("div");
-    commentBtnArea.classList.add("comment-btn-area");
-    const updateBtn = document.createElement("button");
-    updateBtn.innerText = "수정";
-    updateBtn.setAttribute("onclick",`UpdateComment(${commentNo}, this)`);
-
-    const cancleBtn = document.createElement("button");
-    updateBtn.innerText = "취소";
-    updateBtn.setAttribute("onclick",`updateCancle(${commentNo}, this)`);
-    commentBtnArea.append(updateBtn, cancleBtn);
-    commentRow.append(commentBtnArea);
-}
-// 수정 취소
-const updateCancle = (btn) => {
-
-    if(confirm("취소 하시겠습니까?")){
-
-        const commentRow = btn.closest("li");
-        commentRow.after(beforeCommentRow);
-        commentRow.remove();
-    }
-}
-
-const updateComment = (commentNo, btn) => {
-
-    const textarea = btn.parentElement.previousElementSibling;
-
-    if(textarea.value.trim().length == 0){
-        alert("댓글 작성 후 수정버튼을 클릭해주세요.");
-        textarea.focus();
-        return;
-    }
-
-    const data = {
-        "commentNo" : commentNo,
-        "commentContent" : textarea.value
-    }
-
-    fetch("/comment", {
-        method : "PUT",
-        headers : {"content-Type" : "application/json"},
-        body : JSON.stringify(data)
-    })
-
-    .then(resp => resp.text())
-    .then(result => {
-
-        if(result > 0){
-            alert("댓글이 수정되었습니다.");
-            selectCommentList();
-            
-        } else alert("댓글 수정 실패");
-    })
-    .catch( err => console.log(err));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* 댓글 삭제 */

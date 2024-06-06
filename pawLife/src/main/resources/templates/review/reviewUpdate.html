@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후기 게시판 글쓰기</title>
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/review/review-update.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+       
+       
+        <from action="/adoptionWrite">
+            <section class="board">
+
+
+    
+                <h1><input type="text" placeholder="제목" id="inputTitle"></h1>
+    
+    
+    
+                <section class="board-box">
+
+                    <textarea name="adoptionContent" id="adoptionContent" cols="100" rows="10" placeholder="내용 입력"></textarea>
+        
+                    <button id="updateBtn">수정하기</button>
+    
+                </section>
+            </section>
+        </from>
+
+
+
+
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block> 
+
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var oEditors = [];
+        nhn.husky.EZCreator.createInIFrame({
+         oAppRef: oEditors,
+         elPlaceHolder: "adoptionContent",
+         sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+         fCreator: "createSEditor2"
+        });
+        </script>
+
+</body>
+</html>

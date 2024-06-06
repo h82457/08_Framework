@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.foodpin.member.model.mapper.MemberMapper">
+	
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="Member">
+			SELECT MEMBER_NO, MEMBER_ID, MEMBER_CODE, MEMBER_EMAIL, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_PW,
+					MEMBER_TEL, PROFILE_IMG, MEMBER_STATUS, MEMBER_FLAG,
+					TO_CHAR(ENROLL_DATE,'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+			FROM MEMBER
+			WHERE MEMBER_ID = #{memberId}
+			AND MEMBER_STATUS = 'N'
+	</select>
+	
+	<!-- 일반 회원가입 -->
+	<insert id="signupCommon">
+	INSERT INTO "MEMBER"
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,
+		DEFAULT,
+		#{memberId},
+		#{memberEmail},
+		#{memberName},
+		#{memberNickname},
+		#{memberPw},
+		#{memberTel},
+		'/images/user.png',
+		DEFAULT,
+		DEFAULT,
+		0
+	)
+	</insert>
+	
+	<!-- 사장님 회원가입 -->
+	<insert id="signupStore">
+	INSERT INTO "MEMBER"
+	VALUES(SEQ_MEMBER_NO.NEXTVAL,
+		2,
+		#{memberId},
+		#{memberEmail},
+		#{memberName},
+		NULL,
+		#{memberPw},
+		#{memberTel},
+		'/images/user.png',
+		DEFAULT,
+		'W',
+		0
+	)
+	</insert>
+	<!-- 사장님 멤버 회원 정보 -->
+	<select id="findMemberNo">
+	SELECT MEMBER_NO
+	FROM "MEMBER"
+	WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- 사장님 가게정보 입력 -->
+	<insert id="signupStoreInfo">
+	INSERT INTO "STORE"
+	VALUES(
+		#{storeNo},
+		#{storeName},
+		NULL,
+		#{storeLocation},
+		DEFAULT,
+		NULL,
+		#{storeTel},
+		#{openHour},
+		#{closeHour},
+		NULL,
+		NULL,
+		DEFAULT,
+		'/images/storeDetail/store.jpg',
+		0,
+		#{memberNo},
+		0
+	)
+	</insert>
+	
+	<!-- ID 중복 검사 -->
+	<select id="checkId">
+	SELECT COUNT(*)
+	FROM "MEMBER"
+	WHERE MEMBER_STATUS = 'N'
+	AND MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- 사업자 등록번호 중복 검사 -->
+	<select id="checkStoreNo">
+	SELECT COUNT(*)
+	FROM "STORE"
+	WHERE STORE_CLOSED = 'N'
+	AND STORE_NO = #{storeNo}
+	
+	</select>
+	
+	<!-- 인증번호 DB에 저장 -->
+	<insert id="saveAuthKey">
+	INSERT INTO "AUTH_KEY"
+	VALUES(
+		SEQ_KEY_NO.NEXTVAL,
+		#{memberTel},
+		#{authKey},
+		DEFAULT
+	)
+	</insert>
+	
+	<!-- 해당 번호가 DB에 있을 경우 authkey 수정 -->
+	<update id="updateAuthKey">
+	UPDATE "AUTH_KEY"
+	SET AUTH_KEY = #{authKey}, 
+	    CREATE_TIME = SYSDATE
+	WHERE TEL_NUMBER=#{memberTel}
+	</update>
+	
+	<!-- 인증번호가 DB가 있는지 확인 -->
+	  <select id="checkAuthKey" resultType="_int">
+	  	SELECT COUNT(*) 
+		FROM "AUTH_KEY"
+		WHERE TEL_NUMBER = #{telNumber}
+		AND AUTH_KEY = #{authKey}
+	  </select>
+	  
+	  <!-- 아이디 목록 -->
+	  <select id="findIdList"> 
+	  SELECT MEMBER_ID,MEMBER_CODE,TO_CHAR(ENROLL_DATE,'YYYY-MM-DD') ENROLL_DATE
+	  FROM "MEMBER"
+	  WHERE MEMBER_TEL=#{memberTel}
+	  AND MEMBER_NAME = #{memberName}
+	  </select>
+	  
+	  <!-- 새 비밀번호 변경 -->
+	  <update id="resetPw">
+	  UPDATE MEMBER SET MEMBER_PW = #{memberPw}
+	  WHERE MEMBER_ID = #{memberId}
+	  </update>
+	  
+	  <!-- 새 비밀번호 변경 전 컨펌  -->
+	  <select id="idConfirm">
+	  	SELECT COUNT(*)
+	  	FROM "MEMBER"
+		WHERE MEMBER_TEL=#{memberTel}
+		AND MEMBER_NAME = #{memberName}
+		AND MEMBER_ID = #{memberId}
+	
+	  </select>
+	  
+</mapper>

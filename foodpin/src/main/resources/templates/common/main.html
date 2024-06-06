@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOODPIN</title>
+
+      <!-- templetes/common/common.html  조각 추가 -->
+     <th:block th:replace="~{common/common}"></th:block>
+
+</head>
+<body>
+  <main>
+     
+     <!-- templetes/common/header.html  조각 추가 -->
+     <th:block th:replace="~{common/header}"></th:block>
+
+     <!-- section 1 검색하는 공간 -->
+       <div class="main-search-container">
+
+        <button class="main-quick-login">member01</button><br>
+        <button class="main-quick-login">member02</button><br>
+        <button class="main-quick-login">member03</button><br>
+
+        <p>장소, 음식, 가게명, 주소 검색</p>
+
+        <input type="text" name="mainSearch" id="mainSearch" 
+         placeholder="정확한 주소로 검색해 주세요">
+
+       </div>
+      
+
+
+     <!-- section 2  카테고리 공간 -->
+     <section class="main-category-container">
+
+      <div class="main-category-content">
+
+        <div id="main-category-text">
+          <p>뭘 먹을까...</p>
+        </div>
+        
+        <!-- 맛집 랭킹 순으로 4개 -->
+        <div class="main-category-button">
+          <button>전체</button>
+          <button>한식</button>
+          <button>중식</button>
+          <button>일식</button>
+          <button>양식</button>
+          <button>분식</button>
+          <button>고기.구이</button>
+          <button>뷔페</button>
+          <button>카페.디저트</button>
+          <button>패스트푸드</button>
+          <button>찜.탕.찌개</button>
+          <button>맛집랭킹</button>
+        </div>
+         
+      </div>
+      
+     </section>
+
+
+
+     
+
+     <!-- section 3 내 근처 가게 리스트 -->
+      <section class="main-store-image-container">
+        <div class="main-store-image-content">
+
+          <div id="main-store-text">
+            <p>내 근처 맛집</p>
+          </div>
+          
+          <div class="main-store-img" >
+            
+            
+              <a class="store-img" th:each="store : ${storeList}"  th:if="${storeStat.index} lt 4"
+              th:href="'/store/storeDetail/' + ${store.storeNo}"> 
+               <img 
+               th:src="${store.storeImg}"
+               class="store-thumbnail">
+                <span class="store-name" th:text="${store.storeName}">가게 이름</span>
+              </a>
+            
+              
+
+              
+            </div>
+           
+            
+         
+           
+        </div>
+      </section>
+
+  </main>
+
+
+  <script th:inline="javascript">
+
+    const loginMember = /*[[${session.loginMember}]]*/"로그인 회원 정보";
+
+  </script>
+     
+   <!-- templetes/common/footer.html  조각 추가 -->
+   <th:block th:replace="~{common/footer}"></th:block> 
+
+   <script src="/js/main.js"></script>
+
+</body>
+</html>

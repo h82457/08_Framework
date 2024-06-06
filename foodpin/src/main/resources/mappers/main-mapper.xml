@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.foodpin.main.model.mapper.MainMapper">
+
+ <select id="selectStoreList"  resultType="store">
+    SELECT STORE_IMG, STORE_NAME, STORE_NO
+   FROM "STORE"
+   JOIN "MEMBER" USING (MEMBER_NO)
+   WHERE STORE_CLOSED='N'
+   AND MEMBER_STATUS='N'
+   ORDER BY STORE_NO DESC
+ 
+ </select>
+ 
+     <!-- 카테고리 종류 조회 -->
+<select id="selectCategoryTypeList">
+   SELECT CATEGORY_CODE "categoryCode", CATEGORY_TITLE "categoryTitle"
+  FROM CATEGORY
+  ORDER BY CATEGORY_CODE
+</select>
+
+</mapper>

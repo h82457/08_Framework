@@ -405,6 +405,7 @@ JOIN "MEMBER" USING(MEMBER_NO)
 WHERE REVIEW_DEL_FL='N' AND BOARD_CODE = 2 AND REVIEW_NO = 33;
 
 
+SELECT * FROM "REVIEW";
 
 
 ------------------------------------------------------
@@ -466,3 +467,5 @@ VALUES(SEQ_REVIEW_NO.NEXTVAL, '파일패스', '오리지널네임','리네임', 
 =======
 >>>>>>> c28837a1946e008b1ff30a17a628d52b56b6ac71
 
+
+ALTER "REVIEW" CO
